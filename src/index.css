@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --pk-black: rgb(23, 20, 18);
+  --pk-black-secondary: rgba(23, 20, 18, .6);
+
+  --pk-burgundy: rgb(73, 17, 28);
+  --pk-burgundy-secondary: rgba(73, 17, 28, .6);
+
+  --pk-white: rgb(242, 244, 243);
+  --pk-white-secondary: rgba(242, 244, 243, .6);
+
+  --pk-beige: rgb(169, 146, 125);
+  --pk-beige-secondary: rgba(169, 146, 125, .6);
+}
