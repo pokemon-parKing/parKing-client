@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
   const handleSubmit = (e) => {
@@ -7,7 +7,7 @@ const AddressForm = () => {
   };
   return (
     <div className="flex justify-center">
-      <form onSubmit={handleSubmit} className="w-1/2">
+      <form onSubmit={handleSubmit} className="w-1/2 border border-burgundy-p">
         <div className="flex flex-row">
           <div className="flex flex-col w-3/4">
             <label htmlFor="street">Street Address </label>

@@ -8,9 +8,9 @@ const UserReservation = () => {
     <>
       <h1 className="text-2xl">User Reservation Container </h1>
       <AddressForm />
-      <DayTimeForm />
+      {/* <DayTimeForm />
       <Confirmation />
-      <Map />
+      <Map /> */}
     </>
   );
 };
