@@ -1,7 +1,7 @@
 import { useState } from "react";
 import getGeoCoordinates from "../../utils/getGeoCoordinates";
 import MapView from "./MapView";
-import states from "./form-data/states";
+import states from "../../lib/states";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
