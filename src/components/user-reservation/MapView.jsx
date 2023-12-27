@@ -1,8 +1,15 @@
-import React from "react";
-import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
+import { useState } from "react";
+import {
+  APIProvider,
+  Map,
+  Marker,
+  InfoWindow,
+} from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const MapView = ({ center }) => {
+  const [open, setOpen] = useState(false);
+  const [garageData, setGarageData] = useState(null);
   const positions = [
     { lat: 39.26449151218731, lng: -120.13310055492722 }, // Northstar
     { lat: 39.25403342123072, lng: -119.92337467143992 }, // Incline Village
@@ -18,9 +25,22 @@ const MapView = ({ center }) => {
     { lat: 37.74154216539564, lng: -122.4431365870521 }, //Glen Park
   ];
 
+  const handleMarkerClick = (location) => {
+    setGarageData(location);
+    setOpen(true);
+  };
+
   const createMarkers = (locations) => {
     return locations.map((location) => {
-      return <Marker key={location.lat + location.lng} position={location} />;
+      return (
+        <Marker
+          key={location.lat + location.lng}
+          position={location}
+          onClick={() => handleMarkerClick(location)}
+        >
+          {" "}
+        </Marker>
+      );
     });
   };
 
@@ -31,6 +51,17 @@ const MapView = ({ center }) => {
           <Map center={center} zoom={11}>
             <Marker position={center} />
             {createMarkers(positions)}
+            {open && (
+              <InfoWindow
+                position={garageData}
+                onCloseClick={() => {
+                  setGarageData(null);
+                  setOpen(false);
+                }}
+              >
+                Hello World!
+              </InfoWindow>
+            )}
           </Map>
         </div>
       </APIProvider>

@@ -5,7 +5,7 @@ const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [date, setDate] = useState(null);
-  console.log("date", date);
+
   const dates = [];
   let currentDate = new Date();
   for (let i = 0; i < 8; i++) {
