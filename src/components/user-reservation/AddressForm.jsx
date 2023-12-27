@@ -1,70 +1,13 @@
 import { useState, useEffect } from "react";
 import getGeoCoordinates from "../../utils/getGeoCoordinates";
 import MapView from "./MapView";
+import states from "./form-data/states";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [date, setDate] = useState(null);
-  const allStates = [
-    "AK",
-    "AL",
-    "AR",
-    "AS",
-    "AZ",
-    "CA",
-    "CO",
-    "CT",
-    "DC",
-    "DE",
-    "FL",
-    "GA",
-    "GU",
-    "HI",
-    "IA",
-    "ID",
-    "IL",
-    "IN",
-    "KS",
-    "KY",
-    "LA",
-    "MA",
-    "MD",
-    "ME",
-    "MI",
-    "MN",
-    "MO",
-    "MP",
-    "MS",
-    "MT",
-    "NC",
-    "ND",
-    "NE",
-    "NH",
-    "NJ",
-    "NM",
-    "NV",
-    "NY",
-    "OH",
-    "OK",
-    "OR",
-    "PA",
-    "PR",
-    "RI",
-    "SC",
-    "SD",
-    "TN",
-    "TX",
-    "UM",
-    "UT",
-    "VA",
-    "VI",
-    "VT",
-    "WA",
-    "WI",
-    "WV",
-    "WY",
-  ];
-  const stateOptions = allStates.map((state) => (
+
+  const stateOptions = states.map((state) => (
     <option key={state}>{state}</option>
   ));
 
@@ -179,6 +122,7 @@ const AddressForm = () => {
                 {stateOptions}
               </select>
             </div>
+            {/* MAYBE LIMIT TO JUST THE US??? */}
             {/* <div className="flex flex-col w-1/2">
               <label htmlFor="country" className="font-bold">
                 Country{" "}

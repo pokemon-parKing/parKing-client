@@ -9,8 +9,10 @@ const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const MapView = ({ center }) => {
   const [open, setOpen] = useState(false);
-  const [windowCenter, setWindowCenter] = useState(null);
+  const [windowCenter, setWindowCenter] = useState(null); //
   const [garageData, setGarageData] = useState(null);
+
+  /* FAKE DATA */
   const positions = [
     { lat: 39.26449151218731, lng: -120.13310055492722 }, // Northstar
     { lat: 39.25403342123072, lng: -119.92337467143992 }, // Incline Village
@@ -26,9 +28,10 @@ const MapView = ({ center }) => {
     { lat: 37.74154216539564, lng: -122.4431365870521 }, //Glen Park
   ];
 
+  /* Show Modal on Marker Click */
   const handleMarkerClick = (location) => {
     // setGarageData() -- get garage data and ID from db
-    setWindowCenter(location);
+    setWindowCenter(location); // recenter map around clicked marker
     setOpen(true);
   };
 
@@ -61,7 +64,8 @@ const MapView = ({ center }) => {
                   setOpen(false);
                 }}
               >
-                {"Garage Data: ID, Name, Address"}
+                {"Garage Data: ID, Name, Address, Distance from Center"}
+                <button className="border-2 border-burgandy-p">Confirm</button>
               </InfoWindow>
             )}
           </Map>
