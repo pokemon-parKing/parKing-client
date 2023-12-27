@@ -5,6 +5,68 @@ const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [date, setDate] = useState(null);
+  const allStates = [
+    "AK",
+    "AL",
+    "AR",
+    "AS",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MP",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "PR",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UM",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY",
+  ];
+  const stateOptions = allStates.map((state) => (
+    <option key={state}>{state}</option>
+  ));
 
   const dates = [];
   let currentDate = new Date();
@@ -105,28 +167,32 @@ const AddressForm = () => {
               <label htmlFor="state" className="font-bold">
                 State{" "}
               </label>
-              <input
+              <select
                 type="text"
                 onChange={(e) => {
                   const updatedAddress = address;
                   updatedAddress.state = e.target.value;
                   setAddress(updatedAddress);
                 }}
-              />
+              >
+                <option>Select a state</option>
+                {stateOptions}
+              </select>
             </div>
-            <div className="flex flex-col w-1/2">
+            {/* <div className="flex flex-col w-1/2">
               <label htmlFor="country" className="font-bold">
                 Country{" "}
               </label>
               <input
                 type="text"
+                placeholder="USA"
                 onChange={(e) => {
                   const updatedAddress = address;
                   updatedAddress.country = e.target.value;
                   setAddress(updatedAddress);
                 }}
               />
-            </div>
+            </div> */}
           </div>
           <h3 className="font-bold text-2xl">Date</h3>
           <select onChange={(e) => setDate(e.target.value)}>

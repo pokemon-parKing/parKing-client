@@ -9,6 +9,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const MapView = ({ center }) => {
   const [open, setOpen] = useState(false);
+  const [windowCenter, setWindowCenter] = useState(null);
   const [garageData, setGarageData] = useState(null);
   const positions = [
     { lat: 39.26449151218731, lng: -120.13310055492722 }, // Northstar
@@ -26,7 +27,8 @@ const MapView = ({ center }) => {
   ];
 
   const handleMarkerClick = (location) => {
-    setGarageData(location);
+    // setGarageData() -- get garage data and ID from db
+    setWindowCenter(location);
     setOpen(true);
   };
 
@@ -53,13 +55,13 @@ const MapView = ({ center }) => {
             {createMarkers(positions)}
             {open && (
               <InfoWindow
-                position={garageData}
+                position={windowCenter}
                 onCloseClick={() => {
                   setGarageData(null);
                   setOpen(false);
                 }}
               >
-                Hello World!
+                {"Garage Data: ID, Name, Address"}
               </InfoWindow>
             )}
           </Map>
