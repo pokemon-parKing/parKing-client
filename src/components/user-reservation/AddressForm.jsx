@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import getGeoCoordinates from "../../utils/getGeoCoordinates";
 import MapView from "./MapView";
 import states from "./form-data/states";
@@ -6,10 +6,6 @@ const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [date, setDate] = useState(null);
-
-  const stateOptions = states.map((state) => (
-    <option key={state}>{state}</option>
-  ));
 
   const dates = [];
   let currentDate = new Date();
@@ -119,33 +115,24 @@ const AddressForm = () => {
                 }}
               >
                 <option>Select a state</option>
-                {stateOptions}
+                {/* States from ./form-data/states.js */}
+                {states.map((state) => (
+                  <option key={state}>{state}</option>
+                ))}
               </select>
             </div>
-            {/* MAYBE LIMIT TO JUST THE US??? */}
-            {/* <div className="flex flex-col w-1/2">
-              <label htmlFor="country" className="font-bold">
-                Country{" "}
-              </label>
-              <input
-                type="text"
-                placeholder="USA"
-                onChange={(e) => {
-                  const updatedAddress = address;
-                  updatedAddress.country = e.target.value;
-                  setAddress(updatedAddress);
-                }}
-              />
-            </div> */}
           </div>
           <h3 className="font-bold text-2xl">Date</h3>
           <select onChange={(e) => setDate(e.target.value)}>
             <option>Select a date</option>
             {dates}
           </select>
-          <button type="submit" className="font-bold border border-burgundy-p">
+          <button
+            type="submit"
+            className="btn font-bold border border-burgundy-p"
+          >
             {!coordinates ? "Submit" : "Update"}
-          </button>
+          </button>{" "}
         </form>
       </div>
       {coordinates && <MapView center={coordinates} />}
