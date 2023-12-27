@@ -19,13 +19,18 @@ const AddressForm = () => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
-  const GetAndSetCoordinates = async (address) => {
+  const getAndSetCoordinates = async (address) => {
     try {
       const coordinates = await getGeoCoordinates(address);
       setCoordinates(coordinates);
+      return coordinates;
     } catch (err) {
       console.log(err);
     }
+  };
+  const getGarages = (coordinates, date) => {
+    /* STEVEN WIP */
+    // Will provide coordinates of inputted address and date
   };
 
   const handleSubmit = (e) => {
@@ -36,8 +41,8 @@ const AddressForm = () => {
     const addressString = `${address.street} ${address.apt || ""}, ${
       address.city
     }, ${address.state} ${address.zip}, ${address.country}`;
-    GetAndSetCoordinates(addressString);
-    // GetAvailableSpots(addressString, date);
+    const coordinates = getAndSetCoordinates(addressString);
+    getGarages(coordinates, date);
   };
 
   return (

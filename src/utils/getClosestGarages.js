@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const getGarageData = async (address) => {
-  /* WIP */
-  /*   try {
+const getGeoCoordinates = async (coordinates, date) => {
+  try {
     const { data } = await axios.get(
       `http://localhost:3001/geocode/?address=${address}`
     );
@@ -10,6 +9,6 @@ const getGarageData = async (address) => {
   } catch (error) {
     console.log(error);
     return null;
-  } */
+  }
 };
-export default getGarageData;
+export default getGeoCoordinates;
