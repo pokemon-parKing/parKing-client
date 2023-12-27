@@ -10,7 +10,6 @@ const UserReservation = () => {
       <AddressForm />
       {/* <DayTimeForm />
       <Confirmation /> */}
-      <MapView />
     </>
   );
 };
