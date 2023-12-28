@@ -1,4 +1,4 @@
-const states = [
+export const states = [
   "AK",
   "AL",
   "AR",
@@ -57,5 +57,3 @@ const states = [
   "WV",
   "WY",
 ];
-
-export default states;
