@@ -10,7 +10,7 @@ const AddressForm = () => {
   const [date, setDate] = useState(null);
   const [garages, setGarages] = useState(null);
 
-  /* Get Geocode for Inputted Address */
+  /* 1. Get Geocode for Inputted Address */
   const getAndSetCoordinates = async (address) => {
     try {
       const coordinates = await getGeoCoordinates(address);
@@ -21,11 +21,9 @@ const AddressForm = () => {
     }
   };
 
-  /* Get Garage Data for Closest Garages */
-  const fetchGarages = async (coordinates, date) => {
-    console.log(coordinates);
+  /* 2. Get Garage Data for Closest Garages */
+  const fetchGarages = async (coordinates) => {
     const garages = await getGarages(coordinates);
-    console.log(garages);
     // /* FAKE DATA */
     // const address = {
     //   id: 1,
@@ -58,7 +56,7 @@ const AddressForm = () => {
     setGarages(garages);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!address.street) return alert("Please fill address");
     if (!date || date === "Select a date") return alert("Please select a date");
@@ -68,9 +66,9 @@ const AddressForm = () => {
       address.city || ""
     } ${address.state || ""} ${address.zip || ""}`;
 
-    const coordinates = getAndSetCoordinates(addressString);
+    const coordinates = await getAndSetCoordinates(addressString);
 
-    fetchGarages(coordinates, date);
+    fetchGarages(coordinates);
   };
 
   return (

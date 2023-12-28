@@ -1,16 +1,11 @@
 import axios from "axios";
 
 const getGarages = async (coordinates) => {
-  /* WIP */
   try {
-    console.log("1.", coordinates);
-    // const res = await axios.get(
-    //   `http://localhost:3001/reservations?lat=${coordinates.lat}&lng=${coordinates.lng}`
-    // );
-    const res = await axios.get(`http://localhost:3001/reservations`, {
+    const { data } = await axios.get(`http://localhost:3001/reservations`, {
       params: coordinates,
     });
-    console.log(res);
+    return data;
   } catch (err) {
     console.error(err);
   }

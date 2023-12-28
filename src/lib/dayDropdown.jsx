@@ -1,7 +1,6 @@
 export const getNext8Days = () => {
   const dates = [];
   let currentDate = new Date();
-  console.log(currentDate);
   for (let i = 0; i < 8; i++) {
     let dateString = currentDate.toLocaleDateString("en-US", {
       year: "2-digit",

@@ -4,7 +4,7 @@ const Confirmation = () => {
     garage_id: 1,
     car_id: 1,
     date: "12-28-23",
-    time: 6,
+    time: 7,
     name: "Twin Peaks",
     address: "501 Twin Peaks Blvd",
     city: "San Francisco",
