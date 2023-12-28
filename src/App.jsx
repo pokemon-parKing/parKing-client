@@ -1,5 +1,6 @@
-// import AccountsPage from "./containers/AccountsPage.jsx";
-// import UserReservation from "./containers/UserReservation.jsx";
+import React from "react";
+import AccountsPage from "./containers/AccountsPage.jsx";
+import UserReservation from "./containers/UserReservation.jsx";
 import { Link } from "react-router-dom";
 // we import from redux usedisptach and useselector to access our store
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,13 +23,14 @@ function App() {
   return (
     <>
       {/* <Link to={'/pokemon'}>Pokemon</Link> */}
-    <div className="flex flex-col">
-      parKing - Pokemon
-      <div className="flex flex-col md:flex-row ">Test</div>
-      <Link to={"/pokemon"}>Pokemon</Link>
-      <Link to={"/reservation"}>User Reservation</Link>
-      <Link to="/user">Go to User Page</Link>
-    </div>
+      <div className="flex flex-col">
+        parKing - Pokemon
+        <div className="flex flex-col md:flex-row">Test</div>
+        <Link to={"/pokemon"}>Pokemon</Link>
+        <Link to={"/reservation"}>User Reservation</Link>
+        <Link to={"/user"}>Go to User Page</Link>
+
+      </div>
     </>
   );
 }
