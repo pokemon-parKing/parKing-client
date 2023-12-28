@@ -1,6 +1,3 @@
-import React from "react";
-import AccountsPage from "./containers/AccountsPage.jsx";
-import UserReservation from "./containers/UserReservation.jsx";
 import { Link } from "react-router-dom";
 // we import from redux usedisptach and useselector to access our store
 import { useDispatch, useSelector } from 'react-redux';
