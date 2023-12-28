@@ -4,10 +4,10 @@ import getGarages from "../../utils/getGarages";
 import MapView from "./MapView";
 import { states } from "../../lib/states";
 import { getNext8Days } from "../../lib/dayDropdown";
-const AddressForm = () => {
+const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
-  const [date, setDate] = useState(null);
+  const [inputDate, setInputDate] = useState(null);
   const [garages, setGarages] = useState(null);
 
   /* 1. Get Geocode for Inputted Address */
@@ -34,7 +34,8 @@ const AddressForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!address.street) return alert("Please fill address");
-    if (!date || date === "Select a date") return alert("Please select a date");
+    if (!inputDate || inputDate === "Select a date")
+      return alert("Please select a date");
 
     /* Will cleanup later */
     const addressString = `${address.street} ${address.apt || ""} ${
@@ -48,13 +49,8 @@ const AddressForm = () => {
 
   return (
     <div className="flex flex-row">
-      <div className="w-1/2 border-2 border-burgundy-p">
+      <div className="w-1/3 border-2 border-burgundy-p">
         <form onSubmit={handleSubmit}>
-          <h3 className="font-bold text-2xl">Date</h3>
-          <select onChange={(e) => setDate(e.target.value.replace(/\//g, "-"))}>
-            <option>Select a date</option>
-            {getNext8Days()}
-          </select>
           <h3 className="font-bold text-2xl">Address</h3>
           <div className="flex flex-row">
             <div className="flex flex-col w-3/4">
@@ -98,7 +94,7 @@ const AddressForm = () => {
                 }}
               />
             </div>
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-2/3">
               <label htmlFor="city" className="font-bold">
                 City{" "}
               </label>
@@ -132,16 +128,36 @@ const AddressForm = () => {
               </select>
             </div>
           </div>
+          <div>
+            <h3 className="font-bold text-2xl">Date</h3>
+            <select
+              onChange={(e) => {
+                const reformattedDate = e.target.value.replace(/\//g, "-");
+                setInputDate(reformattedDate);
+                setDate(reformattedDate);
+              }}
+            >
+              <option>Select a date</option>
+              {getNext8Days()}
+            </select>
+          </div>
           <button
             type="submit"
             className="btn font-bold border border-burgundy-p"
           >
-            {!coordinates ? "Submit" : "Update"}
+            {!coordinates ? "Search" : "Update Search"}
           </button>{" "}
         </form>
       </div>
       {coordinates && garages && (
-        <MapView center={coordinates} garages={garages} date={date} />
+        <MapView
+          center={coordinates}
+          garages={garages}
+          inputDate={inputDate}
+          setTime={setTime}
+          setGarageId={setGarageId}
+          confirmReservation={confirmReservation}
+        />
       )}
     </div>
   );

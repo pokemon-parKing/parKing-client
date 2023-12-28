@@ -9,7 +9,14 @@ import {
 } from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const MapView = ({ date, center, garages }) => {
+const MapView = ({
+  inputDate,
+  center,
+  garages,
+  setTime,
+  setGarageId,
+  confirmReservation,
+}) => {
   const [open, setOpen] = useState(false);
   const [selectedGarageData, setSelectedGarageData] = useState(null);
   const [reservations, setReservations] = useState(null);
@@ -33,6 +40,7 @@ const MapView = ({ date, center, garages }) => {
 
   const getResevations = async (garageId, date) => {
     try {
+      setGarageId(garageId);
       const reservations = await getReservationsByDate(garageId, date);
       setReservations(reservations);
     } catch (err) {
@@ -46,7 +54,7 @@ const MapView = ({ date, center, garages }) => {
       <div>
         <div className="flex justify-center">
           <APIProvider apiKey={apiKey}>
-            <div style={{ height: "50vh", width: "50vw" }}>
+            <div style={{ height: "50vh", width: "75vw" }}>
               <Map center={center} zoom={12}>
                 {/* WILL UPDATE STYLE SO THAT CENTER & GARAGE MARKERS ARE DISTINCT */}
                 <Marker position={center} />
@@ -71,10 +79,10 @@ const MapView = ({ date, center, garages }) => {
                     <button
                       className="border-2 border-burgandy-p"
                       onClick={() =>
-                        getResevations(selectedGarageData.id, date)
+                        getResevations(selectedGarageData.id, inputDate)
                       }
                     >
-                      Confirm
+                      Show Times
                     </button>
                   </InfoWindow>
                 )}
@@ -87,6 +95,8 @@ const MapView = ({ date, center, garages }) => {
             hoursOfOperation={selectedGarageData.operation_hours}
             list={reservations}
             total={selectedGarageData.spots}
+            setTime={setTime}
+            confirmReservation={confirmReservation}
           />
         )}
       </div>

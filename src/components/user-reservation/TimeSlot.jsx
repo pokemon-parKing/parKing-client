@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 
-const TimeSlot = ({ info }) => {
+const TimeSlot = ({ info, setTime, confirmReservation }) => {
   return (
     <div
       className={`${
         info.available ? "cursor-pointer" : "pointer-events-none grayscale"
       } p-1 m-1 w-full border-2 border-transparent text-center`}
+      onClick={() => {
+        setTime(info.time);
+        confirmReservation();
+      }}
     >
       {info.time}
       <div className="text-[.5em] text-slate-400 mt-1 mx-auto w-fit">
