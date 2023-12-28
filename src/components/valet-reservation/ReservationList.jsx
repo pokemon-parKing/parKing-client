@@ -8,7 +8,8 @@ const ReservationList = () => {
         {reservations.map((reservation) => {
           return (
             <li key={reservation.id}>
-              {reservation.firstName} {reservation.lastName}
+            //Need this to be a link to the reservation details page
+              {reservation.date} {reservation.time}
             </li>
           );
         })}
