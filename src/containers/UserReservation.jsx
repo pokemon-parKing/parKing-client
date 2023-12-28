@@ -1,8 +1,5 @@
 import AddressForm from "../components/user-reservation/AddressForm.jsx";
 import Confirmation from "../components/user-reservation/Confirmation.jsx";
-import DayTimeForm from "../components/user-reservation/DayTimeForm.jsx";
-import Map from "../components/user-reservation/Map.jsx";
-
 
 const UserReservation = () => {
   return (
