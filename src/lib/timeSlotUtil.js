@@ -15,7 +15,7 @@ export const getAvailableTimes = (hourRange, list, total) => {
 }
 
 export const convertTime = (number) => {
-  if (number === 24) return '12:00 AM';
+  if (number === 0) return '12:00 AM';
   if (number === 12) return '12:00 PM';
 
   let time = `${number % 12}:00`;
