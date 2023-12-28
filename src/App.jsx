@@ -11,6 +11,7 @@ function App() {
         <Link to={"/pokemon"}>Pokemon</Link>
         <Link to={"/reservation"}>User Reservation</Link>
         <Link to={"/user"}>Go to User Page</Link>
+
       </div>
     </>
   );

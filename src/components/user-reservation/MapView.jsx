@@ -1,5 +1,6 @@
 import { useState } from "react";
 import getReservationsByDate from "../../utils/getReservationsByDate";
+import TimeSlotList from "./TimeSlotList";
 import {
   APIProvider,
   Map,
@@ -8,11 +9,17 @@ import {
 } from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const MapView = ({ date, center, garages }) => {
+const MapView = ({
+  inputDate,
+  center,
+  garages,
+  setTime,
+  setGarageId,
+  confirmReservation,
+}) => {
   const [open, setOpen] = useState(false);
   const [selectedGarageData, setSelectedGarageData] = useState(null);
   const [reservations, setReservations] = useState(null);
-
   /* Show Modal on Marker Click */
   const handleMarkerClick = (garage) => {
     setSelectedGarageData(garage);
@@ -23,16 +30,17 @@ const MapView = ({ date, center, garages }) => {
     return garageList.map((garage) => {
       return (
         <Marker
-          key={garage.geocode.lat + garage.geocode.lng}
-          position={garage.geocode}
+          key={garage.lat + garage.lng}
+          position={{ lat: garage.lat, lng: garage.lng }}
           onClick={() => handleMarkerClick(garage)}
         ></Marker>
       );
     });
   };
+
   const getResevations = async (garageId, date) => {
-    /* GET AVAILABLE TIME */
     try {
+      setGarageId(garageId);
       const reservations = await getReservationsByDate(garageId, date);
       setReservations(reservations);
     } catch (err) {
@@ -46,31 +54,35 @@ const MapView = ({ date, center, garages }) => {
       <div>
         <div className="flex justify-center">
           <APIProvider apiKey={apiKey}>
-            <div style={{ height: "50vh", width: "50vw" }}>
-              <Map center={center} zoom={11}>
+            <div style={{ height: "50vh", width: "75vw" }}>
+              <Map center={center} zoom={12}>
+                {/* WILL UPDATE STYLE SO THAT CENTER & GARAGE MARKERS ARE DISTINCT */}
                 <Marker position={center} />
                 {createMarkers(garages)}
                 {open && (
                   <InfoWindow
-                    position={selectedGarageData.geocode}
+                    position={{
+                      lat: selectedGarageData.lat,
+                      lng: selectedGarageData.lng,
+                    }}
                     onCloseClick={() => {
                       setOpen(false);
                     }}
                   >
                     <h1>{selectedGarageData.name || "GARAGE NAME"}</h1>
                     <p>{selectedGarageData.address || "ADDRESS"}</p>
-                    <p>{selectedGarageData.city || "CITY"}</p>
-                    <p>{selectedGarageData.state || "STATE"}</p>
                     <p>
-                      {selectedGarageData.distance || "DISTANCE???"} miles away
+                      {selectedGarageData.city || "CITY"},{" "}
+                      {selectedGarageData.state || "STATE"}
                     </p>
+                    <p>{selectedGarageData.distance || "1.5"} miles away</p>
                     <button
                       className="border-2 border-burgandy-p"
                       onClick={() =>
-                        getResevations(selectedGarageData.id, date)
+                        getResevations(selectedGarageData.id, inputDate)
                       }
                     >
-                      Confirm
+                      Show Times
                     </button>
                   </InfoWindow>
                 )}
@@ -78,8 +90,15 @@ const MapView = ({ date, center, garages }) => {
             </div>
           </APIProvider>
         </div>
-        {/* STEVEN BUILT. WILL INTEGRATE ONCE PR IS APPROVED */}
-        {/* {reservations && <TimeSlotList reservations={reservations} />} */}
+        {reservations && (
+          <TimeSlotList
+            hoursOfOperation={selectedGarageData.operation_hours}
+            list={reservations}
+            total={selectedGarageData.spots}
+            setTime={setTime}
+            confirmReservation={confirmReservation}
+          />
+        )}
       </div>
     )
   );
