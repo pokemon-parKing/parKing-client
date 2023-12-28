@@ -1,8 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 
 const AccountSetting = () => {
+  const { id } = useParams();
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/user/${id}`);
+        setUserData(response.data);
+        setPhoneNumber(formatPhoneNumber(userData.phone_number));
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [id]);
 
   const handlePhoneNumberChange = (e) => {
     const input = e.target.value;
@@ -26,11 +44,13 @@ const AccountSetting = () => {
                 type="text"
                 placeholder="Your First Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+                value={userData.first_name || ""}
               />
               <input
                 type="text"
                 placeholder="Your Last Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+                value={userData.last_name || ""}
               />
             </div>
             <label htmlFor="email" className="font-semibold text-[#000]">
@@ -40,6 +60,7 @@ const AccountSetting = () => {
               type="text"
               placeholder="Your Email Address"
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+              value={userData.email || ""}
             />
             <label htmlFor="phonenumber" className="font-semibold text-[#000]">
               PHONE NUMBER:

@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   // you also need to import Link in a different component with the 'to' property that points to your path
   // see app.jsx for an example (dont create it in app.jsx)
   {
-    path: "/user",
+    path: "/user/:id",
     element: <AccountsPage />,
   },
 ]);
