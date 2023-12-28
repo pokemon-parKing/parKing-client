@@ -7,11 +7,13 @@ function App() {
   return (
     <>
       {/* <Link to={'/pokemon'}>Pokemon</Link> */}
-      <Link to="/user">Go to User Page</Link>
+    <div className="flex flex-col">
       parKing - Pokemon
       <div className="flex flex-col md:flex-row ">Test</div>
-      <UserReservation />
-    </>
+      <Link to={"/pokemon"}>Pokemon</Link>
+      <Link to={"/reservation"}>User Reservation</Link>
+      <Link to="/user">Go to User Page</Link>
+    </div>
   );
 }
 

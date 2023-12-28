@@ -1,13 +1,18 @@
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import App from "./App";
+import UserReservation from "./containers/UserReservation";
+import AccountsPage from "./containers/AccountsPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AccountsPage from "./containers/AccountsPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/reservation",
+    element: <UserReservation />,
   },
   // {
   //   path: yourpathhere,
