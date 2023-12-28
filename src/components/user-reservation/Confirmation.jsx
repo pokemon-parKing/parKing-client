@@ -2,8 +2,9 @@ import addReservation from "../../utils/addReservation";
 const Confirmation = () => {
   const details = {
     garage_id: 1,
+    car_id: 1,
     date: "12-28-23",
-    time: 5,
+    time: 6,
     name: "Twin Peaks",
     address: "501 Twin Peaks Blvd",
     city: "San Francisco",
@@ -14,10 +15,11 @@ const Confirmation = () => {
   };
   const handleReservation = () => {
     const body = {
-      garage_id: details.garage_id,
-      date: details.date,
-      time: details.time,
-      user_id: details.user_id,
+      garage_id: details.garage_id || 1,
+      date: details.date || "12-29-23",
+      time: details.time || 3,
+      user_id: details.user_id || "0db22c80-80d3-46ff-a684-abddd377bd05",
+      car_id: details.car_id || 1,
     };
     addReservation(body);
   };
