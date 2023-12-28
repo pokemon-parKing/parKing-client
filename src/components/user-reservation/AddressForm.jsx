@@ -2,25 +2,13 @@ import { useState } from "react";
 import getGeoCoordinates from "../../utils/getGeoCoordinates";
 import getGarages from "../../utils/getGarages";
 import MapView from "./MapView";
-import states from "../../lib/states";
+import { states } from "../../lib/states";
+import { getNext8Days } from "../../lib/dayDropdown";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [date, setDate] = useState(null);
   const [garages, setGarages] = useState(null);
-
-  /* Generate Next 8 Days for Dropdown */
-  const dates = [];
-  let currentDate = new Date();
-  for (let i = 0; i < 8; i++) {
-    let dateString = currentDate.toLocaleDateString("en-US", {
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    dates.push(<option key={dateString}>{dateString}</option>);
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
 
   /* Get Geocode for Inputted Address */
   const getAndSetCoordinates = async (address) => {
@@ -35,7 +23,7 @@ const AddressForm = () => {
 
   /* Get Garage Data for Closest Garages */
   const fetchGarages = async (coordinates, date) => {
-    /* BLOCKED: STEVEN TO CONFIRM WITH BRUCE */
+    console.log(coordinates);
     const garages = await getGarages(coordinates);
     console.log(garages);
     // /* FAKE DATA */
@@ -76,9 +64,9 @@ const AddressForm = () => {
     if (!date || date === "Select a date") return alert("Please select a date");
 
     /* Will cleanup later */
-    const addressString = `${address.street} ${address.apt || ""}, ${
-      address.city
-    }, ${address.state} ${address.zip}, ${address.country}`;
+    const addressString = `${address.street} ${address.apt || ""} ${
+      address.city || ""
+    } ${address.state || ""} ${address.zip || ""}`;
 
     const coordinates = getAndSetCoordinates(addressString);
 
@@ -92,7 +80,7 @@ const AddressForm = () => {
           <h3 className="font-bold text-2xl">Date</h3>
           <select onChange={(e) => setDate(e.target.value.replace(/\//g, "-"))}>
             <option>Select a date</option>
-            {dates}
+            {getNext8Days()}
           </select>
           <h3 className="font-bold text-2xl">Address</h3>
           <div className="flex flex-row">
