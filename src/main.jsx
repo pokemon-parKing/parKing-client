@@ -3,6 +3,7 @@ import { store } from './store.js';
 import { Provider } from 'react-redux';
 import App from "./App";
 import UserReservation from "./containers/UserReservation";
+import ValetReservation from "./containers/ValetReservation";
 import AccountsPage from "./containers/AccountsPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/reservation",
     element: <UserReservation />,
+  },
+  {
+    path: "/valetReservation",
+    element: <ValetReservation />
   },
   // {
   //   path: yourpathhere,
