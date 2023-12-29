@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initState = {
+const initialState = {
   count: 0,
   array: []
-}
+};
 
 // exporting here allows access to state throughout our app.
 export const exampleSlice = createSlice({
   name: 'example',
-  initState,
+  initialState,
   reducers: {
     addToArray: (state, action) => {
       // action.payload is the value that gets inputted when we invoke this method
