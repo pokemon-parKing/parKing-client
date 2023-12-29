@@ -12,15 +12,14 @@ import {
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const MapView = ({ inputDate, center, garages }) => {
-  const [open, setOpen] = useState(false);
-  const [selectedGarageData, setSelectedGarageData] = useState(null);
-  const [reservations, setReservations] = useState(null);
+  const [selectedGarageData, setSelectedGarageData] = useState(false);
+  const [reservations, setReservations] = useState(null); // thunk
 
   const dispatch = useDispatch();
+
   /* Show Modal on Marker Click */
   const handleMarkerClick = (garage) => {
     setSelectedGarageData(garage);
-    setOpen(true);
   };
 
   const createMarkers = (garageList) => {
@@ -56,14 +55,14 @@ const MapView = ({ inputDate, center, garages }) => {
                 {/* WILL UPDATE STYLE SO THAT CENTER & GARAGE MARKERS ARE DISTINCT */}
                 <Marker position={center} />
                 {createMarkers(garages)}
-                {open && (
+                {selectedGarageData && (
                   <InfoWindow
                     position={{
                       lat: selectedGarageData.lat,
                       lng: selectedGarageData.lng,
                     }}
                     onCloseClick={() => {
-                      setOpen(false);
+                      setSelectedGarageData(false);
                     }}
                   >
                     <h1>{selectedGarageData.name || "GARAGE NAME"}</h1>

@@ -4,7 +4,6 @@ import Confirmation from "../components/user-reservation/Confirmation.jsx";
 
 const UserReservation = () => {
   const { reservation, page } = useSelector((state) => state.reservation);
-  console.log(reservation, page);
 
   return (
     <>
