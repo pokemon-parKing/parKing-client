@@ -1,13 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 
 const AccountSetting = () => {
+  const { id } = useParams();
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [userData, setUserData] = useState({
+    id: "",
+    google_account_id: "",
+    contact_preferences: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    role: "",
+    phone_number: "",
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/user/${id}`);
+        setUserData(response.data);
+        if (response.data.phone_number) {
+          setPhoneNumber(formatPhoneNumber(response.data.phone_number));
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [id]);
 
   const handlePhoneNumberChange = (e) => {
     const input = e.target.value;
     const formattedInput = formatPhoneNumber(input);
     setPhoneNumber(formattedInput);
+    setUserData((prevData) => ({
+      ...prevData,
+      phone_number: formattedInput,
+    }));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put(`http://localhost:3000/user/${id}`, {
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        email: userData.email,
+        phone_number: userData.phone_number,
+      });
+      console.log("User data updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error updating user data:", error);
+    }
   };
 
   return (
@@ -26,11 +81,17 @@ const AccountSetting = () => {
                 type="text"
                 placeholder="Your First Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+                value={userData.first_name || ""}
+                onChange={handleInputChange}
+                name="first_name"
               />
               <input
                 type="text"
                 placeholder="Your Last Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+                value={userData.last_name || ""}
+                onChange={handleInputChange}
+                name="last_name"
               />
             </div>
             <label htmlFor="email" className="font-semibold text-[#000]">
@@ -40,6 +101,9 @@ const AccountSetting = () => {
               type="text"
               placeholder="Your Email Address"
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+              value={userData.email || ""}
+              onChange={handleInputChange}
+              name="email"
             />
             <label htmlFor="phonenumber" className="font-semibold text-[#000]">
               PHONE NUMBER:
@@ -76,7 +140,10 @@ const AccountSetting = () => {
               </h3>
             </div>
             <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
-              <button className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">
+              <button
+                className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
+                onClick={handleUpdate}
+              >
                 Update
               </button>
             </div>

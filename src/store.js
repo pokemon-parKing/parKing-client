@@ -3,9 +3,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import exampleReducer from "./utils/slice/example.js";
 import reservationReducer from "./utils/slice/reservationSlice.js";
 
+
+  // the key is always what you named your slice
 export const store = configureStore({
   reducer: {
-    // the key is always what you named your slice
     example: exampleReducer,
     reservation: reservationReducer,
   },
