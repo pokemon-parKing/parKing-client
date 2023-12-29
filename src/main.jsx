@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import ValetReservation from "./containers/ValetReservation";
-import Scanner from "./components/valet-reservation/Scanner";
 import AccountsPage from "./containers/AccountsPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
     path: "/valetReservation",
     element: <ValetReservation />
   },
-  {
-    path: "/scanner",
-    element: <Scanner />
-  }
   // {
   //   path: yourpathhere,
   //   element: importyourelementhere
