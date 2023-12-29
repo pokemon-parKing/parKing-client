@@ -8,17 +8,6 @@ const UserReservation = () => {
 
   const { reservation } = useSelector((state) => state.reservation);
   console.log(reservation);
-  /*
-  const setTime = (time) => {
-    let dbTime = Number(time.split(":")[0]);
-    if (time.slice(-2) === "PM") {
-      dbTime += 12;
-    }
-    setReservation({ ...reservation, time: dbTime });
-  };
-  const setGarageId = (garage_id) => {
-    setReservation({ ...reservation, garage_id });
-  }; */
   const confirmReservation = () => {
     /* WILL ADD VALIDATION */
     setPage("confirmation");
@@ -28,12 +17,7 @@ const UserReservation = () => {
     <>
       <h1 className="text-2xl">User Reservation Container </h1>
       {page === "address" && (
-        <AddressForm
-          // setDate={setDate}
-          // setTime={setTime}
-          // setGarageId={setGarageId}
-          confirmReservation={confirmReservation}
-        />
+        <AddressForm confirmReservation={confirmReservation} />
       )}
       {page === "confirmation" && <Confirmation reservation={reservation} />}
     </>

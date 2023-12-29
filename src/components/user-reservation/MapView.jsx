@@ -11,14 +11,7 @@ import {
 } from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const MapView = ({
-  inputDate,
-  center,
-  garages,
-  // setTime,
-  // setGarageId,
-  confirmReservation,
-}) => {
+const MapView = ({ inputDate, center, garages, confirmReservation }) => {
   const [open, setOpen] = useState(false);
   const [selectedGarageData, setSelectedGarageData] = useState(null);
   const [reservations, setReservations] = useState(null);
@@ -44,7 +37,6 @@ const MapView = ({
 
   const getResevations = async (garageId, date) => {
     try {
-      // setGarageId(garageId);
       dispatch(setGarageId(garageId));
       const reservations = await getReservationsByDate(garageId, date);
       setReservations(reservations);
@@ -100,7 +92,6 @@ const MapView = ({
             hoursOfOperation={selectedGarageData.operation_hours}
             list={reservations}
             total={selectedGarageData.spots}
-            // setTime={setTime}
             confirmReservation={confirmReservation}
           />
         )}

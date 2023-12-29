@@ -1,13 +1,13 @@
 import { useMemo } from "react";
 import PropTypes from "prop-types";
 import TimeSlot from "./TimeSlot";
+
 import { getAvailableTimes } from "../../lib/timeSlotUtil.js";
 
 const TimeSlotList = ({
   hoursOfOperation,
   total,
   list,
-  setTime,
   confirmReservation,
 }) => {
   const hourRange = useMemo(() => {
@@ -27,7 +27,6 @@ const TimeSlotList = ({
           <TimeSlot
             key={slot.time}
             info={slot}
-            setTime={setTime}
             confirmReservation={confirmReservation}
           />
         ))}
