@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // we import from redux usedisptach and useselector to access our store
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 // import any methods/functions for the state you need
-import { addToArray } from './utils/slice/example.js';
+import { addToArray } from "./utils/slice/example.js";
+import {
+  setUserData,
+  setUserDataPhoneNumber,
+} from "./utils/slice/accountsSlice.js";
 
 function App() {
   // we initialize dispatch as our function to fire our state method/function
@@ -15,7 +19,9 @@ function App() {
   // below is how to dispatch the specific method/function when using it in the file.
   const add = (value) => {
     dispatch(addToArray(value));
-  }
+  };
+
+  const { id: userId } = useParams();
 
   return (
     <>
@@ -25,8 +31,7 @@ function App() {
         <div className="flex flex-col md:flex-row">Test</div>
         <Link to={"/pokemon"}>Pokemon</Link>
         <Link to={"/reservation"}>User Reservation</Link>
-        <Link to={"/user"}>Go to User Page</Link>
-
+        <Link to={`/user/${userId}`}>Go to User Page</Link>
       </div>
     </>
   );

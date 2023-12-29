@@ -14,7 +14,7 @@ const UserReservation = () => {
     setReservation({ ...reservation, date });
   };
   const setTime = (time) => {
-    const dbTime = Number(time.split(":")[0]);
+    var dbTime = Number(time.split(":")[0]);
     if (time.slice(-2) === "PM") {
       dbTime += 12;
     }

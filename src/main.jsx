@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
-import { store } from './store.js';
-import { Provider } from 'react-redux';
+import { store } from "./store.js";
+import { Provider } from "react-redux";
 import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import AccountsPage from "./containers/AccountsPage.jsx";
