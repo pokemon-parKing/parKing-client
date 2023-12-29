@@ -1,5 +1,7 @@
 import { useState } from "react";
 import getReservationsByDate from "../../utils/getReservationsByDate";
+import { useDispatch } from "react-redux";
+import { setGarageId } from "../../utils/slice/reservationSlice";
 import TimeSlotList from "./TimeSlotList";
 import {
   APIProvider,
@@ -13,13 +15,15 @@ const MapView = ({
   inputDate,
   center,
   garages,
-  setTime,
-  setGarageId,
+  // setTime,
+  // setGarageId,
   confirmReservation,
 }) => {
   const [open, setOpen] = useState(false);
   const [selectedGarageData, setSelectedGarageData] = useState(null);
   const [reservations, setReservations] = useState(null);
+
+  const dispatch = useDispatch();
   /* Show Modal on Marker Click */
   const handleMarkerClick = (garage) => {
     setSelectedGarageData(garage);
@@ -40,7 +44,8 @@ const MapView = ({
 
   const getResevations = async (garageId, date) => {
     try {
-      setGarageId(garageId);
+      // setGarageId(garageId);
+      dispatch(setGarageId(garageId));
       const reservations = await getReservationsByDate(garageId, date);
       setReservations(reservations);
     } catch (err) {
@@ -95,7 +100,7 @@ const MapView = ({
             hoursOfOperation={selectedGarageData.operation_hours}
             list={reservations}
             total={selectedGarageData.spots}
-            setTime={setTime}
+            // setTime={setTime}
             confirmReservation={confirmReservation}
           />
         )}

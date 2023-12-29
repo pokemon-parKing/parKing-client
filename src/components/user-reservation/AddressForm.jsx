@@ -139,7 +139,6 @@ const AddressForm = ({ confirmReservation }) => {
                 const reformattedDate = e.target.value.replace(/\//g, "-");
                 setInputDate(reformattedDate);
                 dispatch(setDate(reformattedDate));
-                // setDate(reformattedDate);
               }}
             >
               <option>Select a date</option>
@@ -159,8 +158,6 @@ const AddressForm = ({ confirmReservation }) => {
           center={coordinates}
           garages={garages}
           inputDate={inputDate}
-          setTime={setTime}
-          setGarageId={setGarageId}
           confirmReservation={confirmReservation}
         />
       )}

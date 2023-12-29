@@ -8,13 +8,7 @@ const UserReservation = () => {
 
   const { reservation } = useSelector((state) => state.reservation);
   console.log(reservation);
-  /*   // HARD CODING USER_ID & CAR_ID
-  // const user_id = "0db22c80-80d3-46ff-a684-abddd377bd05";
-  // const car_id = 1;
-  const [reservation, setReservation] = useState({ user_id, car_id });
-  const setDate = (date) => {
-    setReservation({ ...reservation, date });
-  };
+  /*
   const setTime = (time) => {
     let dbTime = Number(time.split(":")[0]);
     if (time.slice(-2) === "PM") {
