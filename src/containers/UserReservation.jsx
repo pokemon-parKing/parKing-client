@@ -1,20 +1,22 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import AddressForm from "../components/user-reservation/AddressForm.jsx";
 import Confirmation from "../components/user-reservation/Confirmation.jsx";
 
 const UserReservation = () => {
   const [page, setPage] = useState("address");
 
-  // HARD CODING USER_ID & CAR_ID
-  const user_id = "0db22c80-80d3-46ff-a684-abddd377bd05";
-  const car_id = 1;
+  const { reservation } = useSelector((state) => state.reservation);
+  console.log(reservation);
+  /*   // HARD CODING USER_ID & CAR_ID
+  // const user_id = "0db22c80-80d3-46ff-a684-abddd377bd05";
+  // const car_id = 1;
   const [reservation, setReservation] = useState({ user_id, car_id });
-  // console.log(reservation);
   const setDate = (date) => {
     setReservation({ ...reservation, date });
   };
   const setTime = (time) => {
-    const dbTime = Number(time.split(":")[0]);
+    let dbTime = Number(time.split(":")[0]);
     if (time.slice(-2) === "PM") {
       dbTime += 12;
     }
@@ -22,7 +24,7 @@ const UserReservation = () => {
   };
   const setGarageId = (garage_id) => {
     setReservation({ ...reservation, garage_id });
-  };
+  }; */
   const confirmReservation = () => {
     /* WILL ADD VALIDATION */
     setPage("confirmation");
@@ -33,9 +35,9 @@ const UserReservation = () => {
       <h1 className="text-2xl">User Reservation Container </h1>
       {page === "address" && (
         <AddressForm
-          setDate={setDate}
-          setTime={setTime}
-          setGarageId={setGarageId}
+          // setDate={setDate}
+          // setTime={setTime}
+          // setGarageId={setGarageId}
           confirmReservation={confirmReservation}
         />
       )}

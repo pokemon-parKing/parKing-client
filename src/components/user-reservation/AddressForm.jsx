@@ -4,11 +4,15 @@ import getGarages from "../../utils/getGarages";
 import MapView from "./MapView";
 import { states } from "../../lib/states";
 import { getNext8Days } from "../../lib/dayDropdown";
-const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
+import { useDispatch } from "react-redux";
+import { setDate } from "../../utils/slice/reservationSlice";
+const AddressForm = ({ confirmReservation }) => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [inputDate, setInputDate] = useState(null);
   const [garages, setGarages] = useState(null);
+
+  const dispatch = useDispatch();
 
   /* 1. Get Geocode for Inputted Address */
   const getAndSetCoordinates = async (address) => {
@@ -134,7 +138,8 @@ const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
               onChange={(e) => {
                 const reformattedDate = e.target.value.replace(/\//g, "-");
                 setInputDate(reformattedDate);
-                setDate(reformattedDate);
+                dispatch(setDate(reformattedDate));
+                // setDate(reformattedDate);
               }}
             >
               <option>Select a date</option>
