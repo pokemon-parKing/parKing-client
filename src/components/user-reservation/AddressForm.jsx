@@ -8,8 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setDate } from "../../utils/slice/reservationSlice";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
-  const [coordinates, setCoordinates] = useState(null);
-  const [garages, setGarages] = useState(null);
+  const [coordinates, setCoordinates] = useState(null); // thunk
+  const [garages, setGarages] = useState(null); // thunk
   const { reservation } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
 
@@ -136,7 +136,6 @@ const AddressForm = () => {
             <select
               onChange={(e) => {
                 const reformattedDate = e.target.value.replace(/\//g, "-");
-
                 dispatch(setDate(reformattedDate));
               }}
             >

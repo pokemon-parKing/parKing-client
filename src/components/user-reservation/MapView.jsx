@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import getReservationsByDate from "../../utils/getReservationsByDate";
 import { useSelector, useDispatch } from "react-redux";
 import { setGarageId } from "../../utils/slice/reservationSlice";
@@ -16,7 +17,7 @@ const MapView = ({ center, garages }) => {
   const [reservations, setReservations] = useState(null); // thunk
   const { reservation } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-  console.log(reservation);
+
   /* Show Modal on Marker Click */
   const handleMarkerClick = (garage) => {
     setSelectedGarageData(garage);
@@ -96,6 +97,11 @@ const MapView = ({ center, garages }) => {
       </div>
     )
   );
+};
+
+MapView.propTypes = {
+  center: PropTypes.object.isRequired,
+  garages: PropTypes.array.isRequired,
 };
 
 export default MapView;
