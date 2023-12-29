@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { setTime } from "../../utils/slice/reservationSlice";
+import { setTime, setPage } from "../../utils/slice/reservationSlice";
 import { convertDBTime } from "../../lib/timeSlotUtil";
 
-const TimeSlot = ({ info, confirmReservation }) => {
+const TimeSlot = ({ info }) => {
   const dispatch = useDispatch();
   return (
     <div
@@ -12,7 +12,7 @@ const TimeSlot = ({ info, confirmReservation }) => {
       } p-1 m-1 w-full border-2 border-transparent text-center`}
       onClick={() => {
         dispatch(setTime(convertDBTime(info.time)));
-        confirmReservation();
+        dispatch(setPage("confirmation"));
       }}
     >
       {info.time}

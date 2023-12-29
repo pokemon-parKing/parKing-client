@@ -11,7 +11,7 @@ import {
 } from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const MapView = ({ inputDate, center, garages, confirmReservation }) => {
+const MapView = ({ inputDate, center, garages }) => {
   const [open, setOpen] = useState(false);
   const [selectedGarageData, setSelectedGarageData] = useState(null);
   const [reservations, setReservations] = useState(null);
@@ -92,7 +92,6 @@ const MapView = ({ inputDate, center, garages, confirmReservation }) => {
             hoursOfOperation={selectedGarageData.operation_hours}
             list={reservations}
             total={selectedGarageData.spots}
-            confirmReservation={confirmReservation}
           />
         )}
       </div>

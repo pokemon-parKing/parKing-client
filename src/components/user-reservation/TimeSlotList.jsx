@@ -4,12 +4,7 @@ import TimeSlot from "./TimeSlot";
 
 import { getAvailableTimes } from "../../lib/timeSlotUtil.js";
 
-const TimeSlotList = ({
-  hoursOfOperation,
-  total,
-  list,
-  confirmReservation,
-}) => {
+const TimeSlotList = ({ hoursOfOperation, total, list }) => {
   const hourRange = useMemo(() => {
     return hoursOfOperation.split("-").map((time) => {
       return parseInt(time);
@@ -24,11 +19,7 @@ const TimeSlotList = ({
       <summary className="btn w-full">Select Time</summary>
       <ul className="w-full dropdown-content menu shadow p-2 max-h-[500px] overflow-auto flex flex-row">
         {availableTimes.map((slot) => (
-          <TimeSlot
-            key={slot.time}
-            info={slot}
-            confirmReservation={confirmReservation}
-          />
+          <TimeSlot key={slot.time} info={slot} />
         ))}
       </ul>
     </details>

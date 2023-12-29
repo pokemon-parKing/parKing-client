@@ -6,7 +6,7 @@ import { states } from "../../lib/states";
 import { getNext8Days } from "../../lib/dayDropdown";
 import { useDispatch } from "react-redux";
 import { setDate } from "../../utils/slice/reservationSlice";
-const AddressForm = ({ confirmReservation }) => {
+const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [coordinates, setCoordinates] = useState(null);
   const [inputDate, setInputDate] = useState(null);
@@ -154,12 +154,7 @@ const AddressForm = ({ confirmReservation }) => {
         </form>
       </div>
       {coordinates && garages && (
-        <MapView
-          center={coordinates}
-          garages={garages}
-          inputDate={inputDate}
-          confirmReservation={confirmReservation}
-        />
+        <MapView center={coordinates} garages={garages} inputDate={inputDate} />
       )}
     </div>
   );
