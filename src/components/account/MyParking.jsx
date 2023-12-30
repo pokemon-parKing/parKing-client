@@ -27,8 +27,6 @@ const MyParking = () => {
     fetchReservationData();
   }, [id, reservationData]);
 
-  console.log(reservationData);
-
   return (
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
       <div className="text-center">
