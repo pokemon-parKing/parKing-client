@@ -26,6 +26,7 @@ const AddVehicleForm = ({ onExit }) => {
         newVehicleData
       );
       console.log("New vehicle data added successfully!");
+      onExit();
     } catch (error) {
       console.error("Error adding new vehicle data:", error);
     }
