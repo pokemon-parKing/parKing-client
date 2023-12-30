@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from "react";
+  import { useState, useEffect } from "react";
   // import axios from "axios";
 
   const CurrentSpots = (garageId) => {
@@ -25,18 +25,22 @@
     }, []);
 
     return (
-      <div className="current-spots">
-        <h1>Current Spots</h1>
-        <div className="available-spots">
-          <h3>Available Spots: {availableSpots}</h3>
+      <>
+        <div className="availabilty-overview">
+          {/* <h1>Availabilty Overview</h1> */}
+          <div className="availability-row flex justify-around space-x-4 w-full">
+            <div className="available-spots">
+              <h3>Available Spots: {availableSpots}</h3>
+            </div>
+            <div className="current-spots">
+              <h3>Current Spots: {currentSpots}</h3>
+            </div>
+            <div className="occupied-spots">
+              <h3>Occupied Spots: {occupiedSpots}</h3>
+            </div>
+          </div>
         </div>
-        <div className="current-spots">
-          <h3>Current Spots: {currentSpots}</h3>
-        </div>
-        <div className="occupied-spots">
-          <h3>Occupied Spots: {occupiedSpots}</h3>
-        </div>
-      </div>
+      </>
     );
   }
 

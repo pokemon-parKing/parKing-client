@@ -4,11 +4,14 @@ import getGarages from "../../utils/getGarages";
 import MapView from "./MapView";
 import { states } from "../../lib/states";
 import { getNext8Days } from "../../lib/dayDropdown";
-const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
+import { useSelector, useDispatch } from "react-redux";
+import { setDate } from "../../utils/slice/reservationSlice";
+const AddressForm = () => {
   const [address, setAddress] = useState({});
-  const [coordinates, setCoordinates] = useState(null);
-  const [inputDate, setInputDate] = useState(null);
-  const [garages, setGarages] = useState(null);
+  const [coordinates, setCoordinates] = useState(null); // thunk
+  const [garages, setGarages] = useState(null); // thunk
+  const { reservation } = useSelector((state) => state.reservation);
+  const dispatch = useDispatch();
 
   /* 1. Get Geocode for Inputted Address */
   const getAndSetCoordinates = async (address) => {
@@ -34,7 +37,7 @@ const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!address.street) return alert("Please fill address");
-    if (!inputDate || inputDate === "Select a date")
+    if (!reservation.date || reservation.date === "Select a date")
       return alert("Please select a date");
 
     /* Will cleanup later */
@@ -133,8 +136,7 @@ const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
             <select
               onChange={(e) => {
                 const reformattedDate = e.target.value.replace(/\//g, "-");
-                setInputDate(reformattedDate);
-                setDate(reformattedDate);
+                dispatch(setDate(reformattedDate));
               }}
             >
               <option>Select a date</option>
@@ -150,14 +152,7 @@ const AddressForm = ({ setTime, setDate, setGarageId, confirmReservation }) => {
         </form>
       </div>
       {coordinates && garages && (
-        <MapView
-          center={coordinates}
-          garages={garages}
-          inputDate={inputDate}
-          setTime={setTime}
-          setGarageId={setGarageId}
-          confirmReservation={confirmReservation}
-        />
+        <MapView center={coordinates} garages={garages} />
       )}
     </div>
   );

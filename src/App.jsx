@@ -32,6 +32,7 @@ function App() {
         <Link to={"/pokemon"}>Pokemon</Link>
         <Link to={"/reservation"}>User Reservation</Link>
         <Link to={`/user/${userId}`}>Go to User Page</Link>
+        <Link to={"/valetReservation"}>Valet Reservation</Link>
       </div>
     </>
   );
