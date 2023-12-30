@@ -7,11 +7,9 @@ import {
   setSelectedGarage,
   fetchReservations,
 } from "../../utils/slice/reservationSlice";
-import TimeSlotList from "./TimeSlotList";
 import {
   APIProvider,
   Map,
-  Marker,
   Pin,
   InfoWindow,
   AdvancedMarker,
@@ -21,8 +19,9 @@ const mapId = import.meta.env.VITE_MAP_ID;
 
 const GoogleMap = () => {
   const [open, setOpen] = useState(false);
-  const { mapCenter, closestGarages, reservationsList, selectedGarage } =
-    useSelector((state) => state.reservation);
+  const { mapCenter, closestGarages, selectedGarage } = useSelector(
+    (state) => state.reservation
+  );
   const dispatch = useDispatch();
 
   const createMarkers = (garageList) => {
