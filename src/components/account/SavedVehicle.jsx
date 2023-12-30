@@ -34,8 +34,6 @@ const SavedVehicle = () => {
     fetchVehicleData();
   }, [dispatch, id, formSubmitted]);
 
-  console.log(vehicleData);
-
   const handleDelete = async (vehicleId) => {
     try {
       await axios.delete(`http://localhost:3000/user/${id}/delete-vehicle`, {
