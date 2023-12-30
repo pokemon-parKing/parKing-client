@@ -8,9 +8,9 @@ const MapView = () => {
     (state) => state.reservation
   );
   return (
-    <div className="flex flex-row w-full pt-5">
+    <div className="flex flex-row w-full">
       <div className="flex flex-col w-full items-center">
-        <h3 className="text-2xl pb-5">Reserve your spot!</h3>
+        <h3 className="text-2xl pb-5 pt-5">Reserve your spot!</h3>
 
         <MapSideBar />
         <div className="divider pt-5"></div>

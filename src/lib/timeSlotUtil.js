@@ -34,3 +34,27 @@ export const convertDBTime = (time) => {
   }
   return dbTime;
 };
+
+export const convertDate = (dateString) => {
+  const [month, day, year] = dateString.split("-");
+  const date = new Date(`20${year}-${month}-${day}`);
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dayName = dayNames[date.getDay()];
+  const monthName = monthNames[date.getMonth()];
+  const dayOfMonth = date.getDate();
+  return `${dayName} ${monthName} ${dayOfMonth}`;
+};

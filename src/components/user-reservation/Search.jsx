@@ -1,5 +1,5 @@
 import SearchBar from "./SearchBar";
-import logo from "./parKing.png";
+import logo from "../../assets/parKing.png";
 
 const Search = () => {
   return (

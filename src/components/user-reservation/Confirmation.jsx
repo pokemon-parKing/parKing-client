@@ -1,34 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addReservation, resetState } from "../../utils/slice/reservationSlice";
-import { convertTime } from "../../lib/timeSlotUtil";
+import { convertTime, convertDate } from "../../lib/timeSlotUtil";
 const Confirmation = () => {
   const { reservation, selectedGarage } = useSelector(
     (state) => state.reservation
   );
   const dispatch = useDispatch();
-  const convertDateString = (dateString) => {
-    const [month, day, year] = dateString.split("-");
-    const date = new Date(`20${year}-${month}-${day}`);
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const dayName = dayNames[date.getDay()];
-    const monthName = monthNames[date.getMonth()];
-    const dayOfMonth = date.getDate();
-    return `${dayName} ${monthName} ${dayOfMonth}`;
-  };
 
   /* SAMPLE DATA */
   const details = {
@@ -60,7 +37,7 @@ const Confirmation = () => {
           <div className="card-body">
             <h2 className="card-title">Reservation Details</h2>
             <div className="divider m-0 "></div>
-            <p>{`${convertDateString(reservation.date)} at ${convertTime(
+            <p>{`${convertDate(reservation.date)} at ${convertTime(
               reservation.time
             )}`}</p>
             <p>{selectedGarage.name}</p>
