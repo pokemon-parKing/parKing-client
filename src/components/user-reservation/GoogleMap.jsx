@@ -116,7 +116,6 @@ const GoogleMap = () => {
             </div>
           </APIProvider>
         </div>
-        {reservationsList && <TimeSlotList />}
       </div>
     )
   );
