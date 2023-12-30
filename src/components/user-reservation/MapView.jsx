@@ -13,9 +13,11 @@ const MapView = () => {
         <h3 className="text-2xl pb-5">Reserve your spot!</h3>
 
         <MapSideBar />
+        <div className="divider pt-5"></div>
         {reservationsList && (
-          <div className="flex flex-col items-center pt-10">
+          <div className="flex flex-col items-center pt-5">
             <h3 className="pb-3 text-2xl">{selectedGarage.name}</h3>
+
             <TimeSlotList />
           </div>
         )}

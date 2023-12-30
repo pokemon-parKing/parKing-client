@@ -29,12 +29,11 @@ const MapSideBar = () => {
       onSubmit={handleSubmit}
       className="flex flex-col items-center w-[90%]"
     >
-      <div className="flex flex-col justify-center pb-3 w-full">
+      <div className="flex flex-col justify-center pb-5 w-full">
         <label htmlFor="search">Book Parking Near</label>
         <input
           required
-          className="input input-bordered w-full"
-          // placeholder="Address, Place, City or Venue"
+          className="input input-bordered mt-2 w-full"
           type="text"
           value={search}
           onChange={(e) => {
@@ -46,7 +45,7 @@ const MapSideBar = () => {
         <label htmlFor="search">Date</label>
         <select
           required
-          className="select select-bordered "
+          className="select select-bordered mt-2"
           value={reservation.date || ""}
           onChange={(e) => {
             dispatch(setDate(e.target.value.replace(/\//g, "-")));
