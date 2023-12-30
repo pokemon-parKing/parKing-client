@@ -5,6 +5,7 @@ import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import ValetReservation from "./containers/ValetReservation";
 import AccountsPage from "./containers/AccountsPage.jsx";
+import Scanner from "./components/valet-reservation/Scanner.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/valetReservation",
     element: <ValetReservation />
+  },
+  {
+    path: "/scanner",
+    element: <Scanner />
   },
   // {
   //   path: yourpathhere,
