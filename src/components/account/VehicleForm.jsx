@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const VehicleForm = ({ onExit, onSubmit, initialData }) => {
-  const dispatch = useDispatch();
   const { id } = useParams();
   const [vehicleData, setVehicleData] = useState({
     make: "",
