@@ -31,7 +31,7 @@ const SavedVehicle = () => {
     };
 
     fetchVehicleData();
-  }, [dispatch, id, vehicleData]);
+  }, [dispatch, id, showAddForm, showEditForm]);
 
   const handleDelete = async (vehicleId) => {
     try {

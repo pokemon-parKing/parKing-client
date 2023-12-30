@@ -13,7 +13,12 @@ const MyParking = () => {
           `http://localhost:3000/user/${id}/current-reservations`
         );
 
-        setReservationData(response.data);
+        setReservationData((prevData) => {
+          if (JSON.stringify(prevData) !== JSON.stringify(response.data)) {
+            return response.data;
+          }
+          return prevData;
+        });
       } catch (error) {
         console.error("Error fetching reservation data:", error);
       }
@@ -21,6 +26,8 @@ const MyParking = () => {
 
     fetchReservationData();
   }, [id, reservationData]);
+
+  console.log(reservationData);
 
   return (
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
