@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const VehicleForm = ({ onExit, onSubmit, initialData }) => {
   const { id } = useParams();
@@ -27,14 +28,11 @@ const VehicleForm = ({ onExit, onSubmit, initialData }) => {
     try {
       await onSubmit(id, vehicleData);
       console.log("Vehicle data submitted successfully!");
-      onExit();
+      toast.success("Vehicle has been submitted successfully");
     } catch (error) {
       console.error("Error submitting vehicle data:", error);
+      toast.error("Error submitting vehicle");
     }
-  };
-
-  const handleExit = () => {
-    onExit();
   };
 
   return (
@@ -99,10 +97,7 @@ const VehicleForm = ({ onExit, onSubmit, initialData }) => {
               >
                 {initialData ? "Edit Vehicle" : "Add Vehicle"}
               </button>
-              <button
-                className="btn btn-ghost text-red-500"
-                onClick={handleExit}
-              >
+              <button className="btn btn-ghost text-red-500" onClick={onExit}>
                 Exit
               </button>
             </div>

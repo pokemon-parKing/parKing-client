@@ -7,6 +7,7 @@ import {
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
+import toast from "react-hot-toast";
 
 const AccountSetting = () => {
   const { id } = useParams();
@@ -52,9 +53,10 @@ const AccountSetting = () => {
         email: userData.email,
         phone_number: userData.phone_number,
       });
-      console.log("User data updated successfully:", response.data);
+      toast.success("Account data updated successfully");
     } catch (error) {
       console.error("Error updating user data:", error);
+      toast.error("Error updating account data");
     }
   };
 

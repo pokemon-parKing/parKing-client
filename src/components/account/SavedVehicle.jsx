@@ -8,6 +8,7 @@ import {
   setVehicleData,
   deleteVehicle,
 } from "../../utils/slice/accountsSlice.js";
+import toast from "react-hot-toast";
 
 const SavedVehicle = () => {
   const dispatch = useDispatch();
@@ -39,8 +40,10 @@ const SavedVehicle = () => {
         data: { vehicleId },
       });
       dispatch(deleteVehicle({ vehicleId }));
+      toast.success("Vehicle has been deleted successfully");
     } catch (error) {
       console.error("Error deleting vehicle:", error);
+      toast.error("Error deleting vehicle");
     }
   };
 

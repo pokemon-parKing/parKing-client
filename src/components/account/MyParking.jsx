@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { convertTime } from "../../lib/timeSlotUtil.js";
+import toast from "react-hot-toast";
 
 const MyParking = () => {
   const [reservationData, setReservationData] = useState([]);
@@ -42,10 +43,10 @@ const MyParking = () => {
             : reservation
         )
       );
-
-      console.log("Reservation canceled successfully!");
+      toast.success("Reservation cancelled successfully!");
     } catch (error) {
       console.error("Error canceling reservation:", error);
+      toast.error("Error canceling reservation:");
     }
   };
 

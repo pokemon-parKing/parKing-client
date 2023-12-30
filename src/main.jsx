@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
 import { store } from "./store.js";
 import { Provider } from "react-redux";
 import App from "./App";
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/valetReservation",
-    element: <ValetReservation />
+    element: <ValetReservation />,
   },
   // {
   //   path: yourpathhere,
@@ -34,7 +35,10 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+    <Toaster position="top-center" reverseOrder={false} />
+  </>
 );
