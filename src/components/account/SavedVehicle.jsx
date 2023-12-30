@@ -15,6 +15,7 @@ const SavedVehicle = () => {
   const vehicleData = useSelector((state) => state.accounts.vehicleData);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const { id } = useParams();
 
@@ -24,7 +25,6 @@ const SavedVehicle = () => {
         const response = await axios.get(
           `http://localhost:3000/user/${id}/cars`
         );
-
         dispatch(setVehicleData(response.data));
       } catch (error) {
         console.error("Error fetching vehicle data:", error);
@@ -32,7 +32,9 @@ const SavedVehicle = () => {
     };
 
     fetchVehicleData();
-  }, [dispatch, id, showAddForm, showEditForm]);
+  }, [dispatch, id, formSubmitted]);
+
+  console.log(vehicleData);
 
   const handleDelete = async (vehicleId) => {
     try {
@@ -62,13 +64,24 @@ const SavedVehicle = () => {
     setShowEditForm(false);
   };
 
+  const handleFormSubmit = async () => {
+    try {
+      setFormSubmitted((prevValue) => !prevValue);
+    } catch (error) {
+      console.error("Error submitting vehicle data:", error);
+    }
+  };
   return (
     <>
       {showAddForm ? (
-        <AddVehicleForm onExit={handleExitAddForm} />
+        <AddVehicleForm
+          onExit={handleExitAddForm}
+          handleFormSubmit={handleFormSubmit}
+        />
       ) : showEditForm ? (
         <EditVehicleForm
           onExit={handleExitAddForm}
+          handleFormSubmit={handleFormSubmit}
           initialData={selectedVehicle}
         />
       ) : (
