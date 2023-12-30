@@ -20,7 +20,7 @@ const AccountsPage = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen items-center justify-center">
       <nav>
         <ul className="menu bg-base-200 w-56 rounded-box">
           <li onClick={() => setActiveMenu("accountSettings")}>

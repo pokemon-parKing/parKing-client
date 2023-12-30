@@ -3,10 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import any methods/functions for the state you need
 import { addToArray } from "./utils/slice/example.js";
-import {
-  setUserData,
-  setUserDataPhoneNumber,
-} from "./utils/slice/accountsSlice.js";
 
 function App() {
   // we initialize dispatch as our function to fire our state method/function

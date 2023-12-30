@@ -65,7 +65,7 @@ const AccountSetting = () => {
           Account Information
         </h1>
         <div className="w-full mt-5 sm:mt-8">
-          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5">
+          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px] overflow-y-auto">
             <label htmlFor="name" className="font-semibold text-[#000]">
               NAME:
             </label>
