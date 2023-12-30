@@ -10,9 +10,9 @@ import {
 } from "../../utils/slice/reservationSlice";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
-  const { reservation, mapCenter, closestGarages, reservationsList } =
-    useSelector((state) => state.reservation);
-  console.log(reservation, reservationsList);
+  const { reservation, mapCenter, closestGarages } = useSelector(
+    (state) => state.reservation
+  );
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +25,8 @@ const AddressForm = () => {
       address.city || ""
     } ${address.state || ""} ${address.zip || ""}`;
 
-    const coordinates = await dispatch(fetchCoordinates(addressString));
-    await dispatch(fetchClosestGarages(coordinates.payload));
+    await dispatch(fetchCoordinates(addressString));
+    dispatch(fetchClosestGarages());
   };
 
   return (

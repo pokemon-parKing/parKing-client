@@ -19,7 +19,6 @@ const MapView = () => {
     (state) => state.reservation
   );
   const dispatch = useDispatch();
-  console.log(selectedGarageData);
   /* Show Modal on Marker Click */
   const handleMarkerClick = (garage) => {
     setSelectedGarageData(garage);

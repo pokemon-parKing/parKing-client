@@ -13,7 +13,9 @@ export const fetchCoordinates = createAsyncThunk(
 
 export const fetchClosestGarages = createAsyncThunk(
   "reservation/fetchClosestGarages",
-  async (coordinates) => {
+  async (_, { getState }) => {
+    const state = getState();
+    const coordinates = state.reservation.mapCenter;
     const response = await getGarages(coordinates);
     return response;
   }
@@ -25,7 +27,6 @@ export const fetchReservations = createAsyncThunk(
     const state = getState();
     const date = state.reservation.reservation.date;
     const response = await getReservationsByDate(garageId, date);
-    console.log(response);
     return response;
   }
 );
