@@ -4,8 +4,8 @@ import MapView from "../components/user-reservation/MapView.jsx";
 import Confirmation from "../components/user-reservation/Confirmation.jsx";
 
 const UserReservation = () => {
-  const { page, reservation } = useSelector((state) => state.reservation);
-  console.log(reservation);
+  const { page } = useSelector((state) => state.reservation);
+
   return (
     <div className="flex flex-col justify-center items-center">
       {page === "search" && <Search />}
