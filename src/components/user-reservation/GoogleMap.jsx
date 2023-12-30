@@ -10,9 +10,12 @@ import {
   APIProvider,
   Map,
   Marker,
+  Pin,
   InfoWindow,
+  AdvancedMarker,
 } from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+const mapId = import.meta.env.VITE_MAP_ID;
 
 const GoogleMap = () => {
   const [open, setOpen] = useState(false);
@@ -23,14 +26,16 @@ const GoogleMap = () => {
   const createMarkers = (garageList) => {
     return garageList.map((garage) => {
       return (
-        <Marker
+        <AdvancedMarker
           key={garage.lat + garage.lng}
           position={{ lat: garage.lat, lng: garage.lng }}
           onClick={() => {
             setOpen(true);
             dispatch(setSelectedGarage(garage));
           }}
-        ></Marker>
+        >
+          <Pin background={"red"} borderColor={"grey"} glyphColor={"white"} />
+        </AdvancedMarker>
       );
     });
   };
@@ -51,9 +56,14 @@ const GoogleMap = () => {
         <div className="flex justify-center">
           <APIProvider apiKey={apiKey}>
             <div style={{ height: "100vh", width: "60vw" }}>
-              <Map center={mapCenter} zoom={13}>
-                {/* WILL UPDATE STYLE SO THAT CENTER & GARAGE MARKERS ARE DISTINCT */}
-                <Marker position={mapCenter} />
+              <Map center={mapCenter} zoom={13} mapId={mapId}>
+                <AdvancedMarker position={mapCenter}>
+                  <Pin
+                    background={"#4285f4"}
+                    borderColor={"grey"}
+                    glyphColor={"white"}
+                  />
+                </AdvancedMarker>
                 {createMarkers(closestGarages)}
                 {open && (
                   <InfoWindow
@@ -63,7 +73,6 @@ const GoogleMap = () => {
                     }}
                     onCloseClick={() => {
                       setOpen(false);
-                      // dispatch(setSelectedGarage(false));
                     }}
                   >
                     <h1>{selectedGarage.name || "GARAGE NAME"}</h1>
