@@ -18,7 +18,7 @@ const accountsSlice = createSlice({
   initialState,
   reducers: {
     setUserData: (state, action) => {
-      state.userData = action.payload;
+      state.userData = { ...state.userData, ...action.payload };
     },
     setUserDataPhoneNumber: (state, action) => {
       state.userData.phone_number = action.payload;

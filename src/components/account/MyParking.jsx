@@ -1,4 +1,27 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 const MyParking = () => {
+  const [reservationData, setReservationData] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchReservationData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/user/${id}/current-reservations`
+        );
+
+        setReservationData(response.data);
+      } catch (error) {
+        console.error("Error fetching reservation data:", error);
+      }
+    };
+
+    fetchReservationData();
+  }, [id, reservationData]);
+
   return (
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
       <div className="text-center">

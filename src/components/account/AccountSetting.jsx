@@ -37,10 +37,11 @@ const AccountSetting = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    dispatch(
+      setUserData({
+        [name]: value,
+      })
+    );
   };
 
   const handleUpdate = async () => {
@@ -73,7 +74,7 @@ const AccountSetting = () => {
                 type="text"
                 placeholder="Your First Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                value={userData.first_name}
+                defaultValue={userData.first_name}
                 onChange={handleInputChange}
                 name="first_name"
               />
@@ -81,7 +82,7 @@ const AccountSetting = () => {
                 type="text"
                 placeholder="Your Last Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                value={userData.last_name}
+                defaultValue={userData.last_name}
                 onChange={handleInputChange}
                 name="last_name"
               />
@@ -93,7 +94,7 @@ const AccountSetting = () => {
               type="text"
               placeholder="Your Email Address"
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
-              value={userData.email}
+              defaultValue={userData.email}
               onChange={handleInputChange}
               name="email"
             />
