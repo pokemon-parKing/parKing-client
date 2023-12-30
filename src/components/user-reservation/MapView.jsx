@@ -1,8 +1,9 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import getReservationsByDate from "../../utils/getReservationsByDate";
 import { useSelector, useDispatch } from "react-redux";
-import { setGarageId } from "../../utils/slice/reservationSlice";
+import {
+  setGarageId,
+  setSelectedGarage,
+  fetchReservations,
+} from "../../utils/slice/reservationSlice";
 import TimeSlotList from "./TimeSlotList";
 import {
   APIProvider,
@@ -12,16 +13,10 @@ import {
 } from "@vis.gl/react-google-maps";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const MapView = ({ center, garages }) => {
-  const [selectedGarageData, setSelectedGarageData] = useState(false);
-  const [reservations, setReservations] = useState(null); // thunk
-  const { reservation } = useSelector((state) => state.reservation);
+const MapView = () => {
+  const { mapCenter, closestGarages, reservationsList, selectedGarage } =
+    useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-
-  /* Show Modal on Marker Click */
-  const handleMarkerClick = (garage) => {
-    setSelectedGarageData(garage);
-  };
 
   const createMarkers = (garageList) => {
     return garageList.map((garage) => {
@@ -29,55 +24,52 @@ const MapView = ({ center, garages }) => {
         <Marker
           key={garage.lat + garage.lng}
           position={{ lat: garage.lat, lng: garage.lng }}
-          onClick={() => handleMarkerClick(garage)}
+          onClick={() => dispatch(setSelectedGarage(garage))}
         ></Marker>
       );
     });
   };
 
-  const getResevations = async (garageId, date) => {
+  const getResevations = async (garageId) => {
     try {
-      dispatch(setGarageId(garageId));
-      const reservations = await getReservationsByDate(garageId, date);
-      setReservations(reservations);
+      await dispatch(setGarageId(garageId));
+      await dispatch(fetchReservations(garageId));
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    center &&
-    garages && (
+    mapCenter &&
+    closestGarages && (
       <div>
         <div className="flex justify-center">
           <APIProvider apiKey={apiKey}>
             <div style={{ height: "50vh", width: "75vw" }}>
-              <Map center={center} zoom={12}>
+              <Map center={mapCenter} zoom={12}>
                 {/* WILL UPDATE STYLE SO THAT CENTER & GARAGE MARKERS ARE DISTINCT */}
-                <Marker position={center} />
-                {createMarkers(garages)}
-                {selectedGarageData && (
+                <Marker position={mapCenter} />
+                {createMarkers(closestGarages)}
+                {selectedGarage && (
                   <InfoWindow
                     position={{
-                      lat: selectedGarageData.lat,
-                      lng: selectedGarageData.lng,
+                      lat: selectedGarage.lat,
+                      lng: selectedGarage.lng,
                     }}
                     onCloseClick={() => {
-                      setSelectedGarageData(false);
+                      dispatch(setSelectedGarage(false));
                     }}
                   >
-                    <h1>{selectedGarageData.name || "GARAGE NAME"}</h1>
-                    <p>{selectedGarageData.address || "ADDRESS"}</p>
+                    <h1>{selectedGarage.name || "GARAGE NAME"}</h1>
+                    <p>{selectedGarage.address || "ADDRESS"}</p>
                     <p>
-                      {selectedGarageData.city || "CITY"},{" "}
-                      {selectedGarageData.state || "STATE"}
+                      {selectedGarage.city || "CITY"},{" "}
+                      {selectedGarage.state || "STATE"}
                     </p>
-                    <p>{selectedGarageData.distance || "1.5"} miles away</p>
+                    <p>{selectedGarage.distance || "1.5"} miles away</p>
                     <button
                       className="border-2 border-burgandy-p"
-                      onClick={() =>
-                        getResevations(selectedGarageData.id, reservation.date)
-                      }
+                      onClick={() => getResevations(selectedGarage.id)}
                     >
                       Show Times
                     </button>
@@ -87,21 +79,10 @@ const MapView = ({ center, garages }) => {
             </div>
           </APIProvider>
         </div>
-        {reservations && (
-          <TimeSlotList
-            hoursOfOperation={selectedGarageData.operation_hours}
-            list={reservations}
-            total={selectedGarageData.spots}
-          />
-        )}
+        {reservationsList && <TimeSlotList />}
       </div>
     )
   );
-};
-
-MapView.propTypes = {
-  center: PropTypes.object.isRequired,
-  garages: PropTypes.array.isRequired,
 };
 
 export default MapView;
