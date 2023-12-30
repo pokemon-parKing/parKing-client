@@ -51,7 +51,7 @@ const initialState = {
     date: null,
     garage_id: null,
   },
-  page: "reservation",
+  page: "search",
   mapCenter: null,
   closestGarages: null,
   reservationsList: null,
