@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import TimeSlot from "./TimeSlot";
 import { useSelector } from "react-redux";
-import { getAvailableTimes } from "../../lib/timeSlotUtil.js";
+import { getAvailableTimes } from "../../../lib/timeSlotUtil.js";
 
 const TimeSlotList = () => {
   const { reservationsList, selectedGarage } = useSelector(

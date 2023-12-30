@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import Search from "../components/user-reservation/Search.jsx";
-import MapView from "../components/user-reservation/MapView.jsx";
-import Confirmation from "../components/user-reservation/Confirmation.jsx";
+import Search from "../components/user-reservation/search/Search.jsx";
+import MapView from "../components/user-reservation/mapView/MapView.jsx";
+import Confirmation from "../components/user-reservation/confirmation/Confirmation.jsx";
 
 const UserReservation = () => {
   const { page } = useSelector((state) => state.reservation);

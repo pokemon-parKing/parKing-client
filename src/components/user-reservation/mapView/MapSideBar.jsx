@@ -1,13 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getNext8Days } from "./DaysDropdown";
-
+import { getNext8Days } from "../DaysDropdown";
 import {
   setDate,
   setSearch,
   fetchCoordinates,
   fetchClosestGarages,
   setPage,
-} from "../../utils/slice/reservationSlice";
+} from "../../../utils/slice/reservationSlice";
 
 const MapSideBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);

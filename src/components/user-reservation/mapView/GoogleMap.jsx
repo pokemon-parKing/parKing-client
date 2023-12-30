@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RiWalkFill } from "react-icons/ri";
-
 import {
   setGarageId,
   setSelectedGarage,
   fetchReservations,
-} from "../../utils/slice/reservationSlice";
+} from "../../../utils/slice/reservationSlice";
 import {
   APIProvider,
   Map,
