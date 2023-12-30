@@ -27,3 +27,11 @@ export const convertTime = (number) => {
     return (time += " PM");
   }
 };
+
+export const convertDBTime = (time) => {
+  let dbTime = Number(time.split(":")[0]);
+  if (time.slice(-2) === "PM") {
+    dbTime += 12;
+  }
+  return dbTime;
+};

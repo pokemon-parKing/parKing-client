@@ -14,6 +14,7 @@ const ReservationList = () => {
           );
         })}
       </ul> */}
+      <div className="p-4  bg-beige-s rounded-xl  space-x-4">Example Reservation </div>
     </div>
   );
 }
