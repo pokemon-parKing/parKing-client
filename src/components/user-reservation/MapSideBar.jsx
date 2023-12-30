@@ -1,5 +1,6 @@
-import { getNext8Days } from "./DaysDropdown";
 import { useSelector, useDispatch } from "react-redux";
+import { getNext8Days } from "./DaysDropdown";
+
 import {
   setDate,
   setSearch,
@@ -9,16 +10,16 @@ import {
 } from "../../utils/slice/reservationSlice";
 
 const MapSideBar = () => {
-  const { reservation } = useSelector((state) => state.reservation);
+  const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!reservation.search) return alert("Please fill address");
+    if (!search) return alert("Please fill address");
     if (!reservation.date || reservation.date === "Select a date")
       return alert("Please select a date");
 
-    await dispatch(fetchCoordinates(reservation.search));
+    await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
     dispatch(setPage("mapView"));
   };
@@ -33,9 +34,9 @@ const MapSideBar = () => {
         <input
           required
           className="input input-bordered w-full"
-          placeholder="Address, Place, City or Venue"
+          // placeholder="Address, Place, City or Venue"
           type="text"
-          value={reservation.search}
+          value={search}
           onChange={(e) => {
             dispatch(setSearch(e.target.value));
           }}
@@ -54,6 +55,7 @@ const MapSideBar = () => {
           {getNext8Days()}
         </select>
       </div>
+
       <div className="indicator flex justify-center items-center w-full">
         <button type="submit" className="btn">
           Update Search

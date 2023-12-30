@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { getNext8Days } from "./DaysDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,17 +9,16 @@ import {
 } from "../../utils/slice/reservationSlice";
 
 const SearchBar = () => {
-  // const [address, setAddress] = useState(null);
-  const { reservation } = useSelector((state) => state.reservation);
+  const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!reservation.search) return alert("Please fill address");
+    if (!search) return alert("Please fill address");
     if (!reservation.date || reservation.date === "Select a date")
       return alert("Please select a date");
 
-    await dispatch(fetchCoordinates(reservation.search));
+    await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
     dispatch(setPage("mapView"));
   };

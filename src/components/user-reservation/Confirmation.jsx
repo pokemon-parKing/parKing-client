@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addReservation, setPage } from "../../utils/slice/reservationSlice";
+import { addReservation, resetState } from "../../utils/slice/reservationSlice";
 const Confirmation = () => {
   const { reservation } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Confirmation = () => {
         <button
           onClick={() => {
             dispatch(addReservation());
-            dispatch(setPage("reservation")); // will update to user page
+            dispatch(resetState());
           }}
         >
           Confirm Reservation

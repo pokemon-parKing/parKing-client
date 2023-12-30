@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setGarageId,
@@ -14,6 +15,7 @@ import {
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const GoogleMap = () => {
+  const [open, setOpen] = useState(false);
   const { mapCenter, closestGarages, reservationsList, selectedGarage } =
     useSelector((state) => state.reservation);
   const dispatch = useDispatch();
@@ -24,7 +26,10 @@ const GoogleMap = () => {
         <Marker
           key={garage.lat + garage.lng}
           position={{ lat: garage.lat, lng: garage.lng }}
-          onClick={() => dispatch(setSelectedGarage(garage))}
+          onClick={() => {
+            setOpen(true);
+            dispatch(setSelectedGarage(garage));
+          }}
         ></Marker>
       );
     });
@@ -50,14 +55,15 @@ const GoogleMap = () => {
                 {/* WILL UPDATE STYLE SO THAT CENTER & GARAGE MARKERS ARE DISTINCT */}
                 <Marker position={mapCenter} />
                 {createMarkers(closestGarages)}
-                {selectedGarage && (
+                {open && (
                   <InfoWindow
                     position={{
                       lat: selectedGarage.lat,
                       lng: selectedGarage.lng,
                     }}
                     onCloseClick={() => {
-                      dispatch(setSelectedGarage(false));
+                      setOpen(false);
+                      // dispatch(setSelectedGarage(false));
                     }}
                   >
                     <h1>{selectedGarage.name || "GARAGE NAME"}</h1>
@@ -69,7 +75,10 @@ const GoogleMap = () => {
                     <p>{selectedGarage.distance || "1.5"} miles away</p>
                     <button
                       className="border-2 border-burgandy-p"
-                      onClick={() => getResevations(selectedGarage.id)}
+                      onClick={() => {
+                        setOpen(false);
+                        getResevations(selectedGarage.id);
+                      }}
                     >
                       Show Times
                     </button>
