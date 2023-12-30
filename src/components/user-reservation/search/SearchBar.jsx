@@ -26,7 +26,7 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-row items-center w-[60%]"
+      className="flex flex-row items-center w-[60%] ml-[25px]"
     >
       <div className="mr-[-32px] z-10">
         <svg
