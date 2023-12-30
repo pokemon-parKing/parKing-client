@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RiWalkFill } from "react-icons/ri";
+
 import {
   setGarageId,
   setSelectedGarage,
@@ -40,7 +42,7 @@ const GoogleMap = () => {
     });
   };
 
-  const getResevations = async (garageId) => {
+  const getReservations = async (garageId) => {
     try {
       await dispatch(setGarageId(garageId));
       await dispatch(fetchReservations(garageId));
@@ -48,7 +50,17 @@ const GoogleMap = () => {
       console.log(err);
     }
   };
-
+  console.log(selectedGarage);
+  /*
+        "black-p": "var(--pk-black)",
+        "black-s": "var(--pk-black-secondary)",
+        "burgundy-p": "var(--pk-burgundy)",
+        "burgundy-s": "var(--pk-burgundy-secondary)",
+        "white-p": "var(--pk-white)",
+        "white-s": "var(--pk-white-secondary)",
+        "beige-p": "var(--pk-beige)",
+        "beige-s": "var(--pk-beige-secondary)",
+*/
   return (
     mapCenter &&
     closestGarages && (
@@ -56,7 +68,13 @@ const GoogleMap = () => {
         <div className="flex justify-center">
           <APIProvider apiKey={apiKey}>
             <div style={{ height: "100vh", width: "60vw" }}>
-              <Map center={mapCenter} zoom={13} mapId={mapId}>
+              <Map
+                center={mapCenter}
+                zoom={13}
+                mapId={mapId}
+                gestureHandling={"greedy"}
+                // disableDefaultUI={true}
+              >
                 <AdvancedMarker position={mapCenter}>
                   <Pin
                     background={"#4285f4"}
@@ -75,22 +93,33 @@ const GoogleMap = () => {
                       setOpen(false);
                     }}
                   >
-                    <h1>{selectedGarage.name || "GARAGE NAME"}</h1>
-                    <p>{selectedGarage.address || "ADDRESS"}</p>
-                    <p>
-                      {selectedGarage.city || "CITY"},{" "}
-                      {selectedGarage.state || "STATE"}
-                    </p>
-                    <p>{selectedGarage.distance || "1.5"} miles away</p>
-                    <button
-                      className="border-2 border-burgandy-p"
-                      onClick={() => {
-                        setOpen(false);
-                        getResevations(selectedGarage.id);
-                      }}
-                    >
-                      Show Times
-                    </button>
+                    <div className="flex flex-col items-start">
+                      <h2 className="text-black font-bold text-xl mb-1">
+                        {selectedGarage.name}
+                      </h2>
+                      <p className="font-medium mb-1">
+                        {selectedGarage.address}
+                      </p>
+                      <div className="flex flex-row mb-1">
+                        <RiWalkFill />
+                        &nbsp;
+                        <div className="text-black font-medium">
+                          {` ${Math.ceil((0.6 / 3) * 60)} min`}
+                        </div>
+                        &nbsp;{`(${selectedGarage.distance || "1.5"} mi)`}
+                      </div>
+                      <div className="flex justify-end w-full">
+                        <button
+                          className="text-[#4285f4]"
+                          onClick={() => {
+                            setOpen(false);
+                            getReservations(selectedGarage.id);
+                          }}
+                        >
+                          Show Times
+                        </button>
+                      </div>
+                    </div>
                   </InfoWindow>
                 )}
               </Map>
