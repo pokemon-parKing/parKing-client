@@ -97,7 +97,6 @@ const SavedVehicle = () => {
                         onClick={() => handleEdit(vehicle)}
                       >
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={1.5}
@@ -117,7 +116,6 @@ const SavedVehicle = () => {
                         onClick={() => handleDelete(vehicle.id)}
                       >
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={1.5}
@@ -142,7 +140,6 @@ const SavedVehicle = () => {
               >
                 <div className="card-body flex flex-col justify-center items-center text-center h-full">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
