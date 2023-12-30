@@ -1,6 +1,6 @@
 export const getAvailableTimes = (hourRange, list, total) => {
   let available = [];
-
+  console.log(hourRange, list, total);
   for (let i = hourRange[0]; i < hourRange[1]; i++) {
     // console.log(i);
     available.push({ time: i, spots: total });

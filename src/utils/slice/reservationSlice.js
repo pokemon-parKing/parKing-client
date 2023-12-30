@@ -1,9 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import getGeoCoordinates from "../getGeoCoordinates";
+import getGarages from "../getGarages";
+import getReservationsByDate from "../getReservationsByDate";
 
-const fetchCoordinates = createAsyncThunk("reservation/getData", (address) => {
-  return getGeoCoordinates(address);
-});
+export const fetchCoordinates = createAsyncThunk(
+  "reservation/fetchCoordinates",
+  async (address) => {
+    const response = await getGeoCoordinates(address);
+    return response;
+  }
+);
+
+export const fetchClosestGarages = createAsyncThunk(
+  "reservation/fetchClosestGarages",
+  async (coordinates) => {
+    const response = await getGarages(coordinates);
+    return response;
+  }
+);
+
+export const fetchReservations = createAsyncThunk(
+  "reservation/fetchReservations",
+  async (garageId, { getState }) => {
+    const state = getState();
+    const date = state.reservation.reservation.date;
+    const response = await getReservationsByDate(garageId, date);
+    console.log(response);
+    return response;
+  }
+);
 
 const initialState = {
   /* Hardcoding user_id and car_id */
@@ -15,6 +40,9 @@ const initialState = {
     garage_id: null,
   },
   page: "reservation",
+  mapCenter: null,
+  closestGarages: null,
+  reservationsList: null,
 };
 
 export const reservationSlice = createSlice({
@@ -34,23 +62,23 @@ export const reservationSlice = createSlice({
       state.page = action.payload;
     },
   },
-  extraReducers: {
-    [fetchCoordinates.pending]: (state, { payload }) => {
-      state.loading = true;
-    },
-    [fetchCoordinates.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.data = payload;
-      state.isSuccess = true;
-    },
-    [fetchCoordinates.rejected]: (state, { payload }) => {
-      state.message = payload;
-      state.loading = false;
-      state.isSuccess = false;
-    },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCoordinates.fulfilled, (state, action) => {
+      state.mapCenter = action.payload;
+    });
+    builder.addCase(fetchCoordinates.rejected, (state, action) => {});
+
+    builder.addCase(fetchClosestGarages.fulfilled, (state, action) => {
+      state.closestGarages = action.payload;
+    });
+    builder.addCase(fetchClosestGarages.rejected, (state, action) => {});
+
+    builder.addCase(fetchReservations.fulfilled, (state, action) => {
+      state.reservationsList = action.payload;
+    });
+    builder.addCase(fetchReservations.rejected, (state, action) => {});
   },
 });
 export const { setDate, setTime, setGarageId, setPage } =
   reservationSlice.actions;
-
 export default reservationSlice.reducer;

@@ -1,18 +1,20 @@
 import { useMemo } from "react";
 import PropTypes from "prop-types";
 import TimeSlot from "./TimeSlot";
-
+import { useSelector } from "react-redux";
 import { getAvailableTimes } from "../../lib/timeSlotUtil.js";
 
-const TimeSlotList = ({ hoursOfOperation, total, list }) => {
+const TimeSlotList = ({ hoursOfOperation, total }) => {
+  const { reservationsList } = useSelector((state) => state.reservation);
+
   const hourRange = useMemo(() => {
     return hoursOfOperation.split("-").map((time) => {
       return parseInt(time);
     });
   }, [hoursOfOperation]);
   const availableTimes = useMemo(() => {
-    return getAvailableTimes(hourRange, list, total);
-  }, [list, hourRange, total]);
+    return getAvailableTimes(hourRange, reservationsList, total);
+  }, [reservationsList, hourRange, total]);
 
   return (
     <details className="dropdown max-w-[300px] w-48">
@@ -29,7 +31,6 @@ const TimeSlotList = ({ hoursOfOperation, total, list }) => {
 TimeSlotList.propTypes = {
   hoursOfOperation: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
-  list: PropTypes.object.isRequired,
 };
 
 export default TimeSlotList;

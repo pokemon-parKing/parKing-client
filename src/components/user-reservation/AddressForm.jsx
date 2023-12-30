@@ -1,39 +1,19 @@
 import { useState } from "react";
-import getGeoCoordinates from "../../utils/getGeoCoordinates";
-import getGarages from "../../utils/getGarages";
 import MapView from "./MapView";
 import { states } from "../../lib/states";
 import { getNext8Days } from "../../lib/dayDropdown";
 import { useSelector, useDispatch } from "react-redux";
-import { setDate } from "../../utils/slice/reservationSlice";
+import {
+  setDate,
+  fetchCoordinates,
+  fetchClosestGarages,
+} from "../../utils/slice/reservationSlice";
 const AddressForm = () => {
   const [address, setAddress] = useState({});
-  const [coordinates, setCoordinates] = useState(null); // thunk
-  const [garages, setGarages] = useState(null); // thunk
-  const { reservation } = useSelector((state) => state.reservation);
+  const { reservation, mapCenter, closestGarages, reservationsList } =
+    useSelector((state) => state.reservation);
+  console.log(reservation, reservationsList);
   const dispatch = useDispatch();
-
-  /* 1. Get Geocode for Inputted Address */
-  const getAndSetCoordinates = async (address) => {
-    try {
-      const coordinates = await getGeoCoordinates(address);
-      setCoordinates(coordinates);
-      return coordinates;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  /* 2. Get Garage Data for Closest Garages */
-  const fetchGarages = async (coordinates) => {
-    try {
-      const garages = await getGarages(coordinates);
-      setGarages(garages);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!address.street) return alert("Please fill address");
@@ -45,9 +25,8 @@ const AddressForm = () => {
       address.city || ""
     } ${address.state || ""} ${address.zip || ""}`;
 
-    const coordinates = await getAndSetCoordinates(addressString);
-
-    fetchGarages(coordinates);
+    const coordinates = await dispatch(fetchCoordinates(addressString));
+    await dispatch(fetchClosestGarages(coordinates.payload));
   };
 
   return (
@@ -147,13 +126,11 @@ const AddressForm = () => {
             type="submit"
             className="btn font-bold border border-burgundy-p"
           >
-            {!coordinates ? "Search" : "Update Search"}
+            {!mapCenter ? "Search" : "Update Search"}
           </button>{" "}
         </form>
       </div>
-      {coordinates && garages && (
-        <MapView center={coordinates} garages={garages} />
-      )}
+      {mapCenter && closestGarages && <MapView />}
     </div>
   );
 };
