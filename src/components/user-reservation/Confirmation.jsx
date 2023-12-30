@@ -1,7 +1,9 @@
-import addReservation from "../../utils/addReservation";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addReservation, setPage } from "../../utils/slice/reservationSlice";
 const Confirmation = () => {
   const { reservation } = useSelector((state) => state.reservation);
+  const dispatch = useDispatch();
+
   /* SAMPLE DATA */
   const details = {
     name: "Twin Peaks",
@@ -12,10 +14,6 @@ const Confirmation = () => {
     username: "Bruce",
   };
 
-  const handleReservation = () => {
-    addReservation(reservation); // THUNK
-  };
-
   return (
     reservation && (
       <div>
@@ -24,7 +22,14 @@ const Confirmation = () => {
         <h3>{details.name}</h3>
         <h3>{`${details.address} ${details.city} ${details.state}, ${details.zip}`}</h3>
         <h3>{`${reservation.date} & ${reservation.time}`}</h3>
-        <button onClick={handleReservation}>Confirm Reservation</button>
+        <button
+          onClick={() => {
+            dispatch(addReservation());
+            dispatch(setPage("reservation")); // will update to user page
+          }}
+        >
+          Confirm Reservation
+        </button>
       </div>
     )
   );

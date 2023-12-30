@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const addReservation = async (body) => {
+const postReservation = async (body) => {
   /* Given garage_id and date, get count of reservations per hour */
   try {
     await axios.post(`http://localhost:3001/reservations`, body);
@@ -10,4 +10,4 @@ const addReservation = async (body) => {
     return null;
   }
 };
-export default addReservation;
+export default postReservation;

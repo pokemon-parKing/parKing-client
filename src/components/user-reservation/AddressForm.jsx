@@ -8,12 +8,14 @@ import {
   fetchCoordinates,
   fetchClosestGarages,
 } from "../../utils/slice/reservationSlice";
+
 const AddressForm = () => {
   const [address, setAddress] = useState({});
   const { reservation, mapCenter, closestGarages } = useSelector(
     (state) => state.reservation
   );
   const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!address.street) return alert("Please fill address");
@@ -114,8 +116,7 @@ const AddressForm = () => {
             <h3 className="font-bold text-2xl">Date</h3>
             <select
               onChange={(e) => {
-                const reformattedDate = e.target.value.replace(/\//g, "-");
-                dispatch(setDate(reformattedDate));
+                dispatch(setDate(e.target.value.replace(/\//g, "-")));
               }}
             >
               <option>Select a date</option>
