@@ -3,9 +3,15 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import AddVehicleForm from "./AddVehicleForm";
 import EditVehicleForm from "./EditVehicleForm";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setVehicleData,
+  deleteVehicle,
+} from "../../utils/slice/accountsSlice.js";
 
 const SavedVehicle = () => {
-  const [vehicleData, setVehicleData] = useState([]);
+  const dispatch = useDispatch();
+  const vehicleData = useSelector((state) => state.accounts.vehicleData);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -18,23 +24,21 @@ const SavedVehicle = () => {
           `http://localhost:3000/user/${id}/cars`
         );
 
-        setVehicleData(response.data);
+        dispatch(setVehicleData(response.data));
       } catch (error) {
         console.error("Error fetching vehicle data:", error);
       }
     };
 
     fetchVehicleData();
-  }, [id, vehicleData]);
+  }, [dispatch, id, vehicleData]);
 
   const handleDelete = async (vehicleId) => {
     try {
       await axios.delete(`http://localhost:3000/user/${id}/delete-vehicle`, {
         data: { vehicleId },
       });
-      setVehicleData((prevData) =>
-        prevData.filter((vehicle) => vehicle.id !== vehicleId)
-      );
+      dispatch(deleteVehicle({ vehicleId }));
     } catch (error) {
       console.error("Error deleting vehicle:", error);
     }

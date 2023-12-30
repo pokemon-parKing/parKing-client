@@ -11,6 +11,7 @@ const initialState = {
     role: "",
     phone_number: "",
   },
+  vehicleData: [],
 };
 
 const accountsSlice = createSlice({
@@ -23,10 +24,24 @@ const accountsSlice = createSlice({
     setUserDataPhoneNumber: (state, action) => {
       state.userData.phone_number = action.payload;
     },
+    setVehicleData: (state, action) => {
+      state.vehicleData = action.payload;
+    },
+    deleteVehicle: (state, action) => {
+      const { vehicleId } = action.payload;
+      state.vehicleData = state.vehicleData.filter(
+        (vehicle) => vehicle.id !== vehicleId
+      );
+    },
   },
 });
 
-export const { setUserData, setUserDataPhoneNumber } = accountsSlice.actions;
+export const {
+  setUserData,
+  setUserDataPhoneNumber,
+  setVehicleData,
+  deleteVehicle,
+} = accountsSlice.actions;
 
 export default function accountsReducer(state = initialState, action) {
   return accountsSlice.reducer(state, action);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const VehicleForm = ({ onExit, onSubmit, initialData }) => {
   const { id } = useParams();
