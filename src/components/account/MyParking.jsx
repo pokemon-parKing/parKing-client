@@ -1,11 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { convertTime } from "../../lib/timeSlotUtil.js";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setReservationData,
+  cancelReservation,
+} from "../../utils/slice/accountsSlice.js";
 
 const MyParking = () => {
-  const [reservationData, setReservationData] = useState([]);
+  const dispatch = useDispatch();
+  const reservationData = useSelector(
+    (state) => state.accounts.reservationData
+  );
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -16,33 +24,22 @@ const MyParking = () => {
           `http://localhost:3000/user/${id}/current-reservations`
         );
 
-        setReservationData((prevData) => {
-          if (JSON.stringify(prevData) !== JSON.stringify(response.data)) {
-            return response.data;
-          }
-          return prevData;
-        });
+        dispatch(setReservationData(response.data));
       } catch (error) {
         console.error("Error fetching reservation data:", error);
       }
     };
 
     fetchReservationData();
-  }, [id, reservationData]);
+  }, [dispatch, id]);
 
-  const cancelReservation = async (reservationId) => {
+  const deleteReservation = async (reservationId) => {
     try {
       await axios.patch(
         `http://localhost:3001/reservations/${reservationId}?status=cancelled`
       );
 
-      setReservationData((prevData) =>
-        prevData.map((reservation) =>
-          reservation.id === reservationId
-            ? { ...reservation, status: "cancelled" }
-            : reservation
-        )
-      );
+      dispatch(cancelReservation(reservationId));
       toast.success("Reservation cancelled successfully!");
     } catch (error) {
       console.error("Error canceling reservation:", error);
@@ -76,7 +73,7 @@ const MyParking = () => {
                 <div className="card-actions justify-center">
                   <button
                     className="btn btn-ghost text-red-500"
-                    onClick={() => cancelReservation(reservation.id)}
+                    onClick={() => deleteReservation(reservation.id)}
                   >
                     <svg
                       fill="none"

@@ -12,6 +12,7 @@ const initialState = {
     phone_number: "",
   },
   vehicleData: [],
+  reservationData: [],
 };
 
 const accountsSlice = createSlice({
@@ -33,6 +34,15 @@ const accountsSlice = createSlice({
         (vehicle) => vehicle.id !== vehicleId
       );
     },
+    setReservationData: (state, action) => {
+      state.reservationData = action.payload;
+    },
+    cancelReservation: (state, action) => {
+      const reservationId = action.payload;
+      state.reservationData = state.reservationData.filter(
+        (reservation) => reservation.id !== reservationId
+      );
+    },
   },
 });
 
@@ -41,6 +51,8 @@ export const {
   setUserDataPhoneNumber,
   setVehicleData,
   deleteVehicle,
+  setReservationData,
+  cancelReservation,
 } = accountsSlice.actions;
 
 export default function accountsReducer(state = initialState, action) {
