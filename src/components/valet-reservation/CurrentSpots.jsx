@@ -1,7 +1,9 @@
   import { useState, useEffect, useMemo } from "react";
+  import { useSelector, useDispatch } from "react-redux";
+  import { setTime } from "../../utils/slice/valetSlice";
   import getSpotMetrics from "../../utils/getSpotMetrics";
 
-  const CurrentSpots = (garageId, date, time) => {
+  const CurrentSpots = () => {
     //will implement useMemo and redux later
     const [availableSpots, setAvailableSpots] = useState(0);
     const [reservedSpots, setReservedSpots] = useState(0);

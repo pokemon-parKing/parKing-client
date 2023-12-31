@@ -8,6 +8,7 @@ import ValetReservation from "./containers/ValetReservation";
 import AccountsPage from "./containers/AccountsPage.jsx";
 import LogInPage from "./containers/LogInPage.jsx";
 import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
+import ReservationDetails from "./components/valet-reservation/ReservationDetails.jsx";
 import Scanner from "./components/valet-reservation/Scanner.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/valetReservation",
     element: <ValetReservation />,
+  },
+  {
+    path: "/valetReservation/cico/:reservation_id",
+    element: <ReservationDetails />,
   },
   {
     path: "/scanner",

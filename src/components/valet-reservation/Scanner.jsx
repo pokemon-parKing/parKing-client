@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner } from "html5-qrcode";
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
   useEffect(() => {

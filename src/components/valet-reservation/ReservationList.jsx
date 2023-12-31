@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setTime, setReservations } from "../../utils/slice/valetSlice";
+import { Link } from "react-router-dom";
 import getReservationList from "../../utils/getReservationList";
 const ReservationList = () => {
-  const [reservations, setReservations] = useState([]);
-  const [currentHour, setCurrentHour] = useState(new Date().getHours());
   const[showNextHour, setShowNextHour] = useState(false);
+  const { time, reservations } = useSelector((state) => state.valet);
+  const dispatch = useDispatch();
 
   const fetchReservations = async () => {
     const garage_id = 1;
     const date = "12-31-23";
     try {
       const data = await getReservationList(garage_id, date);
-      setReservations(data);
+      dispatch(setReservations(data))
     } catch (error) {
       console.log(error);
   }
@@ -26,20 +29,18 @@ const ReservationList = () => {
 
 useEffect(() => {
   fetchReservations();
-}, []);
+}, [time]);
 
 useEffect(() => {
-  const interval = setInterval(() => {
-    const newHour = new Date().getHours();
+  console.log("this is the reservations", reservations);
+  console.log("this is the time", time);
+  console.log("this is the filtered list", filterList(time));
+}, [reservations]);
 
-    //check if the hour has changed
-    if (newHour !== currentHour) {
-      setCurrentHour(newHour);
-      fetchReservations();
-    }
-  }, 1000 * 60 * 60); //check every hour
+useEffect(() => {
+  const interval = setInterval(() => dispatch(setTime()), 1000 * 60 * 60); //check every hour
   return () => clearInterval(interval);
-}, [currentHour]);
+}, [dispatch]);
 
   return (
     <div>
@@ -50,12 +51,12 @@ useEffect(() => {
         </button>
       </div>
       <ul>
-        {filterList(showNextHour ? currentHour + 1 : currentHour).map((reservation) => {
+        {filterList(showNextHour ? time + 1 : time).map((reservation) => {
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
-            <div key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
+            <Link to={`/valetReservation/cico/${id}`}key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
               {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
-            </div>
+            </Link>
           );
         })}
       </ul>
