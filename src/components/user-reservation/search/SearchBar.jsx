@@ -11,7 +11,6 @@ import {
 const SearchBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-  console.log(reservation);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!search) return alert("Please fill address");
