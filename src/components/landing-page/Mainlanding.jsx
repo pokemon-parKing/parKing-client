@@ -1,15 +1,20 @@
-import React from 'react'
 import Navbar from '../Navbar'
+import Valetlanding from './Valetlanding'
 
-function Mainlanding() {
+
+function MainPage() {
+
   return (
+    <main>
+        <Navbar/>
+        <Valetlanding/>
+        <div>
+       
 
-    <div>
-
-        <Navbar />
+        </div>
         
-    </div>
+    </main>
   )
 }
 
-export default Mainlanding
+export default MainPage
