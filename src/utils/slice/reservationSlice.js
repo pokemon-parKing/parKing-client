@@ -51,7 +51,8 @@ const initialState = {
     date: null,
     garage_id: null,
   },
-  page: "reservation",
+  search: null,
+  page: "search",
   mapCenter: null,
   closestGarages: null,
   reservationsList: null,
@@ -68,6 +69,9 @@ export const reservationSlice = createSlice({
     setTime: (state, action) => {
       state.reservation.time = action.payload;
     },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
     setGarageId: (state, action) => {
       state.reservation.garage_id = action.payload;
     },
@@ -77,6 +81,7 @@ export const reservationSlice = createSlice({
     setSelectedGarage: (state, action) => {
       state.selectedGarage = action.payload;
     },
+    resetState: () => initialState,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCoordinates.fulfilled, (state, action) => {
@@ -101,6 +106,13 @@ export const reservationSlice = createSlice({
     });
   },
 });
-export const { setDate, setTime, setGarageId, setPage, setSelectedGarage } =
-  reservationSlice.actions;
+export const {
+  setDate,
+  setTime,
+  setSearch,
+  setGarageId,
+  setPage,
+  setSelectedGarage,
+  resetState,
+} = reservationSlice.actions;
 export default reservationSlice.reducer;

@@ -1,54 +1,48 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setUserData,
+  setUserDataPhoneNumber,
+} from "../../utils/slice/accountsSlice.js";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
+import toast from "react-hot-toast";
 
 const AccountSetting = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.accounts.userData);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [userData, setUserData] = useState({
-    id: "",
-    google_account_id: "",
-    contact_preferences: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    role: "",
-    phone_number: "",
-  });
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/user/${id}`);
-        setUserData(response.data);
-        if (response.data.phone_number) {
-          setPhoneNumber(formatPhoneNumber(response.data.phone_number));
-        }
+        dispatch(setUserData(response.data));
+        setPhoneNumber(formatPhoneNumber(response.data.phone_number));
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
     fetchUserData();
-  }, [id]);
+  }, [dispatch, id]);
 
   const handlePhoneNumberChange = (e) => {
     const input = e.target.value;
     const formattedInput = formatPhoneNumber(input);
     setPhoneNumber(formattedInput);
-    setUserData((prevData) => ({
-      ...prevData,
-      phone_number: formattedInput,
-    }));
+    dispatch(setUserDataPhoneNumber(formattedInput));
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    dispatch(
+      setUserData({
+        [name]: value,
+      })
+    );
   };
 
   const handleUpdate = async () => {
@@ -59,9 +53,10 @@ const AccountSetting = () => {
         email: userData.email,
         phone_number: userData.phone_number,
       });
-      console.log("User data updated successfully:", response.data);
+      toast.success("Account data updated successfully");
     } catch (error) {
       console.error("Error updating user data:", error);
+      toast.error("Error updating account data");
     }
   };
 
@@ -72,7 +67,7 @@ const AccountSetting = () => {
           Account Information
         </h1>
         <div className="w-full mt-5 sm:mt-8">
-          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5">
+          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px] overflow-y-auto">
             <label htmlFor="name" className="font-semibold text-[#000]">
               NAME:
             </label>
@@ -81,7 +76,7 @@ const AccountSetting = () => {
                 type="text"
                 placeholder="Your First Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                value={userData.first_name || ""}
+                defaultValue={userData.first_name}
                 onChange={handleInputChange}
                 name="first_name"
               />
@@ -89,7 +84,7 @@ const AccountSetting = () => {
                 type="text"
                 placeholder="Your Last Name"
                 className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                value={userData.last_name || ""}
+                defaultValue={userData.last_name}
                 onChange={handleInputChange}
                 name="last_name"
               />
@@ -101,7 +96,7 @@ const AccountSetting = () => {
               type="text"
               placeholder="Your Email Address"
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
-              value={userData.email || ""}
+              defaultValue={userData.email}
               onChange={handleInputChange}
               name="email"
             />

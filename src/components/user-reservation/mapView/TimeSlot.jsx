@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { setTime, setPage } from "../../utils/slice/reservationSlice";
-import { convertDBTime } from "../../lib/timeSlotUtil";
+import { setTime, setPage } from "../../../utils/slice/reservationSlice";
+import { convertDBTime } from "../../../lib/timeSlotUtil";
 
 const TimeSlot = ({ info }) => {
   const dispatch = useDispatch();
