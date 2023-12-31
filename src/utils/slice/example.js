@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   count: 0,
@@ -7,7 +7,7 @@ const initialState = {
 
 // exporting here allows access to state throughout our app.
 export const exampleSlice = createSlice({
-  name: 'example',
+  name: "example",
   initialState,
   reducers: {
     addToArray: (state, action) => {
@@ -19,13 +19,12 @@ export const exampleSlice = createSlice({
     },
     decrement: (state) => {
       state.count--;
-    }
-  }
-})
+    },
+  },
+});
 
 // we are exporting the methods to set state in our app
 export const { increment, addToArray, decrement } = exampleSlice.actions;
-
 
 // this is what we use in the store.js
 export default exampleSlice.reducer;
