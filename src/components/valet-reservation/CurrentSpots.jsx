@@ -2,6 +2,7 @@
   import getSpotMetrics from "../../utils/getSpotMetrics";
 
   const CurrentSpots = (garageId, date, time) => {
+    //will implement useMemo and redux later
     const [availableSpots, setAvailableSpots] = useState(0);
     const [reservedSpots, setReservedSpots] = useState(0);
     const [occupiedSpots, setOccupiedSpots] = useState(0);
@@ -21,7 +22,6 @@
         console.log(error);
       }
     };
-    //Need to add a dependency to update the page when the spots change
     useEffect(() => {
       fetchSpots();
     }, []);
