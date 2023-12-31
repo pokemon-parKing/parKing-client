@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import getReservationList from "../../utils/getReservationList";
 const ReservationList = () => {
   const [reservations, setReservations] = useState([]);
-const [currentHour, setCurrentHour] = useState(new Date().getHours());
+  const [currentHour, setCurrentHour] = useState(new Date().getHours());
+  const[showNextHour, setShowNextHour] = useState(false);
 
   const fetchReservations = async () => {
     const garage_id = 1;
@@ -15,9 +16,17 @@ const [currentHour, setCurrentHour] = useState(new Date().getHours());
   }
 }
 
-// useEffect(() => {
-//   fetchReservations();
-// }, []);
+  const toggleHour = () => {
+    setShowNextHour((boolean) => !boolean);
+  };
+
+  const filterList = (hour) => {
+    return reservations.filter((reservation) => hour === reservation.time);
+  };
+
+useEffect(() => {
+  fetchReservations();
+}, []);
 
 useEffect(() => {
   const interval = setInterval(() => {
@@ -35,8 +44,13 @@ useEffect(() => {
   return (
     <div>
       <h4>This is the ReservationList component</h4>
+      <div>
+        <button onClick={toggleHour}>
+          Show {showNextHour ? "Current Hour" : "Next Hour"}
+        </button>
+      </div>
       <ul>
-        {reservations.map((reservation) => {
+        {filterList(showNextHour ? currentHour + 1 : currentHour).map((reservation) => {
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
             <div key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
