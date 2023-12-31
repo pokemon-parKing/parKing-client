@@ -36,8 +36,7 @@
 # About
 
 <a id='about'></a>
-A Saas application meant to optimize car parking and valet interactions.
-We are a startup-sized enterprise with about 5 employees, looking to launch soon and take over the market. Our platform caters to high-traffic metropolitan areas, where parking logistics are often cumbersome and time consuming.
+A SaaS application meant to optimize car parking and valet interactions. ParKing caters to high-traffic metropolitan areas, where parking logistics are often cumbersome and time consuming.
 
 ### Built With
 
