@@ -20,7 +20,7 @@ const SearchBar = () => {
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    dispatch(setPage("mapView"));
+    dispatch(setPage("reservation"));
   };
 
   return (

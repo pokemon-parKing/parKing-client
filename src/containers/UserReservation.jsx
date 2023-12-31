@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import Search from "../components/user-reservation/search/Search.jsx";
-import MapView from "../components/user-reservation/mapView/MapView.jsx";
+import Reservation from "../components/user-reservation/reservation/Reservation.jsx";
 import Confirmation from "../components/user-reservation/confirmation/Confirmation.jsx";
 
 const UserReservation = () => {
@@ -9,7 +9,7 @@ const UserReservation = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       {page === "search" && <Search />}
-      {page === "mapView" && <MapView />}
+      {page === "reservation" && <Reservation />}
       {page === "confirmation" && <Confirmation />}
     </div>
   );
