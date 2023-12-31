@@ -1,12 +1,14 @@
 import ReactDOM from "react-dom/client";
-import { store } from './store.js';
-import { Provider } from 'react-redux';
+import { Toaster } from "react-hot-toast";
+import { store } from "./store.js";
+import { Provider } from "react-redux";
 import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import ValetReservation from "./containers/ValetReservation";
 import AccountsPage from "./containers/AccountsPage.jsx";
 import LogInPage from "./containers/LogInPage.jsx";
 import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
+import Scanner from "./components/valet-reservation/Scanner.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/valetReservation",
-    element: <ValetReservation />
+    element: <ValetReservation />,
+  },
+  {
+    path: "/scanner",
+    element: <Scanner />
   },
   // {
   //   path: yourpathhere,
@@ -44,7 +50,10 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+    <Toaster position="top-center" reverseOrder={false} />
+  </>
 );
