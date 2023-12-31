@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   count: 0,
-  array: []
+  array: [],
 };
 
 // exporting here allows access to state throughout our app.
