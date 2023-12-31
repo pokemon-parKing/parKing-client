@@ -11,7 +11,7 @@ import {
 const SearchBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-
+  console.log(reservation);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!search) return alert("Please fill address");
@@ -57,7 +57,7 @@ const SearchBar = () => {
         <select
           required
           className="select select-bordered join-item"
-          value={reservation.date || ""}
+          value={reservation.date ? reservation.date.replace(/\-/g, "/") : ""}
           onChange={(e) => {
             dispatch(setDate(e.target.value.replace(/\//g, "-")));
           }}

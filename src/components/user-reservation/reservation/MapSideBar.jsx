@@ -11,7 +11,7 @@ import {
 const MapSideBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-
+  console.log(reservation.date);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!search) return alert("Please fill address");
@@ -99,7 +99,7 @@ const MapSideBar = () => {
           <select
             required
             className="select select-bordered w-full pl-10"
-            value={reservation.date || ""}
+            value={reservation.date.replace(/\-/g, "/") || ""}
             onChange={(e) => {
               dispatch(setDate(e.target.value.replace(/\//g, "-")));
             }}
