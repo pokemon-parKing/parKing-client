@@ -5,6 +5,8 @@ import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import ValetReservation from "./containers/ValetReservation";
 import AccountsPage from "./containers/AccountsPage.jsx";
+import LogInPage from "./containers/LogInPage.jsx";
+import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
   {
     path: "/user/:id",
     element: <AccountsPage />,
+  },
+  {
+    path: "/login",
+    element: <LogInPage />,
+  },
+  {
+    path: "/authcallback",
+    element: <AuthCallbackPage />,
   },
 ]);
 
