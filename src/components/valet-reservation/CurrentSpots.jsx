@@ -1,29 +1,30 @@
-  import { useState, useEffect } from "react";
-  // import axios from "axios";
+  import { useState, useEffect, useMemo } from "react";
+  import getSpotMetrics from "../../utils/getSpotMetrics";
 
-  const CurrentSpots = (garageId) => {
+  const CurrentSpots = (garageId, date, time) => {
     const [availableSpots, setAvailableSpots] = useState(0);
-    const [currentSpots, setCurrentSpots] = useState(0);
+    const [reservedSpots, setReservedSpots] = useState(0);
     const [occupiedSpots, setOccupiedSpots] = useState(0);
 
     const fetchSpots = async () => {
-      //placeholder endpoints for now. Will update endpoints once they are created
-      // try {
-      //   // const available = await axios.get(`/${garageId}`);
-      //   // const current = await axios.get(`/${garageId}`);
-      //   // const occupied = await axios.get(`/${garageId}`);
-      //   // setAvailableSpots(available.data.length);
-      //   // setCurrentSpots(current.data.length);
-      //   // setOccupiedSpots(occupied.data.length);
-      // } catch (error) {
-      //   console.log('error fetching spots:', error);
-      // }
-    }
+      //hardcoding data for now
+      const garageId = 1;
+      const date = "12-28-23";
+      const time = 6;
+      try {
+        const data = await getSpotMetrics(garageId, date, time);
+        const { available, reserved, occupied } = data;
+         setAvailableSpots(available);
+         setReservedSpots(reserved);
+         setOccupiedSpots(occupied);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     //Need to add a dependency to update the page when the spots change
     useEffect(() => {
-      // fetchSpots();
+      fetchSpots();
     }, []);
-
     return (
       <>
         <div className="availabilty-overview">
@@ -33,7 +34,7 @@
               <h3>Available Spots: {availableSpots}</h3>
             </div>
             <div className="current-spots">
-              <h3>Current Spots: {currentSpots}</h3>
+              <h3>Reserved Spots: {reservedSpots}</h3>
             </div>
             <div className="occupied-spots">
               <h3>Occupied Spots: {occupiedSpots}</h3>
