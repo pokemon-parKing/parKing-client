@@ -21,6 +21,9 @@ const Scanner = () => {
     function onScanError(error) {
       console.warn(error);
     }
+    return () => {
+      scanner.clear();
+    }
   }, []);
   return (
     <>
