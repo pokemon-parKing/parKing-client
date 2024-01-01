@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userData: {
-    id: "",
+    id: "0db22c80-80d3-46ff-a684-abddd377bd05",
     google_account_id: "",
     contact_preferences: "",
     email: "",
