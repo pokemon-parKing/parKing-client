@@ -9,6 +9,7 @@ import AccountsPage from "./containers/AccountsPage.jsx";
 import LogInPage from "./containers/LogInPage.jsx";
 import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
 import Scanner from "./components/valet-reservation/Scanner.jsx";
+import ReservationDetails from "./components/valet-reservation/ReservationDetails.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/scanner",
     element: <Scanner />
+  },
+  {
+    path: "/reservationDetails",
+    element: <ReservationDetails />
   },
   // {
   //   path: yourpathhere,
