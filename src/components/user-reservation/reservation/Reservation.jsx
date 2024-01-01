@@ -3,7 +3,7 @@ import MapSideBar from "./MapSideBar";
 import GoogleMap from "./GoogleMap";
 import TimeSlotList from "./TimeSlotList";
 
-const MapView = () => {
+const Reservation = () => {
   const { reservationsList, selectedGarage } = useSelector(
     (state) => state.reservation
   );
@@ -25,4 +25,4 @@ const MapView = () => {
   );
 };
 
-export default MapView;
+export default Reservation;
