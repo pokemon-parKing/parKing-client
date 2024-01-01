@@ -18,46 +18,37 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      {
-        path: "/reservation",
-        element: <UserReservation />,
-      },
-      {
-        path: "/valetReservation",
-        element: <ValetReservation />,
-        children: [
-          {
-            path: '/:id',
-            element: <ReservationDetails />
-          }
-        ]
-      },
-      {
-        path: "/scanner",
-        element: <Scanner />
-      },
-      {
-        path: "/user/:id",
-        element: <AccountsPage />,
-      },
-      {
-        path: "/login",
-        element: <LogInPage />,
-      },
-      {
-        path: "/authcallback",
-        element: <AuthCallbackPage />,
-      },
-    ]
   },
-
+  {
+    path: "/reservation",
+    element: <UserReservation />,
+  },
+  {
+    path: "/valetReservation",
+    element: <ValetReservation />,
+  },
+  {
+    path: "/scanner",
+    element: <Scanner />
+  },
   // {
   //   path: yourpathhere,
   //   element: importyourelementhere
   // }
   // you also need to import Link in a different component with the 'to' property that points to your path
   // see app.jsx for an example (dont create it in app.jsx)
+  {
+    path: "/user/:id",
+    element: <AccountsPage />,
+  },
+  {
+    path: "/login",
+    element: <LogInPage />,
+  },
+  {
+    path: "/authcallback",
+    element: <AuthCallbackPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

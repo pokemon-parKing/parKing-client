@@ -29,7 +29,7 @@ const ReservationDetails = () => {
               </svg>
               Reservation Summary
             </h2>
-            <button onClick={() => dispatch(setPage("mapView"))}>
+            <button onClick={() => dispatch(setPage("reservation"))}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
