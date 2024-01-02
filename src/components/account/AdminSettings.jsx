@@ -1,28 +1,60 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 const AdminSettings = () => {
-  const dispatch = useDispatch();
-  const [valetData, setValetData] = useState(false);
+  const [valetData, setValetData] = useState(null);
+  const [parkingSpots, setParkingSpots] = useState(0);
+  const [openingHour, setOpeningHour] = useState("");
+  const [closingHour, setClosingHour] = useState("");
   const { id } = useParams();
 
-  useEffect(() => {
-    const getValetData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/valet/${id}`);
-        setValetData(response.data[0]);
-      } catch (error) {
-        console.error("Error fetching vehicle data:", error);
-      }
-    };
+  const getValetData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/valet/${id}`);
+      setValetData(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching valet data:", error);
+    }
+  };
 
+  useEffect(() => {
     getValetData();
   }, [id]);
 
-  console.log(valetData);
+  const handleParkingSpotsUpdate = async () => {
+    const parsedSpots = parseInt(parkingSpots, 10);
+    if (isNaN(parsedSpots)) {
+      toast.error("Please enter a valid number for parking spots.");
+      return;
+    }
+    try {
+      await axios.put(`http://localhost:3000/valet/${id}/operation-hours`, {
+        spots: parsedSpots,
+      });
+      toast.success("Parking spots updated successfully!");
+      getValetData();
+      document.getElementById("editParkingSpots").close();
+    } catch (error) {
+      console.error("Error updating parking spots:", error);
+      toast.error("Error updating parking spots. Please try again.");
+    }
+  };
+
+  const handleHoursUpdate = async () => {
+    try {
+      await axios.put(`http://localhost:3000/valet/${id}/spots`, {
+        operation_hours: `${openingHour}-${closingHour}`,
+      });
+      toast.success("Hours of operation updated successfully!");
+      getValetData();
+      document.getElementById("editHoursModal").close();
+    } catch (error) {
+      console.error("Error updating hours of operation:", error);
+      toast.error("Error updating hours of operation. Please try again.");
+    }
+  };
 
   return (
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
@@ -32,21 +64,21 @@ const AdminSettings = () => {
         </h1>
         <div className="gap-6 h-[600px] overflow-y-auto">
           <div
-            key={valetData.id}
+            key={valetData?.id}
             className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-200 max-h-200"
           >
             <div className="card-body items-center text-center">
               <h2 className="card-title">Garage Information</h2>
-              <p className="text-[#000]">{valetData.name}</p>
-              <p className="text-[#000]">{`${valetData.address}, ${valetData.city}, ${valetData.state}, ${valetData.country}, ${valetData.zip}`}</p>
-              <p className="text-[#000]">{`Latitude: ${valetData.lat}`}</p>
-              <p className="text-[#000]">{`Longitude: ${valetData.lng}`}</p>
+              <p className="text-[#000]">{valetData?.name}</p>
+              <p className="text-[#000]">{`${valetData?.address}, ${valetData?.city}, ${valetData?.state}, ${valetData?.country}, ${valetData?.zip}`}</p>
+              <p className="text-[#000]">{`Latitude: ${valetData?.lat}`}</p>
+              <p className="text-[#000]">{`Longitude: ${valetData?.lng}`}</p>
             </div>
           </div>
           <div className="stats shadow">
             <div className="stat">
               <div className="stat-title">Number of Parking Spots</div>
-              <div className="stat-value">{valetData.spots}</div>
+              <div className="stat-value">{valetData?.spots}</div>
               <button
                 className="btn btn-ghost text-blue-500"
                 onClick={() =>
@@ -70,7 +102,14 @@ const AdminSettings = () => {
               </button>
               <dialog id="editParkingSpots" className="modal">
                 <div className="modal-box">
-                  <form method="dialog" className="flex flex-col items-center">
+                  <form
+                    method="dialog"
+                    className="flex flex-col items-center"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleParkingSpotsUpdate();
+                    }}
+                  >
                     <label className="form-control w-full max-w-xs">
                       <div className="label">
                         <span className="label-text">
@@ -81,13 +120,24 @@ const AdminSettings = () => {
                         type="text"
                         placeholder="Your requested number of parking spots"
                         className="input input-bordered input-primary w-full max-w-xs"
+                        value={parkingSpots}
+                        onChange={(e) => setParkingSpots(e.target.value)}
                       />
                       <div className="label"></div>
                     </label>
-                    <button className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]">
+                    <button
+                      className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]"
+                      type="submit"
+                    >
                       Update
                     </button>
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    <button
+                      className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                      type="button"
+                      onClick={() =>
+                        document.getElementById("editParkingSpots").close()
+                      }
+                    >
                       ✕
                     </button>
                   </form>
@@ -98,7 +148,7 @@ const AdminSettings = () => {
           <div className="stats shadow">
             <div className="stat">
               <div className="stat-title">Hours of Operation</div>
-              <div className="stat-value">{valetData.operation_hours}</div>
+              <div className="stat-value">{valetData?.operation_hours}</div>
               <button
                 className="btn btn-ghost text-blue-500"
                 onClick={() =>
@@ -122,7 +172,14 @@ const AdminSettings = () => {
               </button>
               <dialog id="editHoursModal" className="modal">
                 <div className="modal-box">
-                  <form method="dialog" className="flex flex-col items-center">
+                  <form
+                    method="dialog"
+                    className="flex flex-col items-center"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleHoursUpdate();
+                    }}
+                  >
                     <label className="form-control w-full max-w-xs">
                       <div className="label">
                         <span className="label-text">
@@ -135,20 +192,33 @@ const AdminSettings = () => {
                           placeholder="Opening Hour"
                           className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
                           name="opening_hour"
+                          value={openingHour}
+                          onChange={(e) => setOpeningHour(e.target.value)}
                         />
                         <input
                           type="text"
                           placeholder="Closing Hour"
                           className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
                           name="closing_hour"
+                          value={closingHour}
+                          onChange={(e) => setClosingHour(e.target.value)}
                         />
                       </div>
                       <div className="label"></div>
                     </label>
-                    <button className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]">
+                    <button
+                      className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]"
+                      type="submit"
+                    >
                       Update
                     </button>
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    <button
+                      className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                      type="button"
+                      onClick={() =>
+                        document.getElementById("editHoursModal").close()
+                      }
+                    >
                       ✕
                     </button>
                   </form>
