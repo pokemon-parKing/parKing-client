@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { setValetData } from "../../utils/slice/accountsSlice.js";
+import EditParkingSpotsModal from "./EditParkingSpotsModal";
+import EditHoursModal from "./EditHoursModal";
 
 const AdminSettings = () => {
   const dispatch = useDispatch();
@@ -108,49 +110,11 @@ const AdminSettings = () => {
                 </svg>
                 Edit
               </button>
-              <dialog id="editParkingSpots" className="modal">
-                <div className="modal-box">
-                  <form
-                    method="dialog"
-                    className="flex flex-col items-center"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handleParkingSpotsUpdate();
-                    }}
-                  >
-                    <label className="form-control w-full max-w-xs">
-                      <div className="label">
-                        <span className="label-text">
-                          Edit Number of Parking Spots
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        placeholder="Your requested number of parking spots"
-                        className="input input-bordered input-primary w-full max-w-xs"
-                        defaultValue={valetData?.spots}
-                        onChange={(e) => setParkingSpots(e.target.value)}
-                      />
-                      <div className="label"></div>
-                    </label>
-                    <button
-                      className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]"
-                      type="submit"
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                      type="button"
-                      onClick={() =>
-                        document.getElementById("editParkingSpots").close()
-                      }
-                    >
-                      ✕
-                    </button>
-                  </form>
-                </div>
-              </dialog>
+              <EditParkingSpotsModal
+                valetData={valetData}
+                setParkingSpots={setParkingSpots}
+                handleParkingSpotsUpdate={handleParkingSpotsUpdate}
+              />
             </div>
           </div>
           <div className="stats shadow">
@@ -178,64 +142,12 @@ const AdminSettings = () => {
                 </svg>
                 Edit
               </button>
-              <dialog id="editHoursModal" className="modal">
-                <div className="modal-box">
-                  <form
-                    method="dialog"
-                    className="flex flex-col items-center"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handleHoursUpdate();
-                    }}
-                  >
-                    <label className="form-control w-full max-w-xs">
-                      <div className="label">
-                        <span className="label-text">
-                          Edit Hours of Operation
-                        </span>
-                      </div>
-                      <div className="flex flex-col sm:flex-row gap-3">
-                        <input
-                          type="text"
-                          placeholder="Opening Hour"
-                          className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                          name="opening_hour"
-                          defaultValue={
-                            valetData?.operation_hours.split("-")[0]
-                          }
-                          onChange={(e) => setOpeningHour(e.target.value)}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Closing Hour"
-                          className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                          name="closing_hour"
-                          defaultValue={
-                            valetData?.operation_hours.split("-")[1]
-                          }
-                          onChange={(e) => setClosingHour(e.target.value)}
-                        />
-                      </div>
-                      <div className="label"></div>
-                    </label>
-                    <button
-                      className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]"
-                      type="submit"
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                      type="button"
-                      onClick={() =>
-                        document.getElementById("editHoursModal").close()
-                      }
-                    >
-                      ✕
-                    </button>
-                  </form>
-                </div>
-              </dialog>
+              <EditHoursModal
+                valetData={valetData}
+                setOpeningHour={setOpeningHour}
+                setClosingHour={setClosingHour}
+                handleHoursUpdate={handleHoursUpdate}
+              />
             </div>
           </div>
         </div>
