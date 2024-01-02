@@ -13,6 +13,9 @@ export default {
         "beige-p": "var(--pk-beige)",
         "beige-s": "var(--pk-beige-secondary)",
       },
+      height: {
+        'slider-max-height': '61.375rem', 
+      }
     },
   },
   plugins: [require("daisyui")],

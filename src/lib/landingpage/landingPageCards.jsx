@@ -1,0 +1,20 @@
+//This needs to be a JSX file because its referencing a svg html file. It will throw errors
+//if i turn it into a js file because it won't recognize the svg html syntax. 
+export const cardData = [
+    {
+        icon: 'src/assets/landingpage/smartphone.png',
+        title: "Discover",
+        text: "Explore a world of parking options with a simple tap. Our vast network makes finding the ideal spot both easy and exciting."
+    },
+    {
+        icon: 'src/assets/landingpage/touch.png',
+        title: "Reserve",
+        text: "Secure your parking space effortlessly and for free using our app. Instantly receive your digital pass and enjoy the simplicity of modern parking."
+    },
+    {
+        icon: 'src/assets/landingpage/parking.png',
+        title: "Arrive and Enjoy",
+        text: "Arrive at your destination with ease. Your reserved spot is ready for you, ensuring a smooth and cost-free parking experience."
+    },
+    
+];
