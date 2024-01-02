@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTime, setReservations } from "../../utils/slice/valetSlice";
 import { Link } from "react-router-dom";
 import getReservationList from "../../utils/getReservationList";
+
 const ReservationList = () => {
   const[showNextHour, setShowNextHour] = useState(false);
   const { time, reservations } = useSelector((state) => state.valet);
@@ -54,7 +55,7 @@ useEffect(() => {
         {filterList(showNextHour ? time + 1 : time).map((reservation) => {
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
-            <Link to={`/valetReservation/cico/${id}`}key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
+            <Link to={`/valetReservation/reservationDetails/${id}`}key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
               {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
             </Link>
           );
