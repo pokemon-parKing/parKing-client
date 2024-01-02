@@ -1,8 +1,12 @@
   import { useState, useEffect, useMemo } from "react";
+  import { useSelector, useDispatch } from "react-redux";
+  import { setTime } from "../../utils/slice/valetSlice";
   import getSpotMetrics from "../../utils/getSpotMetrics";
 
-  const CurrentSpots = (garageId, date, time) => {
+  const CurrentSpots = () => {
     //will implement useMemo and redux later
+    const { time } = useSelector((state) => state.valet);
+    const dispatch = useDispatch();
     const [availableSpots, setAvailableSpots] = useState(0);
     const [reservedSpots, setReservedSpots] = useState(0);
     const [occupiedSpots, setOccupiedSpots] = useState(0);
@@ -25,6 +29,12 @@
     useEffect(() => {
       fetchSpots();
     }, []);
+
+    useEffect(() => {
+      const interval = setInterval(() => dispatch(setTime()), 1000 * 60 * 60); //check every hour
+      return () => clearInterval(interval);
+    }, [dispatch]);
+
     return (
       <>
         <div className="availabilty-overview">
