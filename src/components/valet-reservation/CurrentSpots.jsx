@@ -1,27 +1,20 @@
   import { useState, useEffect, useMemo } from "react";
   import { useSelector, useDispatch } from "react-redux";
-  import { setTime } from "../../utils/slice/valetSlice";
+  import { setTime , setOccupied, setReserved, setAvailable } from "../../utils/slice/valetSlice";
   import getSpotMetrics from "../../utils/getSpotMetrics";
 
   const CurrentSpots = () => {
-    //will implement useMemo and redux later
-    const { time } = useSelector((state) => state.valet);
+    //will implement useMemo and rerendering if reservation changes (put or delete)
+    const { time, garage_id, date, availableSpots, reservedSpots, occupiedSpots } = useSelector((state) => state.valet);
     const dispatch = useDispatch();
-    const [availableSpots, setAvailableSpots] = useState(0);
-    const [reservedSpots, setReservedSpots] = useState(0);
-    const [occupiedSpots, setOccupiedSpots] = useState(0);
 
     const fetchSpots = async () => {
-      //hardcoding data for now
-      const garageId = 1;
-      const date = "12-28-23";
-      const time = 6;
       try {
-        const data = await getSpotMetrics(garageId, date, time);
+        const data = await getSpotMetrics(garage_id, date, time);
         const { available, reserved, occupied } = data;
-         setAvailableSpots(available);
-         setReservedSpots(reserved);
-         setOccupiedSpots(occupied);
+        dispatch(setAvailable(available));
+        dispatch(setReserved(reserved));
+        dispatch(setOccupied(occupied));
       } catch (error) {
         console.log(error);
       }

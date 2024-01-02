@@ -43,6 +43,10 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, [dispatch]);
 
+//verify state change to make sure it is working properly
+console.log("this is the time outside of useEffect", time);
+console.log("this is the reservation outside of useEffect", reservations);
+
   return (
     <div>
       <h4>This is the ReservationList component</h4>
