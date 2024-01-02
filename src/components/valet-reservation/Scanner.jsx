@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-// import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner } from "html5-qrcode";
+
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
   useEffect(() => {
-    // console.log(‘woweee!’)
     const scanner = new Html5QrcodeScanner("reader", {
       qrbox: {
         width: 250,
@@ -16,10 +16,13 @@ const Scanner = () => {
       scanner.clear();
       setScanResult(result);
       console.log("Decoded QR code data: ", result);
-      window.location.href = `http://127.0.0.1:5173/valetReservation?scanResult=${result}`;
+      window.location.href = `http://127.0.0.1:5173/valetReservation/reservationDetails/${result}`;
     }
     function onScanError(error) {
       console.warn(error);
+    }
+    return () => {
+      scanner.clear();
     }
   }, []);
   return (

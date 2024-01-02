@@ -29,6 +29,7 @@ function App() {
         <Link to={"/reservation"}>User Reservation</Link>
         <Link to={`/user/${userId}`}>Go to User Page</Link>
         <Link to={"/valetReservation"}>Valet Reservation</Link>
+        <Link to={"/login"}>Sign In or Sign Up</Link>
       </div>
     </>
   );
