@@ -50,7 +50,7 @@ const AdminSettings = () => {
               <button
                 className="btn btn-ghost text-blue-500"
                 onClick={() =>
-                  document.getElementById("my_modal_3").showModal()
+                  document.getElementById("editParkingSpots").showModal()
                 }
               >
                 <svg
@@ -68,17 +68,29 @@ const AdminSettings = () => {
                 </svg>
                 Edit
               </button>
-              <dialog id="my_modal_3" className="modal">
+              <dialog id="editParkingSpots" className="modal">
                 <div className="modal-box">
-                  <form method="dialog">
+                  <form method="dialog" className="flex flex-col items-center">
+                    <label className="form-control w-full max-w-xs">
+                      <div className="label">
+                        <span className="label-text">
+                          Edit Number of Parking Spots
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Your requested number of parking spots"
+                        className="input input-bordered input-primary w-full max-w-xs"
+                      />
+                      <div className="label"></div>
+                    </label>
+                    <button className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]">
+                      Update
+                    </button>
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                       ✕
                     </button>
                   </form>
-                  <h3 className="font-bold text-lg">Hello!</h3>
-                  <p className="py-4">
-                    Press ESC key or click on ✕ button to close
-                  </p>
                 </div>
               </dialog>
             </div>
@@ -87,7 +99,12 @@ const AdminSettings = () => {
             <div className="stat">
               <div className="stat-title">Hours of Operation</div>
               <div className="stat-value">{valetData.operation_hours}</div>
-              <button className="btn btn-ghost text-blue-500">
+              <button
+                className="btn btn-ghost text-blue-500"
+                onClick={() =>
+                  document.getElementById("editHoursModal").showModal()
+                }
+              >
                 <svg
                   fill="none"
                   viewBox="0 0 24 24"
@@ -103,6 +120,40 @@ const AdminSettings = () => {
                 </svg>
                 Edit
               </button>
+              <dialog id="editHoursModal" className="modal">
+                <div className="modal-box">
+                  <form method="dialog" className="flex flex-col items-center">
+                    <label className="form-control w-full max-w-xs">
+                      <div className="label">
+                        <span className="label-text">
+                          Edit Hours of Operation
+                        </span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <input
+                          type="text"
+                          placeholder="Opening Hour"
+                          className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+                          name="opening_hour"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Closing Hour"
+                          className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+                          name="closing_hour"
+                        />
+                      </div>
+                      <div className="label"></div>
+                    </label>
+                    <button className="btn btn-active bg-black border-black text-white btn-primary max-w-[200px]">
+                      Update
+                    </button>
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      ✕
+                    </button>
+                  </form>
+                </div>
+              </dialog>
             </div>
           </div>
         </div>
