@@ -32,6 +32,7 @@ const ReservationDetails = () => {
     const fetchData = async () => {
       try {
         const data = await getReservationDetails(reservation_id);
+        console.log(data[0]);
         setReservation(data[0]);
       } catch (error) {
         console.log(error);

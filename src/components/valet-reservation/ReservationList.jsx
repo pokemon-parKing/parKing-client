@@ -28,20 +28,14 @@ const ReservationList = () => {
     return reservations.filter((reservation) => hour === reservation.time);
   };
 
-// useEffect(() => {
-//   fetchReservations();
-// }, [time]);
+useEffect(() => {
+  fetchReservations();
+}, [time]);
 
-// useEffect(() => {
-//   console.log("this is the reservations", reservations);
-//   console.log("this is the time", time);
-//   console.log("this is the filtered list", filterList(time));
-// }, [reservations]);
-
-// useEffect(() => {
-//   const interval = setInterval(() => dispatch(setTime()), 1000 * 60 * 60); //check every hour
-//   return () => clearInterval(interval);
-// }, [dispatch]);
+useEffect(() => {
+  const interval = setInterval(() => dispatch(setTime()), 1000 * 60 * 60); //check every hour
+  return () => clearInterval(interval);
+}, [dispatch]);
 
   return (
     <div>
