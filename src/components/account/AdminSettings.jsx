@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -6,14 +6,17 @@ import toast from "react-hot-toast";
 const AdminSettings = () => {
   const [valetData, setValetData] = useState(null);
   const [parkingSpots, setParkingSpots] = useState(null);
-  const [openingHour, setOpeningHour] = useState("");
-  const [closingHour, setClosingHour] = useState("");
+  const [openingHour, setOpeningHour] = useState(null);
+  const [closingHour, setClosingHour] = useState(null);
   const { id } = useParams();
 
   const getValetData = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/valet/${id}`);
       setValetData(response.data[0]);
+      setParkingSpots(response.data[0].spots);
+      setOpeningHour(response.data[0].operation_hours.split("-")[0]);
+      setClosingHour(response.data[0].operation_hours.split("-")[1]);
     } catch (error) {
       console.error("Error fetching valet data:", error);
     }
@@ -25,8 +28,6 @@ const AdminSettings = () => {
 
   const handleParkingSpotsUpdate = async () => {
     const parsedSpots = parseInt(parkingSpots, 10);
-    console.log(parsedSpots);
-    console.log(id);
     if (isNaN(parsedSpots)) {
       toast.error("Please enter a valid number for parking spots.");
       return;
@@ -41,6 +42,7 @@ const AdminSettings = () => {
     } catch (error) {
       console.error("Error updating parking spots:", error);
       toast.error("Error updating parking spots. Please try again.");
+      document.getElementById("editParkingSpots").close();
     }
   };
 
@@ -55,6 +57,7 @@ const AdminSettings = () => {
     } catch (error) {
       console.error("Error updating hours of operation:", error);
       toast.error("Error updating hours of operation. Please try again.");
+      document.getElementById("editHoursModal").close();
     }
   };
 
@@ -194,7 +197,9 @@ const AdminSettings = () => {
                           placeholder="Opening Hour"
                           className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
                           name="opening_hour"
-                          value={openingHour}
+                          defaultValue={
+                            valetData?.operation_hours.split("-")[0]
+                          }
                           onChange={(e) => setOpeningHour(e.target.value)}
                         />
                         <input
@@ -202,7 +207,9 @@ const AdminSettings = () => {
                           placeholder="Closing Hour"
                           className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
                           name="closing_hour"
-                          value={closingHour}
+                          defaultValue={
+                            valetData?.operation_hours.split("-")[1]
+                          }
                           onChange={(e) => setClosingHour(e.target.value)}
                         />
                       </div>
