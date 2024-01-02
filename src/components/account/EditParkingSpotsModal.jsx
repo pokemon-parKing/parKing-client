@@ -20,7 +20,7 @@ const EditParkingSpotsModal = ({
               <span className="label-text">Edit Number of Parking Spots</span>
             </div>
             <input
-              type="text"
+              type="number"
               placeholder="Your requested number of parking spots"
               className="input input-bordered input-primary w-full max-w-xs"
               defaultValue={valetData?.spots}
