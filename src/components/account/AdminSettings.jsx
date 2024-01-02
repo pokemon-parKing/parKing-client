@@ -25,12 +25,14 @@ const AdminSettings = () => {
 
   const handleParkingSpotsUpdate = async () => {
     const parsedSpots = parseInt(parkingSpots, 10);
+    console.log(parsedSpots);
+    console.log(id);
     if (isNaN(parsedSpots)) {
       toast.error("Please enter a valid number for parking spots.");
       return;
     }
     try {
-      await axios.put(`http://localhost:3000/valet/${id}/operation-hours`, {
+      await axios.put(`http://localhost:3000/valet/${id}/spots`, {
         spots: parsedSpots,
       });
       toast.success("Parking spots updated successfully!");
@@ -44,7 +46,7 @@ const AdminSettings = () => {
 
   const handleHoursUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/valet/${id}/spots`, {
+      await axios.put(`http://localhost:3000/valet/${id}/operation-hours`, {
         operation_hours: `${openingHour}-${closingHour}`,
       });
       toast.success("Hours of operation updated successfully!");
