@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const AdminSettings = () => {
   const [valetData, setValetData] = useState(null);
-  const [parkingSpots, setParkingSpots] = useState(0);
+  const [parkingSpots, setParkingSpots] = useState(null);
   const [openingHour, setOpeningHour] = useState("");
   const [closingHour, setClosingHour] = useState("");
   const { id } = useParams();
@@ -122,7 +122,7 @@ const AdminSettings = () => {
                         type="text"
                         placeholder="Your requested number of parking spots"
                         className="input input-bordered input-primary w-full max-w-xs"
-                        value={parkingSpots}
+                        defaultValue={valetData?.spots}
                         onChange={(e) => setParkingSpots(e.target.value)}
                       />
                       <div className="label"></div>
