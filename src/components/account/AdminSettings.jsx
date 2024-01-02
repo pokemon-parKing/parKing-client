@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { setValetData } from "../../utils/slice/accountsSlice.js";
 
 const AdminSettings = () => {
-  const [valetData, setValetData] = useState(null);
+  const dispatch = useDispatch();
+  const valetData = useSelector((state) => state.accounts.valetData);
   const [parkingSpots, setParkingSpots] = useState(null);
   const [openingHour, setOpeningHour] = useState(null);
   const [closingHour, setClosingHour] = useState(null);
@@ -13,7 +16,7 @@ const AdminSettings = () => {
   const getValetData = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/valet/${id}`);
-      setValetData(response.data[0]);
+      dispatch(setValetData(response.data[0]));
       setParkingSpots(response.data[0].spots);
       setOpeningHour(response.data[0].operation_hours.split("-")[0]);
       setClosingHour(response.data[0].operation_hours.split("-")[1]);
@@ -24,7 +27,7 @@ const AdminSettings = () => {
 
   useEffect(() => {
     getValetData();
-  }, [id]);
+  }, [dispatch, id]);
 
   const handleParkingSpotsUpdate = async () => {
     const parsedSpots = parseInt(parkingSpots, 10);
