@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 //global state if user is logged in, and if user is valet / driver
 
@@ -33,10 +32,11 @@ function Navbar() {
         </Link>
 
         <div className="flex gap-4">
-          {navbarLinks.map((item, index) => {
+          {navbarLinks.map((item) => {
             return (
               <Link
                 className="transition ease-in-out delay-150 text-lg hover:text-burgundy-s"
+                key={item.name}
                 to={item.link}
               >
                 {item.name}
