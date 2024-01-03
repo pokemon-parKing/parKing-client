@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="bg-white">
       <Navbar/>
-      {/* <LandingPage/> */}
+      <LandingPage/>
       <Outlet />
     </div>
   );

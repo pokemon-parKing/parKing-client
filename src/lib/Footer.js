@@ -6,8 +6,8 @@ export const footerData = [
     }, 
     {
         'name': 'Christian Lee', 
-        'github': 'https://github.com/clee4037', 
-        'linkedin': 'https://www.linkedin.com/in/christian-lee-swe/'
+        'github': 'xyz', 
+        'linkedin': 'xyz'
     }, 
     {
         'name': 'Jose Felix', 
@@ -27,8 +27,8 @@ export const footerData = [
     }, 
     {
         'name': 'Kyle Sampson', 
-        'github': 'https://github.com/kssampson', 
-        'linkedin': 'https://www.linkedin.com/in/sampsonkyle/'
+        'github': 'xyz', 
+        'linkedin': 'xyz'
     }, 
     {
         'name': 'Justin Cordova', 
