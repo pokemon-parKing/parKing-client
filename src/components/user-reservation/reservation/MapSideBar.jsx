@@ -11,7 +11,6 @@ import {
 const MapSideBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!search) return alert("Please fill address");
@@ -20,7 +19,7 @@ const MapSideBar = () => {
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    dispatch(setPage("mapView"));
+    dispatch(setPage("reservation"));
   };
 
   return (
@@ -99,7 +98,7 @@ const MapSideBar = () => {
           <select
             required
             className="select select-bordered w-full pl-10"
-            value={reservation.date || ""}
+            value={reservation.date.replace(/-/g, "/") || ""}
             onChange={(e) => {
               dispatch(setDate(e.target.value.replace(/\//g, "-")));
             }}
@@ -118,3 +117,4 @@ const MapSideBar = () => {
 };
 
 export default MapSideBar;
+

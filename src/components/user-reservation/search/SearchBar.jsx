@@ -1,26 +1,29 @@
-import { getNext8Days } from "../DaysDropdown";
+import { getNext8Days } from "../reservation/GoogleMaps/components/DaysDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setDate,
   fetchCoordinates,
   fetchClosestGarages,
-  setPage,
   setSearch,
 } from "../../../utils/slice/reservationSlice";
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast'
 
 const SearchBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!search) return alert("Please fill address");
+    if (!search)
+      return toast.error("Please fill address");
     if (!reservation.date || reservation.date === "Select a date")
-      return alert("Please select a date");
+      return toast.error("Please select a date");
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    dispatch(setPage("mapView"));
+    navigate('/reservation/map');
   };
 
   return (
@@ -30,7 +33,6 @@ const SearchBar = () => {
     >
       <div className="mr-[-32px] z-10">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
@@ -49,6 +51,7 @@ const SearchBar = () => {
           required
           className="input input-bordered join-item pl-10 w-full"
           placeholder="Address, Place, City or Venue"
+          defaultValue=''
           type="text"
           onChange={(e) => {
             dispatch(setSearch(e.target.value));
@@ -57,7 +60,7 @@ const SearchBar = () => {
         <select
           required
           className="select select-bordered join-item"
-          value={reservation.date || ""}
+          value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
           onChange={(e) => {
             dispatch(setDate(e.target.value.replace(/\//g, "-")));
           }}

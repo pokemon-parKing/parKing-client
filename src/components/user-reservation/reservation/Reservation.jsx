@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import MapSideBar from "./MapSideBar";
-import GoogleMap from "./GoogleMap";
+import MapSideBar from "./GoogleMaps/MapSideBar";
+import GoogleMap from "./GoogleMaps/GoogleMap";
 import TimeSlotList from "./TimeSlotList";
 
-const MapView = () => {
+const Reservation = () => {
   const { reservationsList, selectedGarage } = useSelector(
     (state) => state.reservation
   );
@@ -14,7 +14,7 @@ const MapView = () => {
         <MapSideBar />
         <div className="divider pt-3"></div>
         {reservationsList && (
-          <div className="flex flex-col items-center pt-1">
+          <div className="flex flex-col items-center pt-1 w-full">
             <h3 className="pb-3 text-2xl">{selectedGarage.name}</h3>
             <TimeSlotList />
           </div>
@@ -25,4 +25,4 @@ const MapView = () => {
   );
 };
 
-export default MapView;
+export default Reservation;
