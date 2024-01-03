@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import any methods/functions for the state you need
 import { addToArray } from "./utils/slice/example.js";
+import LandingPage from "./components/Landingpage/LandingPage.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
   // we initialize dispatch as our function to fire our state method/function
@@ -21,16 +23,9 @@ function App() {
 
   return (
     <>
-      {/* <Link to={'/pokemon'}>Pokemon</Link> */}
-      <div className="flex flex-col">
-        parKing - Pokemon
-        <div className="flex flex-col md:flex-row">Test</div>
-        <Link to={"/pokemon"}>Pokemon</Link>
-        <Link to={"/reservation"}>User Reservation</Link>
-        <Link to={`/user/${userId}`}>Go to User Page</Link>
-        <Link to={"/valetReservation"}>Valet Reservation</Link>
-        <Link to={"/login"}>Sign In or Sign Up</Link>
-      </div>
+      
+      <Navbar />
+      <LandingPage/>
     </>
   );
 }
