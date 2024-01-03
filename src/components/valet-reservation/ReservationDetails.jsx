@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 // import { useSelector, useDispatch } from "react-redux";
 // import { setReservationDetails } from "../../utils/slice/valetSlice";
 import getReservationDetails from "../../utils/getReservationDetails";
-import updateStatus from "../../utils/updateStatus";
+import CheckinCheckoutBtns from "./CheckinCheckoutBtns";
+// import updateStatus from "../../utils/updateStatus";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
@@ -39,29 +40,6 @@ const ReservationDetails = () => {
     }
   }
 
-  const handleCheckIn = async (event) => {
-    event.preventDefault();
-    try {
-      if (reservation.status === 'reserved') {
-        await updateStatus('checked-in', reservation_id);
-        await fetchData();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const handleCheckOut = async (event) => {
-    event.preventDefault();
-    try {
-      if (reservation.status === 'checked-in') {
-        await updateStatus('picked-up', reservation_id);
-        await fetchData();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
     fetchData();
   }, [])
@@ -69,7 +47,6 @@ const ReservationDetails = () => {
   return (
     <div className="container mx-auto mt-8 p-8 bg-white shadow-md rounded-md">
         <h3 className="flex justify-center text-2xl font-semibold mb-4">Reservation Details</h3>
-
       <div className="mt-8">
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -133,22 +110,7 @@ const ReservationDetails = () => {
           <span className="font-semibold">Model:</span> {reservation.cars.model}
         </p>
       </div>
-
-      <div className="mt-8 flex justify-center">
-        <button
-          className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white mr-4"
-          onClick={() => handleCheckIn(event)}
-        >
-          Check In
-        </button>
-
-        <button
-          className="btn btn-lg btn-secondary bg-burgundy-s border-burgundy-s text-white"
-          onClick={() => handleCheckOut(event)}
-        >
-          Check Out
-        </button>
-      </div>
+      <CheckinCheckoutBtns fetchData={fetchData} reservation={reservation} reservation_id={reservation_id} />
       <Link to="/valetReservation" className="flex justify-center py-5 text-blue-500 hover:underline">
         Back to Valet Reservation Page
       </Link>
