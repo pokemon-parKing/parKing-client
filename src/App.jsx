@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import any methods/functions for the state you need
 import { addToArray } from "./utils/slice/example.js";
-
+import Navbar from "./components/Navbar.jsx";
+import LandingPage from "./components/landingpage/LandingPage.jsx";
 function App() {
   // we initialize dispatch as our function to fire our state method/function
   const dispatch = useDispatch();
@@ -20,9 +21,9 @@ function App() {
   const { id: userId } = useParams();
 
   return (
-    <>
+    <div className="bg-white">
       {/* <Link to={'/pokemon'}>Pokemon</Link> */}
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         parKing - Pokemon
         <div className="flex flex-col md:flex-row">Test</div>
         <Link to={"/pokemon"}>Pokemon</Link>
@@ -30,8 +31,10 @@ function App() {
         <Link to={`/user/${userId}`}>Go to User Page</Link>
         <Link to={"/valetReservation"}>Valet Reservation</Link>
         <Link to={"/login"}>Sign In or Sign Up</Link>
-      </div>
-    </>
+      </div> */}
+      <Navbar/>
+      <LandingPage/>
+    </div>
   );
 }
 
