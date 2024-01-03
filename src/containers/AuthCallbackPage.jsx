@@ -13,7 +13,7 @@ const AuthCallbackPage = () => {
   useEffect(() => {
     //console.log('id: ', id);
     if (id) {
-      axios.get(`http://localhost:3007/login/${id}`)
+      axios.get(`http://localhost:3010/login/${id}`)
         .then(({ data }) => {
           //console.log('data: ', data);
           if (data.length > 0) {

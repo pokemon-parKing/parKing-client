@@ -4,9 +4,12 @@ import {slides} from '../../lib/landingpage/landingPageSliders';
 import { cardData } from '../../lib/landingpage/landingPageCards';
 import UserValetButtons from './roleButtons/UserValetButtons';
 import Footer from '../footer/Footer';
+import SearchBar from '../user-reservation/search/SearchBar'
+
 function LandingPage() {
     return (
         <>
+            <SearchBar />
             <Carousel slides={slides}/>
             <div className='my-52 '>
                 <h1 className='text-center text-5xl mb-24 text-black '>How the App works</h1>
@@ -16,7 +19,7 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-            
+
             <UserValetButtons />
             <Footer/>
         </>

@@ -14,8 +14,10 @@ import Reservation from "./components/user-reservation/reservation/Reservation.j
 import Confirmation from "./components/user-reservation/confirmation/Confirmation.jsx";
 import Scanner from "./components/valet-reservation/Scanner.jsx";
 import AccountCreation from "./components/login/AccountCreation.jsx";
+import LandingPage from "./components/landingpage/LandingPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReservationPage from './pages/ReservationPage';
 
 const router = createBrowserRouter([
   {
@@ -23,25 +25,33 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/reservation",
+        path: '/',
+        element: <LandingPage />
+      },
+      {
+        path: '/reservation',
+        element: <ReservationPage />
+      },
+      {
+        path: "/user-res",
         element: <UserReservation />,
         children: [
           {
-            path: '/reservation',
+            path: '/user-res',
             element: <Search />
           },
           {
-            path: '/reservation/map',
+            path: '/user-res/map',
             element: <Reservation />
           },
           {
-            path: '/reservation/confirmation',
+            path: '/user-res/confirmation',
             element: <Confirmation />
           }
         ]
       },
       {
-        path: "/valetReservation",
+        path: "/valet-res",
         element: <ValetReservation />,
       },
       {

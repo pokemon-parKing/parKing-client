@@ -23,7 +23,7 @@ const SearchBar = () => {
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    navigate('/reservation/map');
+    navigate('/user-res/map');
   };
 
   return (
