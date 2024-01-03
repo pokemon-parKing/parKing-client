@@ -33,6 +33,7 @@ const AccountSetting = () => {
     (e) => {
       const input = e.target.value;
       const formattedInput = formatPhoneNumber(input);
+      e.target.value = formattedInput;
       setPhoneNumber(formattedInput);
       dispatch(setUserDataPhoneNumber(formattedInput));
     },
