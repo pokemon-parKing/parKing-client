@@ -13,20 +13,18 @@ const ValetReservation = () => {
   const [showQrCode, setShowQrCode] = useState(false);
   const [qrCodeLink, setQrCodeLink] = useState('');
 
-  const { date, garage_id, reservations } = useSelector((state) => state.valet);
+  const { date, garage_id, reservations, time } = useSelector((state) => state.valet);
   const dispatch = useDispatch();
 
   const fetchSpotsAndReservations = useCallback(async () => {
-    //combining the two fetches into one function; might need to separate them upon further testing
     try {
-      const time = new Date().getHours();
       const [spotData, reservationData] = await Promise.all([getSpotMetrics(garage_id, date, time), getReservationList(garage_id, date)]);
       dispatch(setSpots(await spotData));
       dispatch(setReservations(await reservationData));
     } catch (error) {
       toast.error(error);
     }
-  }, [garage_id, date, dispatch])
+  }, [garage_id, date, time, dispatch])
 
   const handleGenerateQrCode = (event) => {
     event.preventDefault();

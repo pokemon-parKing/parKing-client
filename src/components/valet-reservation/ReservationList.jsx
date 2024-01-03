@@ -9,7 +9,6 @@ const ReservationList = () => {
   const filterList = useMemo(() => {
     return reservations.filter((res) => {
       const hour = showNextHour ? time + 1 : time;
-
       if (res.time === hour) {
         return res;
       }
@@ -24,9 +23,10 @@ const ReservationList = () => {
       </button>
       <ul>
         {filterList.map((reservation) => {
+          console.log('reservation: ', reservation)
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
-            <Link to={`/valetReservation/reservationDetails/${id}`}key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
+            <Link to={`/valetReservation/reservationDetails/${id}`} key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
               {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
             </Link>
           );
