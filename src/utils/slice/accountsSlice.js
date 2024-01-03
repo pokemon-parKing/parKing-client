@@ -60,6 +60,4 @@ export const {
   setValetData,
 } = accountsSlice.actions;
 
-export default function accountsReducer(state = initialState, action) {
-  return accountsSlice.reducer(state, action);
-}
+export default accountsSlice.reducer;
