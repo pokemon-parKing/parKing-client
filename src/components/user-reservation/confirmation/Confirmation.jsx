@@ -5,9 +5,12 @@ import {
 } from "../../../utils/slice/reservationSlice";
 import AccountDetails from "./AccountDetails";
 import ReservationDetails from "./ReservationDetails";
+import { useNavigate } from 'react-router-dom';
+
 const Confirmation = () => {
   const { reservation } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     reservation && (
@@ -19,6 +22,7 @@ const Confirmation = () => {
           onClick={() => {
             dispatch(addReservation());
             dispatch(resetState());
+            navigate('/reservation');
           }}
         >
           Confirm

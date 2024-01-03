@@ -1,11 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
-import { setPage } from "../../../utils/slice/reservationSlice";
+import { useSelector } from "react-redux";
 import { convertTime, convertDate } from "../../../lib/timeSlotUtil";
+import { useNavigate } from 'react-router-dom';
+
 const ReservationDetails = () => {
   const { reservation, selectedGarage } = useSelector(
     (state) => state.reservation
   );
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     reservation && (
@@ -14,7 +15,6 @@ const ReservationDetails = () => {
           <div className="flex flex-row justify-between">
             <h2 className="card-title">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
@@ -29,9 +29,8 @@ const ReservationDetails = () => {
               </svg>
               Reservation Summary
             </h2>
-            <button onClick={() => dispatch(setPage("reservation"))}>
+            <button onClick={() => navigate('/reservation/map')}>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
