@@ -1,13 +1,15 @@
 import { createSlice }from "@reduxjs/toolkit";
 const initialState = {
-  time: new Date().getHours(),
+  time: 13,
   reservations: [],
   reservationDetails: {},
   garage_id: 1,
   date: "",
-  occupiedSpots: 0,
-  reservedSpots: 0,
-  availableSpots: 0,
+  spots: {
+    occupied: 0,
+    reserved: 0,
+    available: 0,
+  },
 }
 export const valetSlice = createSlice({
   name: "valet",
@@ -25,17 +27,11 @@ export const valetSlice = createSlice({
     setDate: (state, action) => {
       state.date = action.payload;
     },
-    setOccupied: (state, action) => {
-      state.occupiedSpots = action.payload;
-    },
-    setReserved: (state, action) => {
-      state.reservedSpots = action.payload;
-    },
-    setAvailable: (state, action) => {
-      state.availableSpots = action.payload;
+    setSpots: (state, action) => {
+      state.spots = action.payload;
     },
   },
 });
 
-export const { setTime, setReservations, setReservationDetails, setDate, setAvailable, setOccupied, setReserved } = valetSlice.actions;
+export const { setTime, setReservations, setReservationDetails, setDate, setSpots } = valetSlice.actions;
 export default valetSlice.reducer;
