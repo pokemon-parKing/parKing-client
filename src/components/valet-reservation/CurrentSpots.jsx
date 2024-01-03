@@ -30,7 +30,7 @@
 
     return (
       <>
-        <div className="availabilty-overview">
+        <div className="availability-overview">
           {/* <h1>Availabilty Overview</h1> */}
           <div className="availability-row flex justify-around space-x-4 w-full">
             <div className="available-spots">

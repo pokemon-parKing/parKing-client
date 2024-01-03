@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTime, setReservations } from "../../utils/slice/valetSlice";
 import { Link } from "react-router-dom";
@@ -6,12 +6,10 @@ import getReservationList from "../../utils/getReservationList";
 
 const ReservationList = () => {
   const[showNextHour, setShowNextHour] = useState(false);
-  const { time, reservations } = useSelector((state) => state.valet);
+  const { time, reservations, date, garage_id } = useSelector((state) => state.valet);
   const dispatch = useDispatch();
 
   const fetchReservations = async () => {
-    const garage_id = 1;
-    const date = "12-31-23";
     try {
       const data = await getReservationList(garage_id, date);
       dispatch(setReservations(data))

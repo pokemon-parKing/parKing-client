@@ -1,6 +1,6 @@
 import { createSlice }from "@reduxjs/toolkit";
 const initialState = {
-  time: 13,
+  time: new Date().getHours(),
   reservations: [],
   reservationDetails: {},
   garage_id: 1,
