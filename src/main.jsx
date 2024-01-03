@@ -13,6 +13,7 @@ import Search from "./components/user-reservation/search/Search.jsx";
 import Reservation from "./components/user-reservation/reservation/Reservation.jsx";
 import Confirmation from "./components/user-reservation/confirmation/Confirmation.jsx";
 import Scanner from "./components/valet-reservation/Scanner.jsx";
+import AccountCreation from "./components/login/AccountCreation.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -26,18 +27,18 @@ const router = createBrowserRouter([
         element: <UserReservation />,
         children: [
           {
-            path: '/reservation',
-            element: <Search />
+            path: "/reservation",
+            element: <Search />,
           },
           {
-            path: '/reservation/map',
-            element: <Reservation />
+            path: "/reservation/map",
+            element: <Reservation />,
           },
           {
-            path: '/reservation/confirmation',
-            element: <Confirmation />
-          }
-        ]
+            path: "/reservation/confirmation",
+            element: <Confirmation />,
+          },
+        ],
       },
       {
         path: "/valetReservation",
@@ -49,10 +50,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/scanner",
-        element: <Scanner />
+        element: <Scanner />,
       },
       {
-        path: "/user/:id",
+        path: "/user",
         element: <AccountsPage />,
       },
       {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
         path: "/authcallback",
         element: <AuthCallbackPage />,
       },
-    ]
+    ],
+  },
+  {
+    path: "/accountcreation",
+    element: <AccountCreation />,
   },
 ]);
 

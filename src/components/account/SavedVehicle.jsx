@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import AddVehicleForm from "./AddVehicleForm";
 import EditVehicleForm from "./EditVehicleForm";
@@ -16,7 +15,8 @@ const SavedVehicle = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-  const { id } = useParams();
+  const userData = useSelector((state) => state.accounts.userData);
+  const { id } = userData;
 
   const fetchVehicleData = async (dispatch, id) => {
     try {
@@ -82,7 +82,7 @@ const SavedVehicle = () => {
               {vehicleData.map((vehicle) => (
                 <div
                   key={vehicle.id}
-                  className="card bg-base-100 shadow-xl mb-3 mr-3 w-200 h-200"
+                  className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] justify-self-center"
                 >
                   <div className="card-body items-center text-center">
                     <h2 className="card-title">
@@ -136,7 +136,7 @@ const SavedVehicle = () => {
                 </div>
               ))}
               <div
-                className="card bg-base-100 shadow-xl mb-3 mr-3 w-200 h-200 hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
+                className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
                 onClick={handleShowAddForm}
               >
                 <div className="card-body flex flex-col justify-center items-center text-center h-full">
