@@ -14,7 +14,11 @@ export default {
         "beige-s": "var(--pk-beige-secondary)",
       },
       height: {
+<<<<<<< HEAD
         'slider-max-height': '53rem', 
+=======
+        'slider-max-height': '61.375rem', 
+>>>>>>> 57a1c18b9c1ff542d531b5f3a272b33da49df71d
       }
     },
   },
