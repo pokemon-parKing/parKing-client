@@ -5,6 +5,11 @@ const initialState = {
   reservationDetails: {},
   garage_id: 1,
   date: "",
+  spots: {
+    occupied: 0,
+    reserved: 0,
+    available: 0,
+  },
 }
 export const valetSlice = createSlice({
   name: "valet",
@@ -21,9 +26,12 @@ export const valetSlice = createSlice({
     },
     setDate: (state, action) => {
       state.date = action.payload;
-    }
+    },
+    setSpots: (state, action) => {
+      state.spots = action.payload;
+    },
   },
 });
 
-export const { setTime, setReservations, setReservationDetails, setDate } = valetSlice.actions;
+export const { setTime, setReservations, setReservationDetails, setDate, setSpots } = valetSlice.actions;
 export default valetSlice.reducer;
