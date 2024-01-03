@@ -7,9 +7,12 @@ import AccountDetails from "./AccountDetails";
 import ReservationDetails from "./ReservationDetails";
 import toast from "react-hot-toast";
 
+import { useNavigate } from "react-router-dom";
+
 const Confirmation = () => {
   const { reservation } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     reservation && (
@@ -28,6 +31,7 @@ const Confirmation = () => {
               toast.success("Reservation added successfully");
               dispatch(resetState());
             }
+            navigate("/reservation");
           }}
         >
           Confirm

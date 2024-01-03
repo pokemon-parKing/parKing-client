@@ -19,10 +19,9 @@ const TimeSlotList = () => {
   }, [reservationsList, hourRange, selectedGarage.spots]);
 
   return (
-    <details className="dropdown max-w-[300px] w-48">
+    <details className="dropdown max-w-[800px] w-[90%] mx-auto">
       <summary className="btn w-full">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}

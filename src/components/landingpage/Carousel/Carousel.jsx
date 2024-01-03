@@ -17,7 +17,7 @@ function Carousel({ slides }) {
 
   //Basically translateX just means that it would move the slides to the left or right depending on the currentSlideIndex
   return (
-    <div className='relative mx-auto w-full h-[61.375rem] overflow-hidden mb-20'>
+    <div className='relative mx-auto w-full h-[53rem] overflow-hidden mb-20'>
       <div 
         className='flex relative transition-transform duration-700' 
         style={{ width: `${slides.length * 100}%`, transform: `translateX(-${currentSlideIndex * (100 / slides.length)}%)` }}

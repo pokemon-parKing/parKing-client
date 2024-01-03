@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-const getReservationList = async (garage_id, date) => {
+const getReservationsByDate = async (garage_id, date) => {
   /* Given garage_id and date, get count of reservations per hour */
   try {
     const { data } = await axios.get(
-      `http://localhost:3001/reservations/valet/list/${garage_id}?date=${date}`
+      `http://localhost:3001/reservations/garage/${garage_id}?date=${date}`
     );
     return data;
   } catch (error) {
@@ -12,5 +12,5 @@ const getReservationList = async (garage_id, date) => {
     return null;
   }
 };
+export default getReservationsByDate;
 
-export default getReservationList;
