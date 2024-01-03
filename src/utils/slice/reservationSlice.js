@@ -40,7 +40,8 @@ export const addReservation = createAsyncThunk(
   async (_, { getState }) => {
     const state = getState();
     const reservationDetails = state.reservation.reservation;
-    await postReservation(reservationDetails);
+    const response = await postReservation(reservationDetails);
+    return response;
   }
 );
 
@@ -104,6 +105,12 @@ export const reservationSlice = createSlice({
       state.reservationsList = action.payload;
     });
     builder.addCase(fetchReservations.rejected, (state, action) => {
+      /* WILL FIGURE OUT LATER */
+    });
+    builder.addCase(addReservation.fulfilled, (state, action) => {
+      state.reservationsList = action.payload;
+    });
+    builder.addCase(addReservation.rejected, (state, action) => {
       /* WILL FIGURE OUT LATER */
     });
   },
