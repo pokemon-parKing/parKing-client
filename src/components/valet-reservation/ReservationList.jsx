@@ -1,16 +1,10 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setTime, setReservations } from "../../utils/slice/valetSlice";
+import { useState, useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import getReservationList from "../../utils/getReservationList";
 
 const ReservationList = () => {
   const [showNextHour, setShowNextHour] = useState(false);
-  const { time, reservations } = useSelector((state) => state.valet);
-  const dispatch = useDispatch();
-
-  const garage_id = 1;
-  const date = "12-31-23";
+  const { time, reservations, date } = useSelector((state) => state.valet);
 
   const filterList = useMemo(() => {
     return reservations.filter((res) => {
@@ -22,23 +16,10 @@ const ReservationList = () => {
     })
   }, [time, showNextHour, reservations]);
 
-  const fetchReservations = useCallback(async () => {
-    try {
-      const data = await getReservationList(garage_id, date);
-      dispatch(setReservations(data))
-    } catch (error) {
-      console.log(error);
-    }
-  }, [garage_id, date, dispatch]);
-
   useEffect(() => {
-    fetchReservations();
-  }, [time, fetchReservations]);
-
-  useEffect(() => {
-    const interval = setInterval(() => dispatch(setTime()), 1000 * 60 * 60); //check every hour
-    return () => clearInterval(interval);
-  }, [dispatch]);
+    console.log('checking date in list: ', date);
+    console.log('reservations: ', reservations)
+  }, [date, reservations])
 
   return (
     <div>

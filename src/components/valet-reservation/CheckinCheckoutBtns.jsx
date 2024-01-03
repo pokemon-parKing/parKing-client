@@ -1,4 +1,4 @@
-import updateStatus from "../../utils/updateStatus";
+import { updateStatus } from "../../utils/valetReservationUtils.js";
 import PropTypes from 'prop-types';
 
 const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
