@@ -15,13 +15,13 @@ const ValetReservation = () => {
   const handleGenerateQrCode = (event) => {
     event.preventDefault();
     console.log("generate qr code button clicked");
-    postGenerateQrCode(102);
+    postGenerateQrCode(111);
   }
 
   const handleGetQrCode = async (event) => {
     event.preventDefault();
     try {
-      const qrCodeLink = await getQrCode(102);
+      const qrCodeLink = await getQrCode(111);
       setQrCodeLink(qrCodeLink);
       setShowQrCode(true);
     } catch (err) {
