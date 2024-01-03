@@ -13,6 +13,7 @@ import Search from "./components/user-reservation/search/Search.jsx";
 import Reservation from "./components/user-reservation/reservation/Reservation.jsx";
 import Confirmation from "./components/user-reservation/confirmation/Confirmation.jsx";
 import Scanner from "./components/valet-reservation/Scanner.jsx";
+import AccountCreation from "./components/login/AccountCreation.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         element: <AuthCallbackPage />,
       },
     ]
+  },
+  {
+    path: "/accountcreation",
+    element: <AccountCreation />,
   },
 ]);
 
