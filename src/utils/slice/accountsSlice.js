@@ -13,6 +13,7 @@ const initialState = {
   },
   vehicleData: [],
   reservationData: [],
+  valetData: null,
 };
 
 const accountsSlice = createSlice({
@@ -43,6 +44,9 @@ const accountsSlice = createSlice({
         (reservation) => reservation.id !== reservationId
       );
     },
+    setValetData: (state, action) => {
+      state.valetData = action.payload;
+    },
   },
 });
 
@@ -53,8 +57,7 @@ export const {
   deleteVehicle,
   setReservationData,
   cancelReservation,
+  setValetData,
 } = accountsSlice.actions;
 
-export default function accountsReducer(state = initialState, action) {
-  return accountsSlice.reducer(state, action);
-}
+export default accountsSlice.reducer;
