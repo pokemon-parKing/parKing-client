@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 
 const Supabase = () => {
   const supabaseUrl = 'https://iibwbjdisltiujjuglkp.supabase.co';
-  const supabaseAnonKey = null; // Set to null to protect credentials, dev to replace with anonymous key
+  const supabaseAnonKey = import.meta.env.VITE_SUPABASE_KEY; // Set to null to protect credentials, dev to replace with anonymous key
   const supabase = useMemo(() => createClient(supabaseUrl, supabaseAnonKey), []);
 
   const dispatch = useDispatch();
