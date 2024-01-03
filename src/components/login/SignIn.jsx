@@ -10,7 +10,7 @@ const SignIn = () => {
             access_type: 'offline',
             prompt: 'consent',
           },
-          redirectTo: 'http://localhost:4173/authcallback',
+          redirectTo: 'http://localhost:5173/authcallback',
         },
       });
       if (error) throw error;
