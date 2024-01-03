@@ -15,7 +15,7 @@ const AccountForm = ({ formData, handleChange }) => {
       </label>
       <label>
         Phone Number:
-        <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+        <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="(123) 456-7890" pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}" required />
       </label>
     </div>
   );

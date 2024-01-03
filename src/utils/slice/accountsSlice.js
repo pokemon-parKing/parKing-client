@@ -10,6 +10,7 @@ const initialState = {
     last_name: "",
     role: "",
     phone_number: "",
+    auth_token: null
   },
   vehicleData: [],
   reservationData: [],
@@ -21,6 +22,9 @@ const accountsSlice = createSlice({
   reducers: {
     setUserData: (state, action) => {
       state.userData = { ...state.userData, ...action.payload };
+    },
+    setAuthToken: (state, action) => {
+      state.userData.auth_token = action.payload;
     },
     setUserDataPhoneNumber: (state, action) => {
       state.userData.phone_number = action.payload;
@@ -53,6 +57,7 @@ export const {
   deleteVehicle,
   setReservationData,
   cancelReservation,
+  setAuthToken
 } = accountsSlice.actions;
 
 export default function accountsReducer(state = initialState, action) {
