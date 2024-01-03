@@ -75,7 +75,7 @@ const AdminSettings = () => {
         <div className="gap-6 h-[600px] overflow-y-auto">
           <div
             key={valetData?.id}
-            className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[200px] max-h-[200px]"
+            className="card bg-base-100 shadow-xl mb-3 mr-3"
           >
             <div className="card-body items-center text-center">
               <h2 className="card-title">Garage Information</h2>

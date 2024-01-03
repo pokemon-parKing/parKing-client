@@ -62,7 +62,7 @@ const MyParking = () => {
           {reservationData.map((reservation) => (
             <div
               key={reservation.id}
-              className="card bg-base-100 shadow-xl mb-3 mr-3 w-[200px] h-[200px] justify-self-center"
+              className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px]"
             >
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Parking Information</h2>
@@ -96,7 +96,7 @@ const MyParking = () => {
             </div>
           ))}
           <div
-            className="card bg-base-100 shadow-xl mb-3 mr-3 w-[200px] h-[200px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer justify-self-center"
+            className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
             onClick={handleAddNew}
           >
             <div className="card-body flex flex-col justify-center items-center text-center h-full">
