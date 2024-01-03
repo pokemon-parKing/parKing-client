@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import getGeoCoordinates from "../getGeoCoordinates";
-import getGarages from "../getGarages";
-import getReservationsByDate from "../getReservationsByDate";
-import postReservation from "../postReservation";
+import {
+  getGarages,
+  getGeoCoordinates,
+  getReservationsByDate,
+  postReservation,
+} from "../userReservationUtils.js";
 
 export const fetchCoordinates = createAsyncThunk(
   "reservation/fetchCoordinates",

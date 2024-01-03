@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setUserData,
@@ -14,9 +14,6 @@ const AccountSetting = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.accounts.userData);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const formattedPhoneNumber = useMemo(() => {
-    return formatPhoneNumber(phoneNumber);
-  }, [phoneNumber])
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -32,16 +29,15 @@ const AccountSetting = () => {
     fetchUserData();
   }, [dispatch, id]);
 
-  useEffect(() => {
-    dispatch(setUserDataPhoneNumber(formattedPhoneNumber));
-  }, [formattedPhoneNumber, dispatch])
-
-  const handlePhoneNumberChange = (e) => {
-    const input = e.target.value;
-    const formattedInput = formatPhoneNumber(input);
-    setPhoneNumber(formattedInput);
-    dispatch(setUserDataPhoneNumber(formattedInput));
-  };
+  const handlePhoneNumberChange = useCallback(
+    (e) => {
+      const input = e.target.value;
+      const formattedInput = formatPhoneNumber(input);
+      setPhoneNumber(formattedInput);
+      dispatch(setUserDataPhoneNumber(formattedInput));
+    },
+    [dispatch]
+  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

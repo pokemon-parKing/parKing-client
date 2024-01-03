@@ -60,7 +60,7 @@ const SearchBar = () => {
         <select
           required
           className="select select-bordered join-item"
-          value={reservation.date || ""}
+          value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
           onChange={(e) => {
             dispatch(setDate(e.target.value.replace(/\//g, "-")));
           }}

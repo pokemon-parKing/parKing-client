@@ -13,3 +13,4 @@ const getReservationsByDate = async (garage_id, date) => {
   }
 };
 export default getReservationsByDate;
+
