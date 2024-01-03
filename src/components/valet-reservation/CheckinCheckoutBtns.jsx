@@ -1,10 +1,8 @@
 import { updateStatus } from "../../utils/valetReservationUtils.js";
 import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
-import { useSelector } from "react-redux";
 
 const CheckinCheckoutBtns = ({ fetchData }) => {
-
 
   const { reservationDetails } = useSelector((state) => state.valet);
   const handleCheckIn = async (event) => {
