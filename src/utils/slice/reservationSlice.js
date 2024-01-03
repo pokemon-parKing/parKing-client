@@ -53,8 +53,7 @@ const initialState = {
     date: null,
     garage_id: null,
   },
-  search: null,
-  page: "search",
+  search: '',
   mapCenter: null,
   closestGarages: null,
   reservationsList: null,
@@ -76,9 +75,6 @@ export const reservationSlice = createSlice({
     },
     setGarageId: (state, action) => {
       state.reservation.garage_id = action.payload;
-    },
-    setPage: (state, action) => {
-      state.page = action.payload;
     },
     setSelectedGarage: (state, action) => {
       state.selectedGarage = action.payload;

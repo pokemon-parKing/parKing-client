@@ -19,6 +19,7 @@
         console.log(error);
       }
     };
+
     useEffect(() => {
       fetchSpots();
     }, []);
@@ -31,7 +32,7 @@
     return (
       <>
         <div className="availability-overview">
-          {/* <h1>Availabilty Overview</h1> */}
+          {/* <h1>Availability Overview</h1> */}
           <div className="availability-row flex justify-around space-x-4 w-full">
             <div className="available-spots">
               <h3>Available Spots: {availableSpots}</h3>

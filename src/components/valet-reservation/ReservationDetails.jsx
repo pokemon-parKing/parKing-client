@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 // import { useSelector, useDispatch } from "react-redux";
 // import { setReservationDetails } from "../../utils/slice/valetSlice";
 import getReservationDetails from "../../utils/getReservationDetails";
@@ -31,18 +31,21 @@ const ReservationDetails = () => {
     time: 0,
   });
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
+    if (!reservation_id) {
+      return;
+    }
     try {
       const data = await getReservationDetails(reservation_id);
       await setReservation(data[0]);
     } catch (error) {
       console.log(error);
     }
-  }
+  }, [reservation_id])
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, [fetchData])
 
   return (
     <div className="container mx-auto mt-8 p-8 bg-white shadow-md rounded-md">
