@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import getGeoCoordinates from "../getGeoCoordinates";
-import getGarages from "../getGarages";
-import getReservationsByDate from "../getReservationsByDate";
-import postReservation from "../postReservation";
+import {
+  getGarages,
+  getGeoCoordinates,
+  getReservationsByDate,
+  postReservation,
+} from "../userReservationUtils.js";
 
 export const fetchCoordinates = createAsyncThunk(
   "reservation/fetchCoordinates",
@@ -51,8 +53,7 @@ const initialState = {
     date: null,
     garage_id: null,
   },
-  search: null,
-  page: "search",
+  search: '',
   mapCenter: null,
   closestGarages: null,
   reservationsList: null,
@@ -74,9 +75,6 @@ export const reservationSlice = createSlice({
     },
     setGarageId: (state, action) => {
       state.reservation.garage_id = action.payload;
-    },
-    setPage: (state, action) => {
-      state.page = action.payload;
     },
     setSelectedGarage: (state, action) => {
       state.selectedGarage = action.payload;

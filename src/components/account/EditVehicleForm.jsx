@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import VehicleForm from "./VehicleForm";
+import { useDispatch } from "react-redux";
 
-const EditVehicleForm = ({ onExit, initialData, handleFormSubmit }) => {
+const EditVehicleForm = ({ onExit, initialData, fetchVehicleData }) => {
+  const dispatch = useDispatch();
   const handleSubmit = async (id, data) => {
     await axios.put(`http://localhost:3000/user/${id}/edit-vehicle`, data);
-    handleFormSubmit();
+    fetchVehicleData(dispatch, id);
     onExit();
   };
 
@@ -14,7 +16,6 @@ const EditVehicleForm = ({ onExit, initialData, handleFormSubmit }) => {
       onExit={onExit}
       onSubmit={handleSubmit}
       initialData={initialData}
-      handleFormSubmit={handleFormSubmit}
     />
   );
 };

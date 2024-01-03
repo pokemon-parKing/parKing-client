@@ -9,7 +9,11 @@ import AccountsPage from "./containers/AccountsPage.jsx";
 import LogInPage from "./containers/LogInPage.jsx";
 import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
 import ReservationDetails from "./components/valet-reservation/ReservationDetails.jsx";
+import Search from "./components/user-reservation/search/Search.jsx";
+import Reservation from "./components/user-reservation/reservation/Reservation.jsx";
+import Confirmation from "./components/user-reservation/confirmation/Confirmation.jsx";
 import Scanner from "./components/valet-reservation/Scanner.jsx";
+import AccountCreation from "./components/login/AccountCreation.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -17,40 +21,54 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/reservation",
+        element: <UserReservation />,
+        children: [
+          {
+            path: '/reservation',
+            element: <Search />
+          },
+          {
+            path: '/reservation/map',
+            element: <Reservation />
+          },
+          {
+            path: '/reservation/confirmation',
+            element: <Confirmation />
+          }
+        ]
+      },
+      {
+        path: "/valetReservation",
+        element: <ValetReservation />,
+      },
+      {
+        path: "/valetReservation/reservationDetails/:reservation_id",
+        element: <ReservationDetails />,
+      },
+      {
+        path: "/scanner",
+        element: <Scanner />
+      },
+      {
+        path: "/user/:id",
+        element: <AccountsPage />,
+      },
+      {
+        path: "/login",
+        element: <LogInPage />,
+      },
+      {
+        path: "/authcallback",
+        element: <AuthCallbackPage />,
+      },
+    ]
   },
   {
-    path: "/reservation",
-    element: <UserReservation />,
-  },
-  {
-    path: "/valetReservation",
-    element: <ValetReservation />,
-  },
-  {
-    path: "/valetReservation/reservationDetails/:reservation_id",
-    element: <ReservationDetails />,
-  },
-  {
-    path: "/scanner",
-    element: <Scanner />
-  },
-  // {
-  //   path: yourpathhere,
-  //   element: importyourelementhere
-  // }
-  // you also need to import Link in a different component with the 'to' property that points to your path
-  // see app.jsx for an example (dont create it in app.jsx)
-  {
-    path: "/user/:id",
-    element: <AccountsPage />,
-  },
-  {
-    path: "/login",
-    element: <LogInPage />,
-  },
-  {
-    path: "/authcallback",
-    element: <AuthCallbackPage />,
+    path: "/accountcreation",
+    element: <AccountCreation />,
   },
 ]);
 
