@@ -111,7 +111,7 @@ const AccountSetting = () => {
               id="phonenumber"
               placeholder="(xxx) xxx-xxxx"
               pattern="[0-9]*"
-              value={phoneNumber}
+              defaultValue={phoneNumber}
               onChange={handlePhoneNumberChange}
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />
