@@ -98,7 +98,7 @@ const MapSideBar = () => {
           <select
             required
             className="select select-bordered w-full pl-10"
-            value={reservation.date.replace(/\-/g, "/") || ""}
+            value={reservation.date.replace(/-/g, "/") || ""}
             onChange={(e) => {
               dispatch(setDate(e.target.value.replace(/\//g, "-")));
             }}
