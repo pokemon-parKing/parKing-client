@@ -49,10 +49,11 @@ const ReservationDetails = () => {
 
   return (
     <div className="container mx-auto mt-8 p-8 bg-white shadow-md rounded-md">
-        <h3 className="flex justify-center text-2xl font-semibold mb-4">Reservation Details</h3>
+      <h3 className="flex justify-center text-2xl font-semibold mb-4">Reservation for Id: {reservation.id}</h3>
       <div className="mt-8">
         <div className="grid grid-cols-2 gap-4">
           <div>
+            <h3 className="text-2xl font-semibold mb-4">Reservation Details:</h3>
             <p>
               <span className="font-semibold">Reservation Status:</span>{' '}
               {reservation.status}
@@ -66,6 +67,7 @@ const ReservationDetails = () => {
             </p>
           </div>
           <div>
+            <h3 className="text-2xl font-semibold mb-4">Spot and Keybox:</h3>
             <p>
               <span className="font-semibold">Parking Spot ID:</span>{' '}
               {reservation.parking_spot_id}
@@ -82,37 +84,42 @@ const ReservationDetails = () => {
       </div>
 
       <div className="mt-8">
-        <h3 className="text-2xl font-semibold mb-4">Account Information</h3>
-        <p>
-          <span className="font-semibold">Email:</span>{' '}
-          {reservation.accounts.email}
-        </p>
-        <p>
-          <span className="font-semibold">Name:</span>{' '}
-          {`${reservation.accounts.last_name}, ${reservation.accounts.first_name}`}
-        </p>
-        <p>
-          <span className="font-semibold">Phone Number:</span>{' '}
-          {reservation.accounts.phone_number}
-        </p>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Account Information</h3>
+            <p>
+              <span className="font-semibold">Email:</span>{' '}
+              {reservation.accounts.email}
+            </p>
+            <p>
+              <span className="font-semibold">Name:</span>{' '}
+              {`${reservation.accounts.last_name}, ${reservation.accounts.first_name}`}
+            </p>
+            <p>
+              <span className="font-semibold">Phone Number:</span>{' '}
+              {reservation.accounts.phone_number}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Car Information</h3>
+            <p>
+              <span className="font-semibold">Color:</span> {reservation.cars.color}
+            </p>
+            <p>
+              <span className="font-semibold">License Plate Number:</span>{' '}
+              {reservation.cars.license_plate_number}
+            </p>
+            <p>
+              <span className="font-semibold">Make:</span> {reservation.cars.make}
+            </p>
+            <p>
+              <span className="font-semibold">Model:</span> {reservation.cars.model}
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-8">
-        <h3 className="text-2xl font-semibold mb-4">Car Information</h3>
-        <p>
-          <span className="font-semibold">Color:</span> {reservation.cars.color}
-        </p>
-        <p>
-          <span className="font-semibold">License Plate Number:</span>{' '}
-          {reservation.cars.license_plate_number}
-        </p>
-        <p>
-          <span className="font-semibold">Make:</span> {reservation.cars.make}
-        </p>
-        <p>
-          <span className="font-semibold">Model:</span> {reservation.cars.model}
-        </p>
-      </div>
       <CheckinCheckoutBtns fetchData={fetchData} reservation={reservation} reservation_id={reservation_id} />
       <Link to="/valetReservation" className="flex justify-center py-5 text-blue-500 hover:underline">
         Back to Valet Reservation Page
