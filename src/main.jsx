@@ -27,18 +27,18 @@ const router = createBrowserRouter([
         element: <UserReservation />,
         children: [
           {
-            path: '/reservation',
-            element: <Search />
+            path: "/reservation",
+            element: <Search />,
           },
           {
-            path: '/reservation/map',
-            element: <Reservation />
+            path: "/reservation/map",
+            element: <Reservation />,
           },
           {
-            path: '/reservation/confirmation',
-            element: <Confirmation />
-          }
-        ]
+            path: "/reservation/confirmation",
+            element: <Confirmation />,
+          },
+        ],
       },
       {
         path: "/valetReservation",
@@ -50,10 +50,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/scanner",
-        element: <Scanner />
+        element: <Scanner />,
       },
       {
-        path: "/user/:id",
+        path: "/user",
         element: <AccountsPage />,
       },
       {
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         path: "/authcallback",
         element: <AuthCallbackPage />,
       },
-    ]
+    ],
   },
   {
     path: "/accountcreation",
