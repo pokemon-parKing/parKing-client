@@ -1,4 +1,5 @@
 import { updateStatus } from "../../utils/valetReservationUtils.js";
+import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 
 const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {

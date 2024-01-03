@@ -1,10 +1,10 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ReservationList = () => {
   const [showNextHour, setShowNextHour] = useState(false);
-  const { time, reservations, date } = useSelector((state) => state.valet);
+  const { time, reservations } = useSelector((state) => state.valet);
 
   const filterList = useMemo(() => {
     return reservations.filter((res) => {
@@ -15,11 +15,6 @@ const ReservationList = () => {
       }
     })
   }, [time, showNextHour, reservations]);
-
-  useEffect(() => {
-    console.log('checking date in list: ', date);
-    console.log('reservations: ', reservations)
-  }, [date, reservations])
 
   return (
     <div>

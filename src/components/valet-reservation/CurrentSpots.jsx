@@ -1,12 +1,7 @@
-  import { useEffect } from "react";
-  import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
   const CurrentSpots = () => {
-    const { date, spots } = useSelector((state) => state.valet);
-
-    useEffect(() => {
-      console.log('checking date in spots: ', date);
-    }, [date])
+    const { spots } = useSelector((state) => state.valet);
 
     return (
       <>
