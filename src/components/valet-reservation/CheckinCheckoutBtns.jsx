@@ -1,13 +1,16 @@
 import { updateStatus } from "../../utils/valetReservationUtils.js";
 import PropTypes from 'prop-types';
+import { useSelector } from "react-redux";
 
-const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
+const CheckinCheckoutBtns = ({ fetchData }) => {
 
+
+  const { reservationDetails } = useSelector((state) => state.valet);
   const handleCheckIn = async (event) => {
     event.preventDefault();
     try {
-      if (reservation.status === 'reserved') {
-        await updateStatus('checked-in', reservation_id);
+      if (reservationDetails.status === 'reserved') {
+        await updateStatus('checked-in', reservationDetails.id);
         await fetchData();
       }
     } catch (error) {
@@ -17,8 +20,8 @@ const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
   const handleCheckOut = async (event) => {
     event.preventDefault();
     try {
-      if (reservation.status === 'checked-in') {
-        await updateStatus('picked-up', reservation_id);
+      if (reservationDetails.status === 'checked-in') {
+        await updateStatus('picked-up', reservationDetails.id);
         await fetchData();
       }
     } catch (error) {
@@ -27,7 +30,7 @@ const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
   }
   return (
     <div className="mt-8 flex justify-center">
-      {reservation.status === 'reserved'
+      {reservationDetails.status === 'reserved'
       ?
         <button
           className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white mr-4"
@@ -36,7 +39,7 @@ const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
           Check In
         </button>
       :
-      reservation.status === 'checked-in'
+      reservationDetails.status === 'checked-in'
       ?
         <button
           className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white"
