@@ -1,5 +1,5 @@
 import updateStatus from "../../utils/updateStatus";
-
+import PropTypes from 'prop-types';
 
 const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
 
@@ -31,7 +31,7 @@ const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
       ?
         <button
           className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white mr-4"
-          onClick={() => handleCheckIn(event)}
+          onClick={(event) => handleCheckIn(event)}
         >
           Check In
         </button>
@@ -40,16 +40,20 @@ const CheckinCheckoutBtns = ({ fetchData, reservation, reservation_id }) => {
       ?
         <button
           className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white"
-          onClick={() => handleCheckOut(event)}
+          onClick={(event) => handleCheckOut(event)}
         >
           Check Out
         </button>
       :
-      <span className="font-semibold">Checkout Sucessful</span>
+      <span className="font-semibold">Checkout Successful</span>
       }
 
-      </div>
+    </div>
   )
+}
+
+CheckinCheckoutBtns.propTypes = {
+  fetchData: PropTypes.func.isRequired
 }
 
 export default CheckinCheckoutBtns;

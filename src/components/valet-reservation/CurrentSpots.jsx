@@ -11,6 +11,7 @@
     const [reservedSpots, setReservedSpots] = useState(0);
     const [occupiedSpots, setOccupiedSpots] = useState(0);
 
+
     const fetchSpots = async () => {
       //hardcoding data for now
       const garageId = 1;
@@ -19,13 +20,14 @@
       try {
         const data = await getSpotMetrics(garageId, date, time);
         const { available, reserved, occupied } = data;
-         setAvailableSpots(available);
-         setReservedSpots(reserved);
-         setOccupiedSpots(occupied);
+        setAvailableSpots(available);
+        setReservedSpots(reserved);
+        setOccupiedSpots(occupied);
       } catch (error) {
         console.log(error);
       }
     };
+
     useEffect(() => {
       fetchSpots();
     }, []);
@@ -37,8 +39,8 @@
 
     return (
       <>
-        <div className="availabilty-overview">
-          {/* <h1>Availabilty Overview</h1> */}
+        <div className="availability-overview">
+          {/* <h1>Availability Overview</h1> */}
           <div className="availability-row flex justify-around space-x-4 w-full">
             <div className="available-spots">
               <h3>Available Spots: {availableSpots}</h3>
