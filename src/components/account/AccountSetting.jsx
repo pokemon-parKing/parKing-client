@@ -5,14 +5,13 @@ import {
   setUserDataPhoneNumber,
 } from "../../utils/slice/accountsSlice.js";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import toast from "react-hot-toast";
 
 const AccountSetting = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.accounts.userData);
+  const { id } = userData;
   const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {

@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 const VehicleForm = ({ onExit, onSubmit, initialData }) => {
-  const { id } = useParams();
+  const userData = useSelector((state) => state.accounts.userData);
+  const { id } = userData;
   const [vehicleData, setVehicleData] = useState({
     make: "",
     model: "",

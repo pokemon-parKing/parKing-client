@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { setUserData } from "../utils/slice/accountsSlice.js";
 import axios from "axios";
 import AccountSetting from "../components/account/AccountSetting.jsx";
@@ -9,10 +8,10 @@ import MyParking from "../components/account/MyParking.jsx";
 import AdminSettings from "../components/account/AdminSettings.jsx";
 
 const AccountsPage = () => {
-  const { id } = useParams();
   const [activeMenu, setActiveMenu] = useState("accountSettings");
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.accounts.userData);
+  const { id } = userData;
 
   useEffect(() => {
     const fetchUserData = async () => {
