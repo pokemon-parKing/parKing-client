@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 // import { useSelector, useDispatch } from "react-redux";
 // import { setReservationDetails } from "../../utils/slice/valetSlice";
-import getReservationDetails from "../../utils/getReservationDetails";
+import { getReservationDetails } from "../../utils/valetReservationUtils";
 import CheckinCheckoutBtns from "./CheckinCheckoutBtns";
 // import updateStatus from "../../utils/updateStatus";
 import { useParams } from 'react-router-dom';

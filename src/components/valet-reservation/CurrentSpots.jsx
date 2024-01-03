@@ -1,7 +1,7 @@
   import { useState, useEffect, useMemo } from "react";
   import { useSelector, useDispatch } from "react-redux";
   import { setTime , setOccupied, setReserved, setAvailable } from "../../utils/slice/valetSlice";
-  import getSpotMetrics from "../../utils/getSpotMetrics";
+  import { getSpotMetrics } from "../../utils/valetReservationUtils";
 
   const CurrentSpots = () => {
     //will implement useMemo and rerendering if reservation changes (put or delete)

@@ -3,8 +3,7 @@ import CurrentSpots from '../components/valet-reservation/CurrentSpots.jsx';
 import ReservationList from '../components/valet-reservation/ReservationList.jsx';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
-import postGenerateQrCode from '../utils/postGenerateQrCode.js'
-import getQrCode from '../utils/getQrCode.js';
+import { postGenerateQrCode, getQrCode } from '../utils/valetReservationUtils.js'
 import { useSelector, useDispatch } from "react-redux";
 import { setDate } from "../utils/slice/valetSlice";
 
