@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setUserData,
@@ -29,12 +29,15 @@ const AccountSetting = () => {
     fetchUserData();
   }, [dispatch, id]);
 
-  const handlePhoneNumberChange = (e) => {
-    const input = e.target.value;
-    const formattedInput = formatPhoneNumber(input);
-    setPhoneNumber(formattedInput);
-    dispatch(setUserDataPhoneNumber(formattedInput));
-  };
+  const handlePhoneNumberChange = useCallback(
+    (e) => {
+      const input = e.target.value;
+      const formattedInput = formatPhoneNumber(input);
+      setPhoneNumber(formattedInput);
+      dispatch(setUserDataPhoneNumber(formattedInput));
+    },
+    [dispatch]
+  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -108,7 +111,7 @@ const AccountSetting = () => {
               id="phonenumber"
               placeholder="(xxx) xxx-xxxx"
               pattern="[0-9]*"
-              value={phoneNumber}
+              defaultValue={phoneNumber}
               onChange={handlePhoneNumberChange}
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />

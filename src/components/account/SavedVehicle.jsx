@@ -15,24 +15,21 @@ const SavedVehicle = () => {
   const vehicleData = useSelector((state) => state.accounts.vehicleData);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const { id } = useParams();
 
-  useEffect(() => {
-    const fetchVehicleData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/user/${id}/cars`
-        );
-        dispatch(setVehicleData(response.data));
-      } catch (error) {
-        console.error("Error fetching vehicle data:", error);
-      }
-    };
+  const fetchVehicleData = async (dispatch, id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/user/${id}/cars`);
+      dispatch(setVehicleData(response.data));
+    } catch (error) {
+      console.error("Error fetching vehicle data:", error);
+    }
+  };
 
-    fetchVehicleData();
-  }, [dispatch, id, formSubmitted]);
+  useEffect(() => {
+    fetchVehicleData(dispatch, id);
+  }, [dispatch, id]);
 
   const handleDelete = async (vehicleId) => {
     try {
@@ -62,25 +59,18 @@ const SavedVehicle = () => {
     setShowEditForm(false);
   };
 
-  const handleFormSubmit = async () => {
-    try {
-      setFormSubmitted((prevValue) => !prevValue);
-    } catch (error) {
-      console.error("Error submitting vehicle data:", error);
-    }
-  };
   return (
     <>
       {showAddForm ? (
         <AddVehicleForm
           onExit={handleExitAddForm}
-          handleFormSubmit={handleFormSubmit}
+          fetchVehicleData={fetchVehicleData}
         />
       ) : showEditForm ? (
         <EditVehicleForm
           onExit={handleExitAddForm}
-          handleFormSubmit={handleFormSubmit}
           initialData={selectedVehicle}
+          fetchVehicleData={fetchVehicleData}
         />
       ) : (
         <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
