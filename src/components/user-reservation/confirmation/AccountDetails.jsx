@@ -1,20 +1,45 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCarId } from "../../../utils/slice/reservationSlice";
 
 const AccountDetails = () => {
   const { reservation } = useSelector((state) => state.reservation);
+  // let { userData, vehicleData } = useSelector((state) => state.accounts);
+  const dispatch = useDispatch();
 
   /* SAMPLE DATA */
-  const details = {
-    name: "Twin Peaks",
-    address: "501 Twin Peaks Blvd",
-    city: "San Francisco",
-    zip: "94131",
-    state: "CA",
-    phoneNumber: "123-456-7890",
-    username: "Bruce",
-    car: "Tesla Model 3",
-    licensePlate: "123abc",
+  const userData = {
+    id: "",
+    google_account_id: "",
+    contact_preferences: "",
+    email: "",
+    first_name: "Bruce",
+    last_name: "Wong",
+    role: "user",
+    phone_number: "123-456-7890",
   };
+  const vehicleData = [
+    {
+      id: "1",
+      make: "Honda",
+      model: "Accord",
+      year: "2018",
+      license_plate: "ABC123",
+    },
+    {
+      id: "2",
+      make: "Tesla",
+      model: "Model 3",
+      year: "2018",
+      license_plate: "123123",
+    },
+    {
+      id: "3",
+      make: "Lambo",
+      model: "Aventador",
+      year: "2023",
+      license_plate: "L@MB0",
+    },
+  ];
 
   return (
     reservation && (
@@ -48,7 +73,7 @@ const AccountDetails = () => {
                 <tr>
                   <td className="flex px-4 py-2 align-start font-bold">Name</td>
                   <td className="px-4 py-2">
-                    <p>{details.username}</p>
+                    <p>{`${userData.first_name} ${userData.last_name}`}</p>
                   </td>
                 </tr>
                 <tr>
@@ -56,15 +81,24 @@ const AccountDetails = () => {
                     Phone Number
                   </td>
                   <td className="px-4 py-2">
-                    <p>{details.phoneNumber}</p>
+                    <p>{userData.phone_number}</p>
                   </td>
                 </tr>
                 <tr>
-                  <td className="flex px-4 py-2 align-start font-bold">
-                    Make & Model
-                  </td>
+                  <td className="flex px-4 py-2 align-start font-bold">Car</td>
                   <td className="px-4 py-2">
-                    <p>{details.car}</p>
+                    <select
+                      // value={reservation.car_id || vehicleData[0].id}
+                      onChange={(e) => {
+                        dispatch(setCarId(e.target.value));
+                      }}
+                    >
+                      {vehicleData.map((vehicle) => (
+                        <option key={vehicle.id} value={vehicle.id}>
+                          {`${vehicle.make} ${vehicle.model} ${vehicle.year}`}
+                        </option>
+                      ))}
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -72,7 +106,14 @@ const AccountDetails = () => {
                     License Plate
                   </td>
                   <td className="px-4 py-2">
-                    <p> {details.licensePlate}</p>
+                    <p>
+                      {" "}
+                      {reservation.car_id
+                        ? vehicleData.find(
+                            (vehicle) => vehicle.id === reservation.car_id
+                          ).license_plate
+                        : vehicleData[0].license_plate}
+                    </p>
                   </td>
                 </tr>
               </tbody>
