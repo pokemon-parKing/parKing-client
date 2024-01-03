@@ -36,25 +36,27 @@ const AccountsPage = () => {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <nav>
-        <ul className="menu bg-base-200 w-56 rounded-box">
-          <li onClick={() => setActiveMenu("accountSettings")}>
-            <a>ACCOUNT SETTINGS</a>
-          </li>
-          <li onClick={() => setActiveMenu("savedVehicles")}>
-            <a>SAVED VEHICLES</a>
-          </li>
-          <li onClick={() => setActiveMenu("myParking")}>
-            <a>MY PARKING</a>
-          </li>
-          {renderAdminTab()}
-        </ul>
-      </nav>
-      <div className="flex-grow">
+    <>
+      <div className="flex items-center justify-center">
+        <nav className="pt-20">
+          <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+            <li onClick={() => setActiveMenu("accountSettings")}>
+              <a>ACCOUNT SETTINGS</a>
+            </li>
+            <li onClick={() => setActiveMenu("savedVehicles")}>
+              <a>SAVED VEHICLES</a>
+            </li>
+            <li onClick={() => setActiveMenu("myParking")}>
+              <a>MY PARKING</a>
+            </li>
+            {renderAdminTab()}
+          </ul>
+        </nav>
+      </div>
+      <div className="flex-grow pb-20">
         <div className="max-w-7xl mx-auto">{renderContent()}</div>
       </div>
-    </div>
+    </>
   );
 };
 
