@@ -23,7 +23,6 @@ const ReservationList = () => {
       </button>
       <ul>
         {filterList.map((reservation) => {
-          console.log('reservation: ', reservation)
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
             <Link to={`/valetReservation/reservationDetails/${id}`} key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
