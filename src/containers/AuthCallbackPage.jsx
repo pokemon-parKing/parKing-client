@@ -21,11 +21,13 @@ const AuthCallbackPage = () => {
           if (user) {
             //console.log('user: ', user);
             const userInfo = {
+              id: user.id,
               first_name: user.first_name,
               last_name: user.last_name,
               email: user.email,
               phone_number: user.phone_number,
               role: user.role,
+              contact_preferences: user.contact_preferences,
             };
             dispatch(setUserData(userInfo));
             window.localStorage.setItem('userInfo', JSON.stringify(userInfo));
