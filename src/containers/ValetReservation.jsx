@@ -35,7 +35,7 @@ const ValetReservation = () => {
     <div className="text-center flex justify-around py-8">
       <div className='flex flex-row justify-evenly w-[60%]'>
         <div className='btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px] mx-5'>
-        <Link to="/valet/scanner">Scanner</Link>
+        <Link to="/valet/scanner">Scan QR</Link>
         </div>
         <div className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px] mx-5">
         <Link to='/valet/search'>Search</Link>
