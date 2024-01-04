@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import toast from "react-hot-toast";
-import { setValetData } from "../../utils/slice/accountsSlice.js";
 import EditParkingSpotsModal from "./EditParkingSpotsModal";
 import EditHoursModal from "./EditHoursModal";
+import {
+  getValetDataApi,
+  updateParkingSpotsApi,
+  updateHoursApi,
+} from "../../utils/accountUtils.js";
 
 const AdminSettings = () => {
   const dispatch = useDispatch();
@@ -15,20 +18,14 @@ const AdminSettings = () => {
   const userData = useSelector((state) => state.accounts.userData);
   const { id } = userData;
 
-  const getValetData = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3003/valet/${id}`);
-      dispatch(setValetData(response.data[0]));
-      setParkingSpots(response.data[0].spots);
-      setOpeningHour(response.data[0].operation_hours.split("-")[0]);
-      setClosingHour(response.data[0].operation_hours.split("-")[1]);
-    } catch (error) {
-      console.error("Error fetching valet data:", error);
-    }
-  };
-
   useEffect(() => {
-    getValetData();
+    getValetDataApi(
+      id,
+      dispatch,
+      setParkingSpots,
+      setOpeningHour,
+      setClosingHour
+    );
   }, [dispatch, id]);
 
   const handleParkingSpotsUpdate = async () => {
@@ -37,30 +34,40 @@ const AdminSettings = () => {
       toast.error("Please enter a valid number for parking spots.");
       return;
     }
-    try {
-      await axios.put(`http://localhost:3003/valet/${id}/spots`, {
-        spots: parsedSpots,
-      });
+
+    const updateSuccess = await updateParkingSpotsApi(id, parsedSpots);
+
+    if (updateSuccess) {
       toast.success("Parking spots updated successfully!");
-      getValetData();
+      getValetDataApi(
+        id,
+        dispatch,
+        setParkingSpots,
+        setOpeningHour,
+        setClosingHour
+      );
       document.getElementById("editParkingSpots").close();
-    } catch (error) {
-      console.error("Error updating parking spots:", error);
+    } else {
       toast.error("Error updating parking spots. Please try again.");
       document.getElementById("editParkingSpots").close();
     }
   };
 
   const handleHoursUpdate = async () => {
-    try {
-      await axios.put(`http://localhost:3003/valet/${id}/operation-hours`, {
-        operation_hours: `${openingHour}-${closingHour}`,
-      });
+    const operationHours = `${openingHour}-${closingHour}`;
+    const updateSuccess = await updateHoursApi(id, operationHours);
+
+    if (updateSuccess) {
       toast.success("Hours of operation updated successfully!");
-      getValetData();
+      getValetDataApi(
+        id,
+        dispatch,
+        setParkingSpots,
+        setOpeningHour,
+        setClosingHour
+      );
       document.getElementById("editHoursModal").close();
-    } catch (error) {
-      console.error("Error updating hours of operation:", error);
+    } else {
       toast.error("Error updating hours of operation. Please try again.");
       document.getElementById("editHoursModal").close();
     }
