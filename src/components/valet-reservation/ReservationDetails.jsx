@@ -30,14 +30,17 @@ const ReservationDetails = () => {
     fetchData();
   }, [fetchData])
 
+  // p-8 bg-gray-100 shadow-md rounded-md
   return (
     <div className="container mx-auto mt-8 p-8 bg-white shadow-md rounded-md">
       <h3 className="flex justify-center text-2xl font-semibold mb-4">Reservation #{reservationDetails.id}</h3>
+
       <DetailsAndKeyBox />
       <AccountAndCarDetails />
+
       <CheckinCheckoutBtns fetchData={fetchData} />
       <Link to="/valet" className="flex justify-center py-5 text-blue-500 hover:underline">
-        Back to Valet Reservation Page
+        Back
       </Link>
     </div>
   );
