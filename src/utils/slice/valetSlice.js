@@ -10,7 +10,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 const initialState = {
   reservations: [],
   time: new Date().getHours(),
-  garage_id: 1,
+  garage_id: 2,
   date: currentDate,
   spots: {
     occupied: 0,
