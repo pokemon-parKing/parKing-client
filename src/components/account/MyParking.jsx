@@ -22,7 +22,7 @@ const MyParking = () => {
     const fetchReservationData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3002/user/${id}/current-reservations`
+          `http://localhost:3003/user/${id}/current-reservations`
         );
 
         dispatch(setReservationData(response.data));
