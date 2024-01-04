@@ -7,6 +7,8 @@ import { getSpotMetrics, getReservationList } from '../utils/valetReservationUti
 import { useSelector, useDispatch } from "react-redux";
 import { setSpots, setReservations } from "../utils/slice/valetSlice";
 import toast from 'react-hot-toast';
+import { IoMdQrScanner } from "react-icons/io";
+import { LuCalendarSearch } from "react-icons/lu";
 
 const ValetReservation = () => {
   //use garage id (1 for testing purposes) and current date (format:DD-MM-YY) to get the current reservations and spots
@@ -37,10 +39,12 @@ const ValetReservation = () => {
     <div className="text-center flex justify-around py-20">
       <div className='flex flex-row justify-evenly w-[60%]'>
         <div className='btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px] mx-5'>
-        <Link to="/valet/scanner">Scanner</Link>
+        <Link to="/valet/scanner">
+        <IoMdQrScanner className="text-white text-2xl" />
+          </Link>
         </div>
         <div className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px] mx-5">
-        <Link to='/valet/search'>Search</Link>
+        <Link to='/valet/search'><LuCalendarSearch className="text-white text-2xl" /></Link>
         </div>
         <button className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px] mx-5" onClick={fetchSpotsAndReservations}>
           <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -49,9 +53,6 @@ const ValetReservation = () => {
         </button>
       </div>
     </div>
-      {/* <CurrentSpots />
-      <ReservationList /> */}
-
     </>
   );
 }
