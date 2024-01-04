@@ -1,10 +1,9 @@
 import axios from "axios";
+const HOST = import.meta.env.VITE_RESERVATION_HOST;
 
 const getQrCode = async (reservationId) => {
   try {
-    const linkToImage = await axios.get(
-      `${import.meta.env.VITE_RESERVATION_HOST}/getqr/${reservationId}`
-    );
+    const linkToImage = await axios.get(`${HOST}/getqr/${reservationId}`);
     console.log("link to image generated: ", linkToImage.data.publicUrl);
     return linkToImage.data.publicUrl;
   } catch (error) {
@@ -17,9 +16,7 @@ const getReservationDetails = async (reservation_id) => {
   /* Given reservation_id, get reservation details */
   try {
     const { data } = await axios.get(
-      `${
-        import.meta.env.VITE_RESERVATION_HOST
-      }/reservations/valet/detail/${reservation_id}`
+      `${HOST}/reservations/valet/detail/${reservation_id}`
     );
     return data;
   } catch (error) {
@@ -32,9 +29,7 @@ const getReservationList = async (garage_id, date) => {
   /* Given garage_id and date, get count of reservations per hour */
   try {
     const { data } = await axios.get(
-      `${
-        import.meta.env.VITE_RESERVATION_HOST
-      }/reservations/valet/list/${garage_id}?date=${date}`
+      `${HOST}/reservations/valet/list/${garage_id}?date=${date}`
     );
     return data;
   } catch (error) {
@@ -47,9 +42,7 @@ const getSpotMetrics = async (garage_id, date, time) => {
   /* Given garage_id, date, and time, get information about the number of occupied(checked-in), reserved, and available spots */
   try {
     const { data } = await axios.get(
-      `${
-        import.meta.env.VITE_RESERVATION_HOST
-      }/reservations/valet/${garage_id}?date=${date}&time=${time}`
+      `${HOST}/reservations/valet/${garage_id}?date=${date}&time=${time}`
     );
     return data;
   } catch (error) {
@@ -60,9 +53,7 @@ const getSpotMetrics = async (garage_id, date, time) => {
 
 const postGenerateQrCode = async (reservationId) => {
   try {
-    const response = await axios.post(
-      `${import.meta.env.VITE_RESERVATION_HOST}/qr/${reservationId}`
-    );
+    const response = await axios.post(`${HOST}/qr/${reservationId}`);
     console.log("QR code generated");
     return response.data;
   } catch (error) {
@@ -73,11 +64,7 @@ const postGenerateQrCode = async (reservationId) => {
 
 const updateStatus = async (status, reservationId) => {
   try {
-    await axios.patch(
-      `${
-        import.meta.env.VITE_RESERVATION_HOST
-      }/reservations/${reservationId}?status=${status}`
-    );
+    await axios.patch(`${HOST}/reservations/${reservationId}?status=${status}`);
   } catch (error) {
     console.log(error);
   }
