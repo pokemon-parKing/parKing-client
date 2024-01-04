@@ -20,7 +20,7 @@ const SavedVehicle = () => {
 
   const fetchVehicleData = async (dispatch, id) => {
     try {
-      const response = await axios.get(`http://localhost:3002/user/${id}/cars`);
+      const response = await axios.get(`http://localhost:3003/user/${id}/cars`);
       dispatch(setVehicleData(response.data));
     } catch (error) {
       console.error("Error fetching vehicle data:", error);
@@ -33,7 +33,7 @@ const SavedVehicle = () => {
 
   const handleDelete = async (vehicleId) => {
     try {
-      await axios.delete(`http://localhost:3002/user/${id}/delete-vehicle`, {
+      await axios.delete(`http://localhost:3003/user/${id}/delete-vehicle`, {
         data: { vehicleId },
       });
       dispatch(deleteVehicle({ vehicleId }));

@@ -17,7 +17,7 @@ const AdminSettings = () => {
 
   const getValetData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3002/valet/${id}`);
+      const response = await axios.get(`http://localhost:3003/valet/${id}`);
       dispatch(setValetData(response.data[0]));
       setParkingSpots(response.data[0].spots);
       setOpeningHour(response.data[0].operation_hours.split("-")[0]);
@@ -38,7 +38,7 @@ const AdminSettings = () => {
       return;
     }
     try {
-      await axios.put(`http://localhost:3002/valet/${id}/spots`, {
+      await axios.put(`http://localhost:3003/valet/${id}/spots`, {
         spots: parsedSpots,
       });
       toast.success("Parking spots updated successfully!");
@@ -53,7 +53,7 @@ const AdminSettings = () => {
 
   const handleHoursUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3002/valet/${id}/operation-hours`, {
+      await axios.put(`http://localhost:3003/valet/${id}/operation-hours`, {
         operation_hours: `${openingHour}-${closingHour}`,
       });
       toast.success("Hours of operation updated successfully!");
