@@ -3,43 +3,43 @@ import { setCarId } from "../../../utils/slice/reservationSlice";
 
 const AccountDetails = () => {
   const { reservation } = useSelector((state) => state.reservation);
-  // let { userData, vehicleData } = useSelector((state) => state.accounts);
+  const { userData, vehicleData } = useSelector((state) => state.accounts);
   const dispatch = useDispatch();
 
   /* SAMPLE DATA */
-  const userData = {
-    id: "",
-    google_account_id: "",
-    contact_preferences: "",
-    email: "",
-    first_name: "Bruce",
-    last_name: "Wong",
-    role: "user",
-    phone_number: "123-456-7890",
-  };
-  const vehicleData = [
-    {
-      id: "1",
-      make: "Honda",
-      model: "Accord",
-      year: "2018",
-      license_plate: "ABC123",
-    },
-    {
-      id: "2",
-      make: "Tesla",
-      model: "Model 3",
-      year: "2018",
-      license_plate: "123123",
-    },
-    {
-      id: "3",
-      make: "Lambo",
-      model: "Aventador",
-      year: "2023",
-      license_plate: "L@MB0",
-    },
-  ];
+  // const userData = {
+  //   id: "",
+  //   google_account_id: "",
+  //   contact_preferences: "",
+  //   email: "",
+  //   first_name: "Bruce",
+  //   last_name: "Wong",
+  //   role: "user",
+  //   phone_number: "123-456-7890",
+  // };
+  // const vehicleData = [
+  //   {
+  //     id: "1",
+  //     make: "Honda",
+  //     model: "Accord",
+  //     year: "2018",
+  //     license_plate: "ABC123",
+  //   },
+  //   {
+  //     id: "2",
+  //     make: "Tesla",
+  //     model: "Model 3",
+  //     year: "2018",
+  //     license_plate: "123123",
+  //   },
+  //   {
+  //     id: "3",
+  //     make: "Lambo",
+  //     model: "Aventador",
+  //     year: "2023",
+  //     license_plate: "L@MB0",
+  //   },
+  // ];
 
   return (
     reservation && (
@@ -110,8 +110,8 @@ const AccountDetails = () => {
                       {reservation.car_id
                         ? vehicleData.find(
                             (vehicle) => vehicle.id === reservation.car_id
-                          ).license_plate
-                        : vehicleData[0].license_plate}
+                          ).license_plate_number
+                        : vehicleData[0].license_plate_number}
                     </p>
                   </td>
                 </tr>
