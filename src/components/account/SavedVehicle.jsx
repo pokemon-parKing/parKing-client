@@ -20,7 +20,7 @@ const SavedVehicle = () => {
 
   const fetchVehicleData = async (dispatch, id) => {
     try {
-      const response = await axios.get(`http://localhost:3002/user/${id}/cars`);
+      const response = await axios.get(`http://localhost:3003/user/${id}/cars`);
       dispatch(setVehicleData(response.data));
     } catch (error) {
       console.error("Error fetching vehicle data:", error);
@@ -33,7 +33,7 @@ const SavedVehicle = () => {
 
   const handleDelete = async (vehicleId) => {
     try {
-      await axios.delete(`http://localhost:3002/user/${id}/delete-vehicle`, {
+      await axios.delete(`http://localhost:3003/user/${id}/delete-vehicle`, {
         data: { vehicleId },
       });
       dispatch(deleteVehicle({ vehicleId }));
@@ -78,11 +78,11 @@ const SavedVehicle = () => {
             <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
               Saved Vehicles
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[600px] overflow-y-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-y-auto p-5">
               {vehicleData.map((vehicle) => (
                 <div
                   key={vehicle.id}
-                  className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] justify-self-center"
+                  className="card bg-base-100 shadow-xl mb-3 max-w-[350px] sm:max-w-[400px] h-[200px] sm:h-[250px] justify-self-center"
                 >
                   <div className="card-body items-center text-center">
                     <h2 className="card-title">
@@ -136,7 +136,7 @@ const SavedVehicle = () => {
                 </div>
               ))}
               <div
-                className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
+                className="card bg-base-100 shadow-xl mb-3 max-w-[350px] sm:max-w-[400px] h-[200px] sm:h-[250px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
                 onClick={handleShowAddForm}
               >
                 <div className="card-body flex flex-col justify-center items-center text-center h-full">
