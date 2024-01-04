@@ -15,7 +15,7 @@ const AuthCallbackPage = () => {
   useEffect(() => {
     console.log("id: ", id);
     if (id) {
-      axios.get(`http://localhost:3002/login/${id}`)
+      axios.get(`http://localhost:3003/login/${id}`)
         .then(({ data }) => {
           console.log("data: ", data);
           dispatch(setUserData(data[0]));
