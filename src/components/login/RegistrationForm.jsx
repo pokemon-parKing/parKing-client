@@ -76,7 +76,7 @@ const RegistrationForm = ({ role }) => {
       //call the valet API
       //console.log(`/login/${userId}/valet`, 'send properly formatted form data and valet form data to the accounts server');
       if (formData.garageOpeningHour > formData.garageClosingHour) {
-        alert('Please select a valid opening and closing time!');
+        alert('Please select a valid opening and closing time! (opening time must be earlier than closing time!)');
         return;
       } else {
         createAccount(userId, {
