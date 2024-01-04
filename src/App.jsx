@@ -1,12 +1,16 @@
-import { useParams, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import LandingPage from "./components/landingpage/LandingPage.jsx";
+import Footer from './components/footer/Footer';
+
 function App() {
+
   return (
     <div className="bg-white">
-      <Navbar />
-      <LandingPage />
-      <Outlet />
+      <Navbar/>
+      <div className='min-h-[60vh]'>
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 }

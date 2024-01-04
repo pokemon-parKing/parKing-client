@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setUserData,
@@ -12,32 +12,30 @@ const AccountSetting = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.accounts.userData);
   const { id } = userData;
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/user/${id}`);
-        dispatch(setUserData(response.data));
-        setPhoneNumber(formatPhoneNumber(response.data.phone_number));
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:3000/user/${id}`);
+  //       dispatch(setUserData(response.data));
+  //       setPhoneNumber(formatPhoneNumber(response.data.phone_number));
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //     }
+  //   };
 
-    fetchUserData();
-  }, [dispatch, id]);
+  //   fetchUserData();
+  // }, [dispatch, id]);
 
-  const handlePhoneNumberChange = useCallback(
+  const formattedPhoneNumber = useMemo(() => {
+    return formatPhoneNumber(userData.phone_number);
+  }, [userData])
+
+  const handlePhoneNumberChange =
     (e) => {
-      const input = e.target.value;
-      const formattedInput = formatPhoneNumber(input);
-      e.target.value = formattedInput;
-      setPhoneNumber(formattedInput);
-      dispatch(setUserDataPhoneNumber(formattedInput));
-    },
-    [dispatch]
-  );
+      dispatch(setUserDataPhoneNumber(formatPhoneNumber(e.target.value)));
+    }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +48,7 @@ const AccountSetting = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.put(`http://localhost:3000/user/${id}`, {
+      const response = await axios.put(`http://localhost:3002/user/${id}`, {
         first_name: userData.first_name,
         last_name: userData.last_name,
         email: userData.email,
@@ -111,7 +109,7 @@ const AccountSetting = () => {
               id="phonenumber"
               placeholder="(xxx) xxx-xxxx"
               pattern="[0-9]*"
-              defaultValue={phoneNumber}
+              defaultValue={formattedPhoneNumber}
               onChange={handlePhoneNumberChange}
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />
