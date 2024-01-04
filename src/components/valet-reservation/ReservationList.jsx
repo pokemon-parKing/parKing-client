@@ -1,25 +1,19 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ReservationList = () => {
   const [showNextHour, setShowNextHour] = useState(false);
-  const { time, reservations, date } = useSelector((state) => state.valet);
+  const { time, reservations } = useSelector((state) => state.valet);
 
   const filterList = useMemo(() => {
     return reservations.filter((res) => {
       const hour = showNextHour ? time + 1 : time;
-
       if (res.time === hour) {
         return res;
       }
-    })
+    });
   }, [time, showNextHour, reservations]);
-
-  useEffect(() => {
-    console.log('checking date in list: ', date);
-    console.log('reservations: ', reservations)
-  }, [date, reservations])
 
   return (
     <div>
@@ -31,7 +25,7 @@ const ReservationList = () => {
         {filterList.map((reservation) => {
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
-            <Link to={`/valetReservation/reservationDetails/${id}`}key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
+            <Link to={`/valetReservation/reservationDetails/${id}`} key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
               {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
             </Link>
           );
@@ -39,6 +33,6 @@ const ReservationList = () => {
       </ul>
     </div>
   );
-}
+};
 
 export default ReservationList;
