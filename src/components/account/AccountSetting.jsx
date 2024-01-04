@@ -35,7 +35,7 @@ const AccountSetting = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.put(`http://localhost:3002/user/${id}`, {
+      await axios.put(`http://localhost:3002/user/${id}`, {
         first_name: userData.first_name,
         last_name: userData.last_name,
         email: userData.email,
