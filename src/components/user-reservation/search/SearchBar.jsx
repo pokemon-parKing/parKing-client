@@ -23,60 +23,63 @@ const SearchBar = () => {
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    navigate('/user-res/map');
+    navigate('/reservation');
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-row items-center w-[60%] ml-[25px]"
-    >
-      <div className="mr-[-32px] z-10">
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-5 h-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
-      </div>
-      <div className="join flex justify-center w-full">
-        <input
-          required
-          className="input input-bordered join-item pl-10 w-full"
-          placeholder="Address, Place, City or Venue"
-          defaultValue=''
-          type="text"
-          onChange={(e) => {
-            dispatch(setSearch(e.target.value));
-          }}
-        />
-        <select
-          required
-          className="select select-bordered join-item"
-          value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
-          onChange={(e) => {
-            dispatch(setDate(e.target.value.replace(/\//g, "-")));
-          }}
-        >
-          <option value="" disabled>
-            Date
-          </option>
-          {getNext8Days()}
-        </select>
-        <div className="indicator">
-          <button type="submit" className="btn join-item">
-            Search
-          </button>
+    <div className='flex flex-col absolute top-[50%] left-0 w-full z-40 '>
+      <h1 className="text-3xl text-center text-black-p">Reserve Parking Now!</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-row justify-center items-center w-[700px] mx-auto my-2"
+      >
+        <div className="mr-[-32px] z-10">
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
         </div>
-      </div>
-    </form>
+        <div className="join flex justify-center w-full">
+          <input
+            required
+            className="input input-bordered join-item pl-10 w-full"
+            placeholder="Address, Place, City or Venue"
+            defaultValue=''
+            type="text"
+            onChange={(e) => {
+              dispatch(setSearch(e.target.value));
+            }}
+          />
+          <select
+            required
+            className="select select-bordered join-item"
+            value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
+            onChange={(e) => {
+              dispatch(setDate(e.target.value.replace(/\//g, "-")));
+            }}
+          >
+            <option value="" disabled>
+              Date
+            </option>
+            {getNext8Days()}
+          </select>
+          <div className="indicator">
+            <button type="submit" className="btn join-item">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

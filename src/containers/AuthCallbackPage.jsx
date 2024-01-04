@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Supabase from "../hooks/useSupabase";
+import { setUserData } from '../utils/slice/accountsSlice.js';
 
 const AuthCallbackPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const supabase = Supabase();
 
@@ -13,9 +15,10 @@ const AuthCallbackPage = () => {
   useEffect(() => {
     console.log("id: ", id);
     if (id) {
-      axios.get(`http://localhost:3010/login/${id}`)
+      axios.get(`http://localhost:3002/login/${id}`)
         .then(({ data }) => {
           console.log("data: ", data);
+          dispatch(setUserData(data[0]));
           if (data.length > 0) {
             //later OPTIMIZATION: Load that existing information into the store! might also make sense to alter the enpoint so that it returns a join table with either the cars or garages table so that data can be loaded into the store here too!
             navigate("/");
@@ -25,7 +28,7 @@ const AuthCallbackPage = () => {
         })
         .catch((err) => console.error(err));
     }
-  }, [id, navigate]);
+  }, [id, navigate, dispatch]);
 
   return (
     <div>

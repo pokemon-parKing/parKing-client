@@ -17,7 +17,6 @@ import AccountCreation from "./components/login/AccountCreation.jsx";
 import LandingPage from "./components/landingpage/LandingPage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ReservationPage from './pages/ReservationPage';
 
 const router = createBrowserRouter([
   {
@@ -26,36 +25,28 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <LandingPage />
+        element: <LandingPage />,
       },
       {
         path: '/reservation',
-        element: <ReservationPage />
-      },
-      {
-        path: "/user-res",
         element: <UserReservation />,
         children: [
           {
-            path: "/reservation",
-            element: <Search />,
-          },
-          {
-            path: "/reservation/map",
+            path: '/reservation',
             element: <Reservation />,
           },
           {
-            path: "/reservation/confirmation",
+            path: '/reservation/confirmation',
             element: <Confirmation />,
-          },
-        ],
+          }
+        ]
       },
       {
-        path: "/valet-res",
+        path: "/valet",
         element: <ValetReservation />,
       },
       {
-        path: "/valetReservation/reservationDetails/:reservation_id",
+        path: '/valet/reservation/:reservation_id',
         element: <ReservationDetails />,
       },
       {

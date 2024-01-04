@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTime } from "../../../utils/slice/reservationSlice";
 import { convertDBTime } from "../../../lib/timeSlotUtil";
 import { useNavigate } from 'react-router-dom';
 
 const TimeSlot = ({ info }) => {
+  const role = useSelector(state => state.accounts.userData.role);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -14,6 +15,7 @@ const TimeSlot = ({ info }) => {
         info.available ? "cursor-pointer" : "pointer-events-none grayscale"
       } p-4 mx-auto w-[90%] border-2 flex flex-row items-center border-transparent border-b-beige-s hover:invert`}
       onClick={() => {
+        if (role !== 'user') return;
         dispatch(setTime(convertDBTime(info.time)));
         navigate('/reservation/confirmation');
       }}

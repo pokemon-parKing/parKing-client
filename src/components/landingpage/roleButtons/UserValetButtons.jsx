@@ -8,15 +8,15 @@ function UserValetButtons() {
   const isLoggedIn = first_name && last_name;
 
   if (!isLoggedIn) {
-    return null; 
+    return null;
   }
 
   // //if the user is a valet, they will receive the valet message, otherwise they will receive the driver message
-  const userMessage = role === 'valet' 
+  const userMessage = role === 'admin'
         ? `As a valet, you can manage parking reservations efficiently.`
         : `As a driver, you can reserve parking spots, view your car info, and manage your reservations.`;
 
-  
+
   return (
     <div className="flex flex-col items-center mb-20">
       <div className="text-center text-black mb-6">
@@ -25,7 +25,7 @@ function UserValetButtons() {
         </h1>
         <span className="text-xl">{userMessage}</span>
       </div>
-   
+
       <div>
         {role !== 'valet' ? (
           <DriverButtons firstName={first_name} lastName={last_name} />

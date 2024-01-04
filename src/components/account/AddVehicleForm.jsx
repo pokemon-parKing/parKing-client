@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 const AddVehicleForm = ({ onExit, fetchVehicleData }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (id, data) => {
-    await axios.post(`http://localhost:3000/user/${id}/add-vehicle`, data);
+    await axios.post(`http://localhost:3002/user/${id}/add-vehicle`, data);
     fetchVehicleData(dispatch, id);
     onExit();
   };

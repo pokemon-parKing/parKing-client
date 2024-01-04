@@ -1,5 +1,5 @@
 import FooterEntry from './FooterEntry.jsx';
-import { footerData } from '../../lib/Footer.js'; 
+import { footerData } from '../../lib/Footer.js';
 
 function Footer() {
   return (
@@ -16,7 +16,7 @@ function Footer() {
 
 
     </footer>
-   
+
   );
 }
 
