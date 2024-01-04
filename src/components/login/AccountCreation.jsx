@@ -17,6 +17,10 @@ function AccountCreation() {
     }
   }
 
+  const handleBackClick = () => {
+    setRole(null);
+  }
+
   return (
     <div>
       {/* {conditionally render if role is null} */}

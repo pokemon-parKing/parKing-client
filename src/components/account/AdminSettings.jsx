@@ -19,13 +19,19 @@ const AdminSettings = () => {
   const { id } = userData;
 
   useEffect(() => {
-    getValetDataApi(
-      id,
-      dispatch,
-      setParkingSpots,
-      setOpeningHour,
-      setClosingHour
-    );
+    const fetchData = async () => {
+      try {
+        const data = await getValetDataApi(id, dispatch);
+        setParkingSpots(data.spots);
+        setOpeningHour(data.operation_hours.split("-")[0]);
+        setClosingHour(data.operation_hours.split("-")[1]);
+      } catch (error) {
+        console.error("Error fetching valet data:", error);
+        toast.error("Error fetching valet data. Please try again.");
+      }
+    };
+
+    fetchData();
   }, [dispatch, id]);
 
   const handleParkingSpotsUpdate = async () => {
@@ -39,13 +45,10 @@ const AdminSettings = () => {
 
     if (updateSuccess) {
       toast.success("Parking spots updated successfully!");
-      getValetDataApi(
-        id,
-        dispatch,
-        setParkingSpots,
-        setOpeningHour,
-        setClosingHour
-      );
+      const data = await getValetDataApi(id, dispatch);
+      setParkingSpots(data.spots);
+      setOpeningHour(data.operation_hours.split("-")[0]);
+      setClosingHour(data.operation_hours.split("-")[1]);
       document.getElementById("editParkingSpots").close();
     } else {
       toast.error("Error updating parking spots. Please try again.");
@@ -59,13 +62,10 @@ const AdminSettings = () => {
 
     if (updateSuccess) {
       toast.success("Hours of operation updated successfully!");
-      getValetDataApi(
-        id,
-        dispatch,
-        setParkingSpots,
-        setOpeningHour,
-        setClosingHour
-      );
+      const data = await getValetDataApi(id, dispatch);
+      setParkingSpots(data.spots);
+      setOpeningHour(data.operation_hours.split("-")[0]);
+      setClosingHour(data.operation_hours.split("-")[1]);
       document.getElementById("editHoursModal").close();
     } else {
       toast.error("Error updating hours of operation. Please try again.");
