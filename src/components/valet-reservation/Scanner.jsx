@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import { Link } from "react-router-dom";
 
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
@@ -39,6 +40,9 @@ const Scanner = () => {
         ) : (
           <div id="reader"></div>
         )}
+        <div className="my-10">
+        <Link to='/valet' className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">Go Back</Link>
+        </div>
       </div>
     </>
   );
