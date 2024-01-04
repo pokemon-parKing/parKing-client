@@ -78,7 +78,7 @@ const SavedVehicle = () => {
             <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
               Saved Vehicles
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[600px] overflow-y-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[600px] overflow-y-auto p-5">
               {vehicleData.map((vehicle) => (
                 <div
                   key={vehicle.id}
