@@ -56,7 +56,7 @@ const MyParking = () => {
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
       <div className="text-center">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
-          My Parking
+          Reservations
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[600px] overflow-y-auto">
           {reservationData.map((reservation) => (
@@ -65,7 +65,7 @@ const MyParking = () => {
               className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px]"
             >
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Parking Information</h2>
+                <h2 className="card-title">Reservation Information</h2>
                 <p className="text-[#000]">{reservation.garages.name}</p>
                 <p className="text-[#000]">{`${reservation.garages.address}, ${reservation.garages.city}, ${reservation.garages.state}, ${reservation.garages.country}, ${reservation.garages.zip}`}</p>
                 <p className="text-[#000]">{`${reservation.date} ${convertTime(

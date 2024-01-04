@@ -10,26 +10,27 @@ const AccountsPage = () => {
   const userData = useSelector((state) => state.accounts.userData);
 
   const renderAdminTab = () => {
-    if (userData.role === "admin") {
-      return (
-        <li onClick={() => setActiveMenu("adminSettings")}>
-          <a>ADMIN SETTINGS</a>
-        </li>
-      );
-    }
-    return null;
+    return (
+      <>
+        {userData.role === "admin" && (
+          <li onClick={() => setActiveMenu("adminSettings")}>
+            <a>ADMIN SETTINGS</a>
+          </li>
+        )}
+      </>
+    );
   };
 
   const renderContent = () => {
     switch (activeMenu) {
       case "accountSettings":
         return <AccountSetting />;
-      case "savedVehicles":
-        return <SavedVehicle />;
-      case "myParking":
-        return <MyParking />;
       case "adminSettings":
-        return <AdminSettings />;
+        return userData.role === "admin" ? <AdminSettings /> : null;
+      case "savedVehicles":
+        return userData.role === "user" ? <SavedVehicle /> : null;
+      case "myParking":
+        return userData.role === "user" ? <MyParking /> : null;
       default:
         return null;
     }
@@ -38,22 +39,26 @@ const AccountsPage = () => {
   return (
     <>
       <div className="flex items-center justify-center">
-        <nav className="pt-20">
+        <nav className="pt-10">
           <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
             <li onClick={() => setActiveMenu("accountSettings")}>
               <a>ACCOUNT SETTINGS</a>
             </li>
-            <li onClick={() => setActiveMenu("savedVehicles")}>
-              <a>SAVED VEHICLES</a>
-            </li>
-            <li onClick={() => setActiveMenu("myParking")}>
-              <a>MY PARKING</a>
-            </li>
+            {userData.role === "user" && (
+              <>
+                <li onClick={() => setActiveMenu("savedVehicles")}>
+                  <a>SAVED VEHICLES</a>
+                </li>
+                <li onClick={() => setActiveMenu("myParking")}>
+                  <a>RESERVATIONS</a>
+                </li>
+              </>
+            )}
             {renderAdminTab()}
           </ul>
         </nav>
       </div>
-      <div className="flex-grow pb-20">
+      <div className="flex-grow pb-10">
         <div className="max-w-7xl mx-auto">{renderContent()}</div>
       </div>
     </>
