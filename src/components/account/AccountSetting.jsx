@@ -12,30 +12,17 @@ const AccountSetting = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.accounts.userData);
   const { id } = userData;
-  // const [phoneNumber, setPhoneNumber] = useState("");
-
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:3000/user/${id}`);
-  //       dispatch(setUserData(response.data));
-  //       setPhoneNumber(formatPhoneNumber(response.data.phone_number));
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-
-  //   fetchUserData();
-  // }, [dispatch, id]);
 
   const formattedPhoneNumber = useMemo(() => {
     return formatPhoneNumber(userData.phone_number);
-  }, [userData])
+  }, [userData]);
 
-  const handlePhoneNumberChange =
-    (e) => {
-      dispatch(setUserDataPhoneNumber(formatPhoneNumber(e.target.value)));
-    }
+  const handlePhoneNumberChange = (e) => {
+    const input = e.target.value;
+    const formattedInput = formatPhoneNumber(input);
+    e.target.value = formattedInput;
+    dispatch(setUserDataPhoneNumber(formatPhoneNumber(e.target.value)));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +35,7 @@ const AccountSetting = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await axios.put(`http://localhost:3002/user/${id}`, {
+      await axios.put(`http://localhost:3002/user/${id}`, {
         first_name: userData.first_name,
         last_name: userData.last_name,
         email: userData.email,
@@ -68,7 +55,7 @@ const AccountSetting = () => {
           Account Information
         </h1>
         <div className="w-full mt-5 sm:mt-8">
-          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px] overflow-y-auto">
+          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px]">
             <label htmlFor="name" className="font-semibold text-[#000]">
               NAME:
             </label>
