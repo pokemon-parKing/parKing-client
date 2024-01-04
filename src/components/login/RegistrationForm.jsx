@@ -47,10 +47,6 @@ const RegistrationForm = ({ role }) => {
     })
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     //console.log(formData);
