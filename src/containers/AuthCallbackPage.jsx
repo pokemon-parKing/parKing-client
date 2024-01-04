@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,9 +8,10 @@ import { setUserData } from '../utils/slice/accountsSlice.js';
 const AuthCallbackPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const supabase = Supabase();
 
-  const { id, auth_token } = useSelector((state) => state.accounts.userData);
+  const { id  } = useSelector((state) => state.accounts.userData);
 
   useEffect(() => {
     console.log("id: ", id);
@@ -32,7 +33,7 @@ const AuthCallbackPage = () => {
 
   return (
     <div>
-      <h1>Redirecting...</h1>
+      Redirecting...
     </div>
   );
 };
