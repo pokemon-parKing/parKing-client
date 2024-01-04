@@ -32,7 +32,6 @@ const Scanner = () => {
         <div>
           <h3 className="text-2xl font-semibold mb-4">Scan QR Code:</h3>
         </div>
-        <h2>scan result: {scanResult}</h2>
         {scanResult ? (
           <div>
             Success: <a href={scanResult}>{scanResult}</a>
