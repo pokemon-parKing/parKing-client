@@ -35,6 +35,11 @@ const SearchReservation = () => {
         <label className='pr-1.5' htmlFor='search'>Search: </label>
         <input className= 'border border-black rounded-md' name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
       </div>
+      <div className="pb-2.5">
+      <Link to="/valet" className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px]">
+        Back
+      </Link>
+      </div>
       <div className='grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-scroll min-w-[600px] shadow-lg'>
         {
           filteredList.map(reservation => {
@@ -61,9 +66,6 @@ const SearchReservation = () => {
           })
         }
       </div>
-      <Link to="/valet" className="flex justify-center py-5 text-blue-500 hover:underline">
-        Back to Valet Reservation Page
-      </Link>
     </div>
   );
 }
