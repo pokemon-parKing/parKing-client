@@ -5,6 +5,7 @@ import GarageForm from "./GarageForm";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast'
 
 const RegistrationForm = ({ role }) => {
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
@@ -40,6 +41,16 @@ const RegistrationForm = ({ role }) => {
   }, [first_name, last_name, email]);
 
   const handleChange = (e) => {
+
+    if (e.target.name === 'garageOpeningHour'
+      && formData.garageClosingHour !== ''
+      && e.target.value > formData.garageClosingHour) {
+      return toast.error('Thats not a valid opening hour!')
+    }
+
+    if (e.target.name === 'garageClosingHour' && formData.garageOpeningHour === '') {
+      return toast.error('Please select a opening hour first!')
+    }
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
