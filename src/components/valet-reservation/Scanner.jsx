@@ -16,7 +16,7 @@ const Scanner = () => {
       scanner.clear();
       setScanResult(result);
       console.log("Decoded QR code data: ", result);
-      window.location.href = `http://127.0.0.1:5173/valetReservation/reservationDetails/${result}`;
+      window.location.href = `http://localhost:5173/valetReservation/reservationDetails/${result}`;
     }
     function onScanError(error) {
       console.warn(error);
@@ -25,6 +25,7 @@ const Scanner = () => {
       scanner.clear();
     }
   }, []);
+
   return (
     <>
       <div>

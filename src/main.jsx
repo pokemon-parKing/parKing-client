@@ -5,15 +5,17 @@ import { Provider } from "react-redux";
 import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import ValetReservation from "./containers/ValetReservation";
-import AccountsPage from "./containers/AccountsPage.jsx";
-import LogInPage from "./containers/LogInPage.jsx";
-import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
-import ReservationDetails from "./components/valet-reservation/ReservationDetails.jsx";
-import Search from "./components/user-reservation/search/Search.jsx";
-import Reservation from "./components/user-reservation/reservation/Reservation.jsx";
-import Confirmation from "./components/user-reservation/confirmation/Confirmation.jsx";
-import Scanner from "./components/valet-reservation/Scanner.jsx";
-import AccountCreation from "./components/login/AccountCreation.jsx";
+import ValetResPage from "./containers/ValetResPage";
+import AccountsPage from "./containers/AccountsPage";
+import LogInPage from "./containers/LogInPage";
+import AuthCallbackPage from "./containers/AuthCallbackPage";
+import Reservation from "./components/user-reservation/reservation/Reservation";
+import ReservationDetails from "./components/valet-reservation/ReservationDetails";
+import SearchReservation from "./components/valet-reservation/SearchReservation";
+import Confirmation from "./components/user-reservation/confirmation/Confirmation";
+import Scanner from "./components/valet-reservation/Scanner";
+import AccountCreation from "./components/login/AccountCreation";
+import LandingPage from "./components/landingpage/LandingPage";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -23,37 +25,47 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/reservation",
+        path: '/',
+        element: <LandingPage />,
+      },
+      {
+        path: '/reservation',
         element: <UserReservation />,
         children: [
           {
             path: '/reservation',
-            element: <Search />
-          },
-          {
-            path: '/reservation/map',
-            element: <Reservation />
+            element: <Reservation />,
           },
           {
             path: '/reservation/confirmation',
-            element: <Confirmation />
+            element: <Confirmation />,
           }
         ]
       },
       {
-        path: "/valetReservation",
-        element: <ValetReservation />,
+        path: "/valet",
+        element: <ValetResPage />,
+        children: [
+          {
+            path: '/valet',
+            element: <ValetReservation />
+          },
+          {
+            path: '/valet/reservation/:reservation_id',
+            element: <ReservationDetails />,
+          },
+          {
+            path: "/valet/scanner",
+            element: <Scanner />,
+          },
+          {
+            path: '/valet/search',
+            element: <SearchReservation />
+          }
+        ]
       },
       {
-        path: "/valetReservation/reservationDetails/:reservation_id",
-        element: <ReservationDetails />,
-      },
-      {
-        path: "/scanner",
-        element: <Scanner />
-      },
-      {
-        path: "/user/:id",
+        path: "/user",
         element: <AccountsPage />,
       },
       {
@@ -64,7 +76,7 @@ const router = createBrowserRouter([
         path: "/authcallback",
         element: <AuthCallbackPage />,
       },
-    ]
+    ],
   },
   {
     path: "/accountcreation",

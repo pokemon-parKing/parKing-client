@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -13,11 +12,12 @@ const AdminSettings = () => {
   const [parkingSpots, setParkingSpots] = useState(null);
   const [openingHour, setOpeningHour] = useState(null);
   const [closingHour, setClosingHour] = useState(null);
-  const { id } = useParams();
+  const userData = useSelector((state) => state.accounts.userData);
+  const { id } = userData;
 
   const getValetData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/valet/${id}`);
+      const response = await axios.get(`http://localhost:3002/valet/${id}`);
       dispatch(setValetData(response.data[0]));
       setParkingSpots(response.data[0].spots);
       setOpeningHour(response.data[0].operation_hours.split("-")[0]);
@@ -38,7 +38,7 @@ const AdminSettings = () => {
       return;
     }
     try {
-      await axios.put(`http://localhost:3000/valet/${id}/spots`, {
+      await axios.put(`http://localhost:3002/valet/${id}/spots`, {
         spots: parsedSpots,
       });
       toast.success("Parking spots updated successfully!");
@@ -53,7 +53,7 @@ const AdminSettings = () => {
 
   const handleHoursUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/valet/${id}/operation-hours`, {
+      await axios.put(`http://localhost:3002/valet/${id}/operation-hours`, {
         operation_hours: `${openingHour}-${closingHour}`,
       });
       toast.success("Hours of operation updated successfully!");
@@ -75,7 +75,7 @@ const AdminSettings = () => {
         <div className="gap-6 h-[600px] overflow-y-auto">
           <div
             key={valetData?.id}
-            className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-200 max-h-200"
+            className="card bg-base-100 shadow-xl mb-3 mr-3"
           >
             <div className="card-body items-center text-center">
               <h2 className="card-title">Garage Information</h2>

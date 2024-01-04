@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { convertTime } from "../../lib/timeSlotUtil.js";
 import toast from "react-hot-toast";
@@ -14,14 +14,15 @@ const MyParking = () => {
   const reservationData = useSelector(
     (state) => state.accounts.reservationData
   );
-  const { id } = useParams();
+  const userData = useSelector((state) => state.accounts.userData);
+  const { id } = userData;
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchReservationData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/user/${id}/current-reservations`
+          `http://localhost:3002/user/${id}/current-reservations`
         );
 
         dispatch(setReservationData(response.data));
@@ -61,7 +62,7 @@ const MyParking = () => {
           {reservationData.map((reservation) => (
             <div
               key={reservation.id}
-              className="card bg-base-100 shadow-xl mb-3 mr-3 w-200 h-200"
+              className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px]"
             >
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Parking Information</h2>
@@ -95,7 +96,7 @@ const MyParking = () => {
             </div>
           ))}
           <div
-            className="card bg-base-100 shadow-xl mb-3 mr-3 w-200 h-200 hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
+            className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
             onClick={handleAddNew}
           >
             <div className="card-body flex flex-col justify-center items-center text-center h-full">

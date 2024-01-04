@@ -1,19 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import Supabase from '../hooks/useSupabase';
-import { setUserData } from '../utils/slice/accountsSlice';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import Supabase from "../hooks/useSupabase";
+import { setUserData } from '../utils/slice/accountsSlice.js';
 
 const AuthCallbackPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const supabase = Supabase();
   const port = import.meta.env.VITE_ACCOUNT_SERVER_PORT
-  const { id, auth_token } = useSelector(state => state.accounts.userData);
+  const { id } = useSelector(state => state.accounts.userData);
 
   useEffect(() => {
-    //console.log('id: ', id);
+    console.log("id: ", id);
     if (id) {
       axios.get(`http://localhost:${port}/login/${id}`)
         .then(({ data }) => {
@@ -29,16 +30,16 @@ const AuthCallbackPage = () => {
             }));
             navigate('/');
           } else {
-            navigate('/accountcreation');
+            navigate("/accountcreation");
           }
         })
         .catch((err) => console.error(err));
     }
-  }, [id, navigate]);
+  }, [id, navigate, dispatch]);
 
   return (
     <div>
-      <h1>Redirecting...</h1>
+      Redirecting...
     </div>
   );
 };
