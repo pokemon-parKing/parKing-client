@@ -6,7 +6,7 @@ const AccountAndCarDetails = () => {
   return (
      <div className="mt-8">
         <div className="grid grid-cols-2 gap-4">
-          <div>
+          <div className="p-8 bg-gray-100 shadow-md rounded-md">
             <h3 className="text-2xl font-semibold mb-4">Account Information</h3>
             <p>
               <span className="font-semibold">Email:</span>{' '}
@@ -22,7 +22,7 @@ const AccountAndCarDetails = () => {
             </p>
           </div>
 
-          <div>
+          <div className="p-8 bg-gray-100 shadow-md rounded-md">
             <h3 className="text-2xl font-semibold mb-4">Car Information</h3>
             <p>
               <span className="font-semibold">Color:</span> {reservationDetails.cars.color}
