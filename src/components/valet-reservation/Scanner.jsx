@@ -25,6 +25,7 @@ const Scanner = () => {
       scanner.clear();
     }
   }, []);
+
   return (
     <>
       <div>

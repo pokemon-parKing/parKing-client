@@ -8,6 +8,7 @@ import { setUserData } from '../utils/slice/accountsSlice.js';
 const AuthCallbackPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const supabase = Supabase();
 
   const { id  } = useSelector((state) => state.accounts.userData);

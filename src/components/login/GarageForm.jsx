@@ -1,11 +1,12 @@
 import { states } from '../../lib/states';
+import PropTypes from 'prop-types';
 
 const GarageForm = ({ formData, handleChange }) => {
 
   return (
     <div>
       <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
-          Let's get to know your business
+          {"Let's get to know your business"}
       </h1>
       <label htmlFor="garageAddress" className="font-semibold text-[#000]">
         ADDRESS:
@@ -140,5 +141,10 @@ const GarageForm = ({ formData, handleChange }) => {
     </div>
   );
 };
+
+GarageForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+}
 
 export default GarageForm;
