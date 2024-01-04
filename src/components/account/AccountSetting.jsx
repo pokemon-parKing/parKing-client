@@ -12,30 +12,17 @@ const AccountSetting = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.accounts.userData);
   const { id } = userData;
-  // const [phoneNumber, setPhoneNumber] = useState("");
-
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:3000/user/${id}`);
-  //       dispatch(setUserData(response.data));
-  //       setPhoneNumber(formatPhoneNumber(response.data.phone_number));
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-
-  //   fetchUserData();
-  // }, [dispatch, id]);
 
   const formattedPhoneNumber = useMemo(() => {
     return formatPhoneNumber(userData.phone_number);
-  }, [userData])
+  }, [userData]);
 
-  const handlePhoneNumberChange =
-    (e) => {
-      dispatch(setUserDataPhoneNumber(formatPhoneNumber(e.target.value)));
-    }
+  const handlePhoneNumberChange = (e) => {
+    const input = e.target.value;
+    const formattedInput = formatPhoneNumber(input);
+    e.target.value = formattedInput;
+    dispatch(setUserDataPhoneNumber(formatPhoneNumber(e.target.value)));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
