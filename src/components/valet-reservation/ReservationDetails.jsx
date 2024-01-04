@@ -36,7 +36,7 @@ const ReservationDetails = () => {
       <DetailsAndKeyBox />
       <AccountAndCarDetails />
       <CheckinCheckoutBtns fetchData={fetchData} />
-      <Link to="/valetReservation" className="flex justify-center py-5 text-blue-500 hover:underline">
+      <Link to="/valet" className="flex justify-center py-5 text-blue-500 hover:underline">
         Back to Valet Reservation Page
       </Link>
     </div>
