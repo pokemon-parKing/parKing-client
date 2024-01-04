@@ -13,13 +13,13 @@ const ReservationList = () => {
       if (res.time === hour) {
         return res;
       }
-    })
+    });
   }, [time, showNextHour, reservations]);
 
   useEffect(() => {
-    console.log('checking date in list: ', date);
-    console.log('reservations: ', reservations)
-  }, [date, reservations])
+    // console.log('checking date in list: ', date);
+    // console.log('reservations: ', reservations)
+  }, [date, reservations]);
 
   return (
     <div>
@@ -31,14 +31,19 @@ const ReservationList = () => {
         {filterList.map((reservation) => {
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
-            <Link to={`/valetReservation/reservationDetails/${id}`}key={id} className="p-4  bg-beige-s rounded-xl  space-x-4">
-              {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
+            <Link
+              to={`/valetReservation/reservationDetails/${id}`}
+              key={id}
+              className="p-4  bg-beige-s rounded-xl  space-x-4"
+            >
+              {time}, {parking_spot_id}, {status}, {cars.color} {cars.make}{" "}
+              {cars.model}
             </Link>
           );
         })}
       </ul>
     </div>
   );
-}
+};
 
 export default ReservationList;

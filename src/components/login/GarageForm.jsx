@@ -4,36 +4,86 @@ const GarageForm = ({ formData, handleChange }) => {
 
   return (
     <div>
-      <label>
-        Address:
-        <input type="text" name="garageAddress" value={formData.garageAddress} onChange={handleChange} placeholder="1337 Main St" required />
+      <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
+          Let's get to know your business
+      </h1>
+      <label htmlFor="garageAddress" className="font-semibold text-[#000]">
+        ADDRESS:
       </label>
-      <label>
-        City:
-        <input type="text" name="garageCity" value={formData.garageCity} onChange={handleChange} placeholder="San Junipero" required />
+        <input
+          type="text"
+          id="garageAddress"
+          name="garageAddress"
+          value={formData.garageAddress}
+          onChange={handleChange}
+          placeholder="1337 Main St"
+          className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+          required
+        />
+      <label htmlFor="garageCity" className="font-semibold text-[#000]">
+        CITY:
       </label>
-      <label>
-        State:
-        <select name="garageState" value={formData.garageState} onChange={handleChange} required>
-          {states.map((state) => (
-            <option key={state} value={state}>{state}</option>
-          ))}
-        </select>
+        <input
+          type="text"
+          id="garageCity"
+          name="garageCity"
+          value={formData.garageCity}
+          onChange={handleChange}
+          placeholder="San Junipero"
+          className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+          required
+        />
+      <label htmlFor="garageState" className="font-semibold text-[#000]">
+        STATE:
       </label>
-      <label>
-        Zip Code:
-          <input type="text" name="garageZipCode" value={formData.garageZipCode} onChange={handleChange} placeholder="54321" required />
+      <br />
+      <select
+        name="garageState"
+        value={formData.garageState}
+        onChange={handleChange}
+        className="select select-bordered select-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
+        required
+      >
+        {states.map((state) => (
+          <option key={state} value={state}>{state}</option>
+        ))}
+      </select>
+      <br />
+      <label htmlFor="garageZipCode" className="font-semibold text-[#000]">
+        ZIP CODE:
       </label>
-      <label>
-        Garage Name:
-        <input type="text" name="garageName" value={formData.garageName} onChange={handleChange} placeholder="King's Parking" required />
+          <input
+            type="text"
+            id="garageZipCode"
+            name="garageZipCode"
+            value={formData.garageZipCode}
+            onChange={handleChange}
+            placeholder="54321"
+            className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+            required
+          />
+      <label htmlFor="garageName" className="font-semibold text-[#000]">
+        GARAGE NAME:
       </label>
-      <label>
-        Opening Hour:
+        <input
+          type="text"
+          id="garageName"
+          name="garageName"
+          value={formData.garageName}
+          onChange={handleChange}
+          placeholder="King's Parking"
+          className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+          required
+        />
+      <label htmlFor="garageOpeningHour" className="font-semibold text-[#000]">
+        OPENING HOUR:
+      </label>
+      <br />
         <select
           name="garageOpeningHour"
           value={formData.garageOpeningHour}
           onChange={handleChange}
+          className="select select-bordered select-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
           required
         >
           {Array.from({ length: 24 }, (_, i) => i).map((hour) => {
@@ -46,13 +96,16 @@ const GarageForm = ({ formData, handleChange }) => {
             );
           })}
         </select>
+        <br />
+      <label htmlFor="garageClosingHour" className="font-semibold text-[#000]">
+        CLOSING HOUR:
       </label>
-      <label>
-        Closing Hour:
+      <br />
         <select
           name="garageClosingHour"
           value={formData.garageClosingHour}
           onChange={handleChange}
+          className="select select-bordered select-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
           required
         >
           {Array.from({ length: 24 }, (_, i) => i + 1).map((hour) => {
@@ -69,11 +122,21 @@ const GarageForm = ({ formData, handleChange }) => {
             );
           })}
         </select>
+        <br />
+      <label htmlFor="garageParkingSpots" className="font-semibold text-[#000]">
+        PARKING SPOTS:
       </label>
-      <label>
-        Parking Spots:
-        <input type="number" name="garageParkingSpots" value={formData.parkingSpots} onChange={handleChange} placeholder="145" min={1} required />
-      </label>
+        <input
+          type="number"
+          id="garageParkingSpots"
+          name="garageParkingSpots"
+          value={formData.parkingSpots}
+          onChange={handleChange}
+          placeholder="145"
+          min={1}
+          className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
+          required
+        />
     </div>
   );
 };

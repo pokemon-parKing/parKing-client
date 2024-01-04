@@ -40,8 +40,8 @@ const postReservation = async (body) => {
     await axios.post(`http://localhost:3001/reservations`, body);
     console.log("Reservation complete");
   } catch (error) {
-    console.log(error);
-    return null;
+    console.log(error.response.status);
+    return error.response.status;
   }
 };
 export {
