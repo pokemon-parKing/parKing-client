@@ -73,14 +73,14 @@ const router = createBrowserRouter([
         element: <LogInPage />,
       },
       {
-        path: "/authcallback",
+        path: "login/authcallback",
         element: <AuthCallbackPage />,
       },
+      {
+        path: "/accountcreation",
+        element: <AccountCreation />,
+      },
     ],
-  },
-  {
-    path: "/accountcreation",
-    element: <AccountCreation />,
   },
 ]);
 

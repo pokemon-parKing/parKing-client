@@ -1,3 +1,4 @@
+import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 const AccountForm = ({ formData, handleChange }) => {
   return (
     <div>
@@ -47,10 +48,10 @@ const AccountForm = ({ formData, handleChange }) => {
         type="tel"
         id="phoneNumber"
         name="phoneNumber"
-        value={formData.phoneNumber}
+        value={formatPhoneNumber(formData.phoneNumber)}
         onChange={handleChange}
         placeholder="(123) 456-7890"
-        pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}"
+        pattern="[0-9]*"
         className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
         required
       />
