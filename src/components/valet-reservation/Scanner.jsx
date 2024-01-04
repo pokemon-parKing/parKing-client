@@ -41,7 +41,7 @@ const Scanner = () => {
           <div id="reader"></div>
         )}
         <div className="my-10">
-        <Link to='/valet' className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">Go Back</Link>
+        <Link to='/valet' className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">Back</Link>
         </div>
       </div>
     </>

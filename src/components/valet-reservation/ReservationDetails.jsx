@@ -34,16 +34,15 @@ const ReservationDetails = () => {
   return (
     <div className="container mx-auto mt-8 p-8 bg-white shadow-md rounded-md">
       <h3 className="flex justify-center text-2xl font-semibold mb-4">Reservation #{reservationDetails.id}</h3>
-
       <DetailsAndKeyBox />
       <AccountAndCarDetails />
-
       <CheckinCheckoutBtns fetchData={fetchData} />
-      <Link to="/valet" className="flex justify-center py-5 text-blue-500 hover:underline">
-        Back
-      </Link>
+      <div className="flex justify-center my-10">
+        <Link to='/valet' className="btn btn-active py-5 bg-black border-black text-white btn-primary btn-block max-w-[200px]">Back</Link>
+      </div>
     </div>
   );
 }
 
 export default ReservationDetails;
+
