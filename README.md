@@ -77,7 +77,8 @@ npm install npm@latest -g
 VITE_GOOGLE_API_KEY=(google maps javascript api key)
 VITE_MAP_ID=(google map id)
 VITE_SUPABASE_KEY="null"
-VITE_HOST="http://localhost:XXX"
+VITE_RESERVATION_HOST="http://localhost:XXXX"
+VITE_LOGIN_HOST="http://localhost:YYYY"
 ```
 
 ### Installation
