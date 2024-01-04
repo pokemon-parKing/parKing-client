@@ -6,15 +6,16 @@ import App from "./App";
 import UserReservation from "./containers/UserReservation";
 import ValetReservation from "./containers/ValetReservation";
 import ValetResPage from "./containers/ValetResPage";
-import AccountsPage from "./containers/AccountsPage.jsx";
-import LogInPage from "./containers/LogInPage.jsx";
-import AuthCallbackPage from "./containers/AuthCallbackPage.jsx";
-import ReservationDetails from "./components/valet-reservation/ReservationDetails.jsx";
-import Reservation from "./components/user-reservation/reservation/Reservation.jsx";
-import Confirmation from "./components/user-reservation/confirmation/Confirmation.jsx";
-import Scanner from "./components/valet-reservation/Scanner.jsx";
-import AccountCreation from "./components/login/AccountCreation.jsx";
-import LandingPage from "./components/landingpage/LandingPage.jsx";
+import AccountsPage from "./containers/AccountsPage";
+import LogInPage from "./containers/LogInPage";
+import AuthCallbackPage from "./containers/AuthCallbackPage";
+import Reservation from "./components/user-reservation/reservation/Reservation";
+import ReservationDetails from "./components/valet-reservation/ReservationDetails";
+import SearchReservation from "./components/valet-reservation/SearchReservation";
+import Confirmation from "./components/user-reservation/confirmation/Confirmation";
+import Scanner from "./components/valet-reservation/Scanner";
+import AccountCreation from "./components/login/AccountCreation";
+import LandingPage from "./components/landingpage/LandingPage";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             path: "/valet/scanner",
             element: <Scanner />,
           },
+          {
+            path: '/valet/search',
+            element: <SearchReservation />
+          }
         ]
       },
       {
