@@ -40,11 +40,22 @@ const SearchReservation = () => {
           filteredList.map(reservation => {
             const { time, status, cars, parking_spot_id, id } = reservation;
             return (
-              <Link to={`/valet/reservation/${id}`} key={id} className="p-4 bg-gray-100 shadow-md rounded-md">
-                <p>Time: {time}</p>
-                <p>Spot Number: {parking_spot_id}</p>
-                <p>Status: {status}</p>
-                <p>Car: {cars.color} {cars.make} {cars.model}</p>
+              <Link to={`/valet/reservation/${id}`} key={id} className="p-4 bg-gray-100 shadow-md rounded-md hover:bg-gray-300">
+                <p>
+                  <span className='font-semibold'>Time: </span>
+                  {time}
+                </p>
+                <p>
+                   <span className='font-semibold'>Spot #: </span>
+                  {parking_spot_id}</p>
+                <p>
+                  <span className='font-semibold'>Status: </span>
+                  {status}
+                </p>
+                <p>
+                  <span className='font-semibold'>Car: </span>
+                  {cars.color} {cars.make} {cars.model}
+                </p>
               </Link>
             );
           })
