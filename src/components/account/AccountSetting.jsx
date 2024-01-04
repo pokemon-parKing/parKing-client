@@ -4,9 +4,9 @@ import {
   setUserData,
   setUserDataPhoneNumber,
 } from "../../utils/slice/accountsSlice.js";
-import axios from "axios";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import toast from "react-hot-toast";
+import { updateUserData } from "../../utils/accountUtils.js";
 
 const AccountSetting = () => {
   const dispatch = useDispatch();
@@ -34,17 +34,10 @@ const AccountSetting = () => {
   };
 
   const handleUpdate = async () => {
-    try {
-      await axios.put(`http://localhost:3003/user/${id}`, {
-
-        first_name: userData.first_name,
-        last_name: userData.last_name,
-        email: userData.email,
-        phone_number: userData.phone_number,
-      });
+    const success = await updateUserData(id, userData);
+    if (success) {
       toast.success("Account data updated successfully");
-    } catch (error) {
-      console.error("Error updating user data:", error);
+    } else {
       toast.error("Error updating account data");
     }
   };

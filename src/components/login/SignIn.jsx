@@ -12,7 +12,7 @@ const SignIn = () => {
             access_type: 'offline',
             prompt: 'consent',
           },
-          redirectTo: 'http://localhost:5173/authcallback',
+          redirectTo: 'http://localhost:5173/login/authcallback',
         },
       });
       if (error) throw error;
@@ -24,8 +24,20 @@ const SignIn = () => {
 
   return (
     <div>
-      <h4>This is the Sign In component</h4>
-      <button onClick={handleLogin} >Sign In</button>
+      <div className="xl:max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5 mx-auto">
+        <div className="mx-auto w-full lg:w-1/2 md:p-10 py-5 md:py-0">
+          <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
+            Join using your Google account
+          </h1>
+          <br />
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
+          <button
+            onClick={handleLogin}
+            className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
+          >Sign in with Google</button>
+        </div>
+        </div>
+      </div>
     </div>
   );
 };

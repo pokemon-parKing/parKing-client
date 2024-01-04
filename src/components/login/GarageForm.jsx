@@ -112,6 +112,7 @@ const GarageForm = ({ formData, handleChange }) => {
           {Array.from({ length: 24 }, (_, i) => i + 1).map((hour) => {
             const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
             const displayPeriod = hour >= 12 ? 'p.m.' : 'a.m.';
+
             return (
               <option
                 key={hour}
