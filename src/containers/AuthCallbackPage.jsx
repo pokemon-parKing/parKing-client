@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +10,7 @@ const AuthCallbackPage = () => {
   const navigate = useNavigate();
   const supabase = Supabase();
 
-  const { id, auth_token } = useSelector((state) => state.accounts.userData);
+  const { id  } = useSelector((state) => state.accounts.userData);
 
   useEffect(() => {
     console.log("id: ", id);
@@ -32,7 +32,7 @@ const AuthCallbackPage = () => {
 
   return (
     <div>
-      <h1>Redirecting...</h1>
+      Redirecting...
     </div>
   );
 };
