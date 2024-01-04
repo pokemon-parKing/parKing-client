@@ -12,7 +12,7 @@ const ReservationList = () => {
       if (res.time === hour) {
         return res;
       }
-    })
+    });
   }, [time, showNextHour, reservations]);
 
   return (
@@ -34,6 +34,6 @@ const ReservationList = () => {
       </ul>
     </div>
   );
-}
+};
 
 export default ReservationList;

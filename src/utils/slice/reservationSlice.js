@@ -40,7 +40,8 @@ export const addReservation = createAsyncThunk(
   async (_, { getState }) => {
     const state = getState();
     const reservationDetails = state.reservation.reservation;
-    await postReservation(reservationDetails);
+    const response = await postReservation(reservationDetails);
+    return response;
   }
 );
 
@@ -48,7 +49,7 @@ const initialState = {
   /* Hardcoding user_id and car_id */
   reservation: {
     user_id: "0db22c80-80d3-46ff-a684-abddd377bd05",
-    car_id: 1,
+    car_id: null,
     time: null,
     date: null,
     garage_id: null,
@@ -79,28 +80,26 @@ export const reservationSlice = createSlice({
     setSelectedGarage: (state, action) => {
       state.selectedGarage = action.payload;
     },
+    setCarId: (state, action) => {
+      state.reservation.car_id = action.payload;
+    },
     resetState: () => initialState,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCoordinates.fulfilled, (state, action) => {
       state.mapCenter = action.payload;
     });
-    builder.addCase(fetchCoordinates.rejected, (state, action) => {
-      /* WILL FIGURE OUT LATER */
-    });
 
     builder.addCase(fetchClosestGarages.fulfilled, (state, action) => {
       state.closestGarages = action.payload;
-    });
-    builder.addCase(fetchClosestGarages.rejected, (state, action) => {
-      /* WILL FIGURE OUT LATER */
     });
 
     builder.addCase(fetchReservations.fulfilled, (state, action) => {
       state.reservationsList = action.payload;
     });
-    builder.addCase(fetchReservations.rejected, (state, action) => {
-      /* WILL FIGURE OUT LATER */
+
+    builder.addCase(addReservation.fulfilled, (state, action) => {
+      state.reservationsList = action.payload;
     });
   },
 });
@@ -111,6 +110,7 @@ export const {
   setGarageId,
   setPage,
   setSelectedGarage,
+  setCarId,
   resetState,
 } = reservationSlice.actions;
 export default reservationSlice.reducer;

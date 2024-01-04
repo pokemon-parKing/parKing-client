@@ -5,7 +5,9 @@ import {
 } from "../../../utils/slice/reservationSlice";
 import AccountDetails from "./AccountDetails";
 import ReservationDetails from "./ReservationDetails";
-import { useNavigate } from 'react-router-dom';
+import toast from "react-hot-toast";
+
+import { useNavigate } from "react-router-dom";
 
 const Confirmation = () => {
   const { reservation } = useSelector((state) => state.reservation);
@@ -19,10 +21,17 @@ const Confirmation = () => {
         <ReservationDetails />
         <button
           className="btn"
-          onClick={() => {
-            dispatch(addReservation());
-            dispatch(resetState());
-            navigate('/reservation');
+          onClick={async () => {
+            const response = await dispatch(addReservation());
+            if (response.payload === 409) {
+              toast.error(
+                "Reservation already exists for selected car and time"
+              );
+            } else {
+              toast.success("Reservation added successfully");
+              dispatch(resetState());
+            }
+            navigate("/reservation");
           }}
         >
           Confirm
