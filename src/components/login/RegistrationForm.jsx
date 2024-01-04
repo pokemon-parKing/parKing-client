@@ -75,27 +75,32 @@ const RegistrationForm = ({ role }) => {
     } else if (role === 'valet') {
       //call the valet API
       //console.log(`/login/${userId}/valet`, 'send properly formatted form data and valet form data to the accounts server');
-      createAccount(userId, {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email: formData.email,
-        phone_number: formData.phoneNumber,
-        role: 'admin',
-        name: formData.garageName,
-        address: formData.garageAddress,
-        city: formData.garageCity,
-        state: formData.garageState,
-        zip: formData.garageZipCode,
-        operation_hours: `${formData.garageOpeningHour}-${formData.garageClosingHour}`,
-        spots: formData.garageParkingSpots / 1,
-      }, role)
-        .then(() => {
-          navigate('/');
-        }
-        )
-        .catch((err) => {
-          alert(`Please try again! ${err}`);
-        });
+      if (formData.garageOpeningHour > formData.garageClosingHour) {
+        alert('Please select a valid opening and closing time!');
+        return;
+      } else {
+        createAccount(userId, {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone_number: formData.phoneNumber,
+          role: 'admin',
+          name: formData.garageName,
+          address: formData.garageAddress,
+          city: formData.garageCity,
+          state: formData.garageState,
+          zip: formData.garageZipCode,
+          operation_hours: `${formData.garageOpeningHour}-${formData.garageClosingHour}`,
+          spots: +formData.garageParkingSpots,
+        }, role)
+          .then(() => {
+            navigate('/');
+          }
+          )
+          .catch((err) => {
+            alert(`Please try again! ${err}`);
+          });
+      }
     }
   };
 
