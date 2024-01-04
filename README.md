@@ -180,7 +180,7 @@ simply spreading the word!
   <tr>
     <td>
       <h3 align='center'>Christian Lee</h3>
-      <div>
+      <div align='center'>
       <a href='https://www.linkedin.com/in/christian-lee37'>
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -192,7 +192,7 @@ simply spreading the word!
     </td>
     <td>
       <h3 align='center'>Kyle Sampson</h3>
-      <div>
+       <div align='center'>
       <a href="https://www.linkedin.com/in/sampsonkyle/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -204,7 +204,7 @@ simply spreading the word!
     </td>
     <td>
       <h3 align='center'>Steven Kim</h3>
-      <div>
+       <div align='center'>
       <a href="https://www.linkedin.com/in/stevkim/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -216,7 +216,7 @@ simply spreading the word!
     </td>
     <td>
       <h3 align='center'>Jose Felix</h3>
-      <div>
+      <div align='center'>
       <a href="https://www.linkedin.com/in/jose-m-felix/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -230,7 +230,7 @@ simply spreading the word!
   <tr>
     <td>
       <h3 align='center'>Kyle Mak</h3>
-      <div>
+      <div align='center'>
       <a href="https://www.linkedin.com/in/kylejmak/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -242,7 +242,7 @@ simply spreading the word!
     </td>
     <td>
       <h3 align='center'>Kenneth Arguelles</h3>
-      <div>
+      <div align='center'>
       <a href="https://www.linkedin.com/in/kennetharguelles/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -254,7 +254,7 @@ simply spreading the word!
     </td>
     <td>
       <h3 align='center'>Justin Cordova</h3>
-      <div>
+      <div align='center'>
       <a href="https://www.linkedin.com/in/justinlcordova/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
@@ -266,7 +266,7 @@ simply spreading the word!
     </td>
     <td>
       <h3 align='center'>Bruce Wong</h3>
-      <div>
+      <div align='center'>
       <a href="https://www.linkedin.com/in/bruce-wong-24000/">
         <img src='https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white' />
       </a>
