@@ -32,7 +32,7 @@ const CheckinCheckoutBtns = ({ fetchData }) => {
       {reservationDetails.status === 'reserved'
       ?
         <button
-          className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white mr-4"
+          className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
           onClick={(event) => handleCheckIn(event)}
         >
           Check In
@@ -41,7 +41,7 @@ const CheckinCheckoutBtns = ({ fetchData }) => {
       reservationDetails.status === 'checked-in'
       ?
         <button
-          className="btn btn-lg btn-secondary bg-burgundy-p border-burgundy-s text-white"
+          className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
           onClick={(event) => handleCheckOut(event)}
         >
           Check Out

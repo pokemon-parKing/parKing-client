@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import { Link } from "react-router-dom";
 
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
@@ -28,9 +29,10 @@ const Scanner = () => {
 
   return (
     <>
-      <div>
-        <h1>QR Code Scanner</h1>
-        <h2>scan result: {scanResult}</h2>
+      <div className="mt-8 text-center p-8 bg-gray-100 shadow-md rounded-md">
+        <div>
+          <h3 className="text-2xl font-semibold mb-4">Scan QR Code:</h3>
+        </div>
         {scanResult ? (
           <div>
             Success: <a href={scanResult}>{scanResult}</a>
@@ -38,6 +40,9 @@ const Scanner = () => {
         ) : (
           <div id="reader"></div>
         )}
+        <div className="my-10">
+        <Link to='/valet' className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">Back</Link>
+        </div>
       </div>
     </>
   );
