@@ -33,15 +33,15 @@ const SearchReservation = () => {
       </div>
       <div className='flex flex-row'>
         <label htmlFor='search'>Search: </label>
-        <input name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
+        <input className= 'border border-black rounded-md' name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
       </div>
-      <div className='flex flex-col gap-2 max-h-[60vh] overflow-y-scroll min-w-[600px]'>
+      <div className='flex flex-col gap-2 max-h-[60vh] overflow-y-scroll min-w-[600px] shadow-lg'>
         {
           filteredList.map(reservation => {
             const { time, status, cars, parking_spot_id, id } = reservation;
             return (
-              <Link to={`/valet/reservation/${id}`} key={id} className="p-4  bg-beige-s rounded-xl">
-                {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
+              <Link to={`/valet/reservation/${id}`} key={id} className="p-4 bg-gray-100 shadow-md rounded-md">
+                Time: {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
               </Link>
             );
           })

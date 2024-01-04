@@ -25,7 +25,7 @@ const ReservationList = () => {
           const { time, status, cars, parking_spot_id, id } = reservation;
           return (
             <Link to={`/valet/reservation/${id}`} key={id} className="p-4  bg-beige-s rounded-xl">
-              {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
+              Time:{time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
             </Link>
           );
         })}
