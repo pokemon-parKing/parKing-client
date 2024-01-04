@@ -82,7 +82,7 @@ const SavedVehicle = () => {
               {vehicleData.map((vehicle) => (
                 <div
                   key={vehicle.id}
-                  className="card bg-base-100 shadow-xl mb-3 max-w-[350px] sm:max-w-[400px] h-[200px] sm:h-[250px] justify-self-center"
+                  className="card bg-base-100 shadow-xl mb-3 w-[250px] sm:w-[270px] h-[250px] sm:h-[250px] justify-self-center"
                 >
                   <div className="card-body items-center text-center">
                     <h2 className="card-title">
@@ -136,7 +136,7 @@ const SavedVehicle = () => {
                 </div>
               ))}
               <div
-                className="card bg-base-100 shadow-xl mb-3 max-w-[350px] sm:max-w-[400px] h-[200px] sm:h-[250px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
+                className="card bg-base-100 shadow-xl mb-3 w-[250px] sm:w-[270px] h-[250px] sm:h-[250px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
                 onClick={handleShowAddForm}
               >
                 <div className="card-body flex flex-col justify-center items-center text-center h-full">
