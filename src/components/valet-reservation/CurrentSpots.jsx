@@ -5,19 +5,18 @@ import { useSelector } from "react-redux";
 
     return (
       <>
-        <div className="availability-overview">
-          <div className="availability-row flex justify-around space-x-4 w-full">
-            <div className="available-spots">
-              <h3>Available Spots: {spots?.available}</h3>
+          <div className="flex justify-center text-3xl font-semibold mb-4 pt-8">Spot Information</div>
+          <div className="availability-row flex justify-around space-x-5 pb-4">
+            <div className="p-2 bg-gray-100 shadow-md rounded-md">
+              <h3 >Available: {spots?.available}</h3>
             </div>
-            <div className="current-spots">
-              <h3>Reserved Spots: {spots?.reserved}</h3>
+            <div className="p-2 bg-gray-100 shadow-md rounded-md">
+              <h3>Reserved: {spots?.reserved}</h3>
             </div>
-            <div className="occupied-spots">
-              <h3>Occupied Spots: {spots?.occupied}</h3>
+            <div className="p-2 bg-gray-100 shadow-md rounded-md">
+              <h3>Occupied: {spots?.occupied}</h3>
             </div>
           </div>
-        </div>
       </>
     );
   }
