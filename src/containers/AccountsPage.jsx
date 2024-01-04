@@ -17,7 +17,7 @@ const AccountsPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/user/${id}`);
+        const response = await axios.get(`http://localhost:3019/user/${id}`);
         dispatch(setUserData(response.data));
       } catch (error) {
         console.error("Error fetching user data:", error);
