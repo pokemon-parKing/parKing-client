@@ -27,9 +27,9 @@ const createAccount = async (userId, accountInfo, role) => {
   });
 };
 
-//check for session in local storage
-//if session then check for userInfo in local storage
-//return both the session info and the userInfo
+//check for session and userInfo in local storage
+//if session and userInfo exist, return them
+//else return null and the user will have to sign in again
 const getSession = async () => {
   const session = JSON.parse(window.localStorage.getItem('session'))
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))

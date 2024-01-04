@@ -110,7 +110,7 @@ const RegistrationForm = ({ role }) => {
           Tell us about yourself
         </h1>
         <div className="w-full mt-5 sm:mt-8">
-          <div className={`mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[${role === 'driver' ? 700 : 1000}px] overflow-y-auto`}>
+          <div className={`mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[${role === 'driver' ? 700 : 1000}px]`}>
             <form onSubmit={handleSubmit}>
               <AccountForm formData={formData} handleChange={handleChange} />
               {role === 'driver' ? <VehicleForm formData={formData} handleChange={handleChange} /> : null}

@@ -13,7 +13,7 @@ const Supabase = () => {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log('supabase.auth.onAuthStateChange', event);
+      //console.log('supabase.auth.onAuthStateChange', event);
       //will optimize what is being stored in local storage later, it is currently useful to see the session information throughout the login process.
       if (session && session.provider_token) {
         window.localStorage.setItem('oauth_provider_token', session.provider_token)
@@ -41,6 +41,9 @@ const Supabase = () => {
         window.localStorage.removeItem('oauth_provider_token')
         window.localStorage.removeItem('oauth_provider_refresh_token')
         window.localStorage.removeItem('oauth_user')
+        window.localStorage.removeItem('session')
+        window.localStorage.removeItem('userInfo')
+        window.localStorage.removeItem('sb-iibwbjdisltiujjuglkp-auth-token')
         dispatch(setAuthToken(null));
         dispatch(setUserData(null));
       }

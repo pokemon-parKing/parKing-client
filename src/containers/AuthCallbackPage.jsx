@@ -14,12 +14,12 @@ const AuthCallbackPage = () => {
   const { id } = useSelector(state => state.accounts.userData);
 
   useEffect(() => {
-    console.log("id: ", id);
+    //console.log("id: ", id);
     if (id) {
       getUserInfo(id)
         .then(({ data: user }) => {
           if (user) {
-            console.log('user: ', user);
+            //console.log('user: ', user);
             const userInfo = {
               first_name: user.first_name,
               last_name: user.last_name,
