@@ -4,7 +4,7 @@ import VehicleForm from "./VehicleForm";
 import GarageForm from "./GarageForm";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { createAccount } from "../../utils/loginUtils.js";
 
 const RegistrationForm = ({ role }) => {
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
@@ -37,6 +37,7 @@ const RegistrationForm = ({ role }) => {
       lastName: last_name,
       email: email,
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [first_name, last_name, email]);
 
   const handleChange = (e) => {
@@ -57,7 +58,7 @@ const RegistrationForm = ({ role }) => {
     if (role === 'driver') {
       //call the driver API
       //console.log(`/login/${userId}/driver`, 'send properly formatted form data and driver form data to the accounts server');
-      axios.post(`http://localhost:3003/login/${userId}/driver`, {
+      createAccount(userId, {
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
@@ -67,17 +68,18 @@ const RegistrationForm = ({ role }) => {
         model: formData.vehicleModel,
         color: formData.vehicleColor,
         license_plate_number: formData.vehicleLicensePlate,
-      })
-        .then((res) => {
+      }, role)
+        .then(() => {
           navigate('/');
         })
         .catch((err) => {
           alert(`Please try again! ${err}`);
-        })
+        }
+        );
     } else if (role === 'valet') {
       //call the valet API
       //console.log(`/login/${userId}/valet`, 'send properly formatted form data and valet form data to the accounts server');
-      axios.post(`http://localhost:3003/login/${userId}/valet`, {
+      createAccount(userId, {
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
@@ -90,8 +92,8 @@ const RegistrationForm = ({ role }) => {
         zip: formData.garageZipCode,
         operation_hours: `${formData.garageOpeningHour}-${formData.garageClosingHour}`,
         spots: formData.garageParkingSpots / 1,
-      })
-        .then((res) => {
+      }, role)
+        .then(() => {
           navigate('/');
         }
         )
@@ -109,19 +111,19 @@ const RegistrationForm = ({ role }) => {
         </h1>
         <div className="w-full mt-5 sm:mt-8">
           <div className={`mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[${role === 'driver' ? 700 : 1000}px] overflow-y-auto`}>
-        <form onSubmit={handleSubmit}>
-          <AccountForm formData={formData} handleChange={handleChange} />
-          {role === 'driver' ? <VehicleForm formData={formData} handleChange={handleChange} /> : null}
-          {role === 'valet' ? <GarageForm formData={formData} handleChange={handleChange} /> : null}
-          <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
-            <button
-              type="submit"
-              className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
-            >Register</button>
+            <form onSubmit={handleSubmit}>
+              <AccountForm formData={formData} handleChange={handleChange} />
+              {role === 'driver' ? <VehicleForm formData={formData} handleChange={handleChange} /> : null}
+              {role === 'valet' ? <GarageForm formData={formData} handleChange={handleChange} /> : null}
+              <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
+                <button
+                  type="submit"
+                  className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
+                >Register</button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-      </div>
+        </div>
       </div>
     </div>
   );

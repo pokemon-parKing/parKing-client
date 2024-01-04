@@ -2,52 +2,28 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer/Footer.jsx";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "./utils/slice/accountsSlice.js";
-import axios from "axios";
+import { getSession } from "./utils/loginUtils.js";
+import { setUserData, setAuthToken } from "./utils/slice/accountsSlice.js";
 
 
 function App() {
-  const port = import.meta.env.VITE_ACCOUNT_SERVER_PORT
   const dispatch = useDispatch();
-  const [session, setSession] = useState(null);
   const { id } = useSelector(state => state.accounts.userData);
-  useEffect(() => {
-    const currentSession = JSON.parse(window.localStorage.getItem('session'));
-    setSession(currentSession);
-    console.log('currentSession: ', currentSession);
-    if (session) {
-      console.log('session: ', session);
-      dispatch(setUserData({
-        id: session.user.id,
-        first_name: session.user.user_metadata.full_name.split(' ')[0],
-        last_name: session.user.user_metadata.full_name.split(' ')[1],
-        email: session.user.email,
-        auth_token: session
-      }));
-    }
-  }, []);
 
   useEffect(() => {
-    if (id) {
-      axios.get(`http://localhost:${port}/login/${id}`)
-        .then(({ data }) => {
-          console.log('data: ', data);
-          if (data.length > 0) {
-            dispatch(setUserData({
-              first_name: data[0].first_name,
-              last_name: data[0].last_name,
-              email: data[0].email,
-              phone_number: data[0].phone_number
-            }));
-          }
-        })
-        .catch((err) => console.error(err));
+    if (!id) {
+      getSession()
+      .then(({ data }) => {
+        if (data) {
+          dispatch(setUserData(data.userInfo));
+          dispatch(setAuthToken(data.session));
+        }
+        //console.log('data: ', data);
+      })
     }
-  }, [session, id])
-
-
+  }, [dispatch]);
 
   return (
     <div className="bg-white">
