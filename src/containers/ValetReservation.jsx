@@ -50,7 +50,8 @@ const ValetReservation = () => {
   useEffect(() => {
     console.log('checking date in list: ', date);
     console.log('reservations: ', reservations);
-  }, [date, reservations])
+    console.log('time: ', time)
+  }, [date, reservations, time])
 
   return (
     <div className="flex flex-col items-center justify-center">
