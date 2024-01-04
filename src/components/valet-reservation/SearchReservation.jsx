@@ -47,6 +47,9 @@ const SearchReservation = () => {
           })
         }
       </div>
+      <Link to="/valet" className="flex justify-center py-5 text-blue-500 hover:underline">
+        Back to Valet Reservation Page
+      </Link>
     </div>
   );
 }
