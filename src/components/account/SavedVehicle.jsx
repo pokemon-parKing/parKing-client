@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import AddVehicleForm from "./AddVehicleForm";
 import EditVehicleForm from "./EditVehicleForm";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setVehicleData,
-  deleteVehicle,
-} from "../../utils/slice/accountsSlice.js";
+  fetchVehicleData,
+  deleteVehicleApi,
+} from "../../utils/accountUtils.js";
 import toast from "react-hot-toast";
 
 const SavedVehicle = () => {
@@ -18,29 +17,17 @@ const SavedVehicle = () => {
   const userData = useSelector((state) => state.accounts.userData);
   const { id } = userData;
 
-  const fetchVehicleData = async (dispatch, id) => {
-    try {
-      const response = await axios.get(`http://localhost:3003/user/${id}/cars`);
-      dispatch(setVehicleData(response.data));
-    } catch (error) {
-      console.error("Error fetching vehicle data:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchVehicleData(dispatch, id);
+    fetchVehicleData(id, dispatch);
   }, [dispatch, id]);
 
   const handleDelete = async (vehicleId) => {
-    try {
-      await axios.delete(`http://localhost:3003/user/${id}/delete-vehicle`, {
-        data: { vehicleId },
-      });
-      dispatch(deleteVehicle({ vehicleId }));
+    const result = await deleteVehicleApi(id, vehicleId, dispatch);
+
+    if (result.success) {
       toast.success("Vehicle has been deleted successfully");
-    } catch (error) {
-      console.error("Error deleting vehicle:", error);
-      toast.error("Error deleting vehicle");
+    } else {
+      toast.error(`Error deleting vehicle: ${result.error}`);
     }
   };
 
@@ -62,10 +49,7 @@ const SavedVehicle = () => {
   return (
     <>
       {showAddForm ? (
-        <AddVehicleForm
-          onExit={handleExitAddForm}
-          fetchVehicleData={fetchVehicleData}
-        />
+        <AddVehicleForm onExit={handleExitAddForm} />
       ) : showEditForm ? (
         <EditVehicleForm
           onExit={handleExitAddForm}

@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { convertTime } from "../../lib/timeSlotUtil.js";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setReservationData,
-  cancelReservation,
-} from "../../utils/slice/accountsSlice.js";
+  fetchReservationData,
+  deleteReservation,
+} from "../../utils/accountUtils.js";
 
 const MyParking = () => {
   const dispatch = useDispatch();
@@ -19,32 +18,16 @@ const MyParking = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchReservationData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3003/user/${id}/current-reservations`
-        );
-
-        dispatch(setReservationData(response.data));
-      } catch (error) {
-        console.error("Error fetching reservation data:", error);
-      }
-    };
-
-    fetchReservationData();
+    fetchReservationData(id, dispatch);
   }, [dispatch, id]);
 
-  const deleteReservation = async (reservationId) => {
-    try {
-      await axios.patch(
-        `http://localhost:3001/reservations/${reservationId}?status=cancelled`
-      );
+  const handleDeleteReservation = async (reservationId) => {
+    const result = await deleteReservation(reservationId, dispatch);
 
-      dispatch(cancelReservation(reservationId));
-      toast.success("Reservation cancelled successfully!");
-    } catch (error) {
-      console.error("Error canceling reservation:", error);
-      toast.error("Error canceling reservation:");
+    if (result.success) {
+      toast.success(result.message);
+    } else {
+      toast.error(result.message);
     }
   };
 
@@ -78,7 +61,7 @@ const MyParking = () => {
                 <div className="card-actions justify-center">
                   <button
                     className="btn btn-ghost text-red-500"
-                    onClick={() => deleteReservation(reservation.id)}
+                    onClick={() => handleDeleteReservation(reservation.id)}
                   >
                     <svg
                       fill="none"

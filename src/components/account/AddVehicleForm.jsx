@@ -1,14 +1,18 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
 import VehicleForm from "./VehicleForm";
 import { useDispatch } from "react-redux";
+import { fetchVehicleData, addVehicleApi } from "../../utils/accountUtils.js";
 
-const AddVehicleForm = ({ onExit, fetchVehicleData }) => {
+const AddVehicleForm = ({ onExit }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (id, data) => {
-    await axios.post(`http://localhost:3003/user/${id}/add-vehicle`, data);
-    fetchVehicleData(dispatch, id);
-    onExit();
+    const addSuccess = await addVehicleApi(id, data);
+    if (addSuccess) {
+      await fetchVehicleData(id, dispatch);
+      onExit();
+    } else {
+      console.error("Error adding vehicle");
+    }
   };
 
   return <VehicleForm onExit={onExit} onSubmit={handleSubmit} />;

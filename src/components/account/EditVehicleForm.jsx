@@ -1,14 +1,18 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
 import VehicleForm from "./VehicleForm";
 import { useDispatch } from "react-redux";
+import { fetchVehicleData, editVehicleApi } from "../../utils/accountUtils.js";
 
-const EditVehicleForm = ({ onExit, initialData, fetchVehicleData }) => {
+const EditVehicleForm = ({ onExit, initialData }) => {
   const dispatch = useDispatch();
   const handleSubmit = async (id, data) => {
-    await axios.put(`http://localhost:3003/user/${id}/edit-vehicle`, data);
-    fetchVehicleData(dispatch, id);
-    onExit();
+    const editSuccess = await editVehicleApi(id, data);
+    if (editSuccess) {
+      await fetchVehicleData(id, dispatch);
+      onExit();
+    } else {
+      console.error("Error editing vehicle");
+    }
   };
 
   return (
