@@ -57,7 +57,7 @@ const RegistrationForm = ({ role }) => {
     if (role === 'driver') {
       //call the driver API
       //console.log(`/login/${userId}/driver`, 'send properly formatted form data and driver form data to the accounts server');
-      axios.post(`http://localhost:3007/login/${userId}/driver`, {
+      axios.post(`http://localhost:3003/login/${userId}/driver`, {
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
@@ -77,7 +77,7 @@ const RegistrationForm = ({ role }) => {
     } else if (role === 'valet') {
       //call the valet API
       //console.log(`/login/${userId}/valet`, 'send properly formatted form data and valet form data to the accounts server');
-      axios.post(`http://localhost:3007/login/${userId}/valet`, {
+      axios.post(`http://localhost:3003/login/${userId}/valet`, {
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,

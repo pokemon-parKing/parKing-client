@@ -43,7 +43,7 @@ const VehicleForm = ({ onExit, onSubmit, initialData }) => {
           {initialData ? "Edit Vehicle" : "Add New Vehicle"}
         </h1>
         <div className="w-full mt-5 sm:mt-8">
-          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px] overflow-y-auto">
+          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px]">
             <label htmlFor="make" className="font-semibold text-[#000]">
               Make:
             </label>

@@ -22,7 +22,7 @@ const MyParking = () => {
     const fetchReservationData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3002/user/${id}/current-reservations`
+          `http://localhost:3003/user/${id}/current-reservations`
         );
 
         dispatch(setReservationData(response.data));
@@ -56,19 +56,23 @@ const MyParking = () => {
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
       <div className="text-center">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
-          My Parking
+          Reservations
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[600px] overflow-y-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-y-auto p-5">
           {reservationData.map((reservation) => (
             <div
               key={reservation.id}
-              className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px]"
+              className="card bg-base-100 shadow-xl mb-3 max-w-[350px] sm:max-w-[400px] h-[250px] sm:h-[300px]"
             >
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Parking Information</h2>
+                <h2 className="card-title">Reservation Information</h2>
                 <p className="text-[#000]">{reservation.garages.name}</p>
                 <p className="text-[#000]">{`${reservation.garages.address}, ${reservation.garages.city}, ${reservation.garages.state}, ${reservation.garages.country}, ${reservation.garages.zip}`}</p>
-                <p className="text-[#000]">{`${reservation.date} ${convertTime(
+                <p className="text-[#000]">{`${
+                  reservation.date
+                }${String.fromCharCode(160)}${String.fromCharCode(
+                  160
+                )}${String.fromCharCode(160)}${convertTime(
                   reservation.time
                 )}`}</p>
                 <div className="card-actions justify-center">
@@ -96,7 +100,7 @@ const MyParking = () => {
             </div>
           ))}
           <div
-            className="card bg-base-100 shadow-xl mb-3 mr-3 max-w-[300px] max-h-[300px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
+            className="card bg-base-100 shadow-xl mb-3 max-w-[350px] sm:max-w-[400px] h-[250px] sm:h-[300px] hover:shadow-2xl transform hover:scale-105 transition-transform hover:cursor-pointer"
             onClick={handleAddNew}
           >
             <div className="card-body flex flex-col justify-center items-center text-center h-full">
