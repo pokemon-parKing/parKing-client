@@ -24,8 +24,8 @@ const RegistrationForm = ({ role }) => {
     garageCity: '',
     garageState: '',
     garageZipCode: '',
-    garageOpeningHour: '',
-    garageClosingHour: '',
+    garageOpeningHour: '12',
+    garageClosingHour: '01',
     garageParkingSpots: '',
   });
 
@@ -45,6 +45,10 @@ const RegistrationForm = ({ role }) => {
       [e.target.name]: e.target.value,
     })
   };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,7 +88,7 @@ const RegistrationForm = ({ role }) => {
         city: formData.garageCity,
         state: formData.garageState,
         zip: formData.garageZipCode,
-        operation_hours: `formData.garageOpeningHour-formData.garageClosingHour`,
+        operation_hours: `${formData.garageOpeningHour}-${formData.garageClosingHour}`,
         spots: formData.garageParkingSpots / 1,
       })
         .then((res) => {

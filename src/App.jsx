@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import LandingPage from "./components/landingpage/LandingPage.jsx";
+import Footer from "./components/footer/Footer.jsx";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "./utils/slice/accountsSlice.js";
@@ -15,9 +16,9 @@ function App() {
   useEffect(() => {
     const currentSession = JSON.parse(window.localStorage.getItem('session'));
     setSession(currentSession);
-    // console.log('currentSession: ', currentSession);
+    console.log('currentSession: ', currentSession);
     if (session) {
-      //console.log('session: ', session);
+      console.log('session: ', session);
       dispatch(setUserData({
         id: session.user.id,
         first_name: session.user.user_metadata.full_name.split(' ')[0],
@@ -25,7 +26,7 @@ function App() {
         email: session.user.email,
         auth_token: session
       }));
-    };
+    }
   }, []);
 
   useEffect(() => {
@@ -47,7 +48,6 @@ function App() {
   }, [session, id])
 
 
-function App() {
 
   return (
     <div className="bg-white">
