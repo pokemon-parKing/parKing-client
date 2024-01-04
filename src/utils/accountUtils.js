@@ -88,19 +88,11 @@ const editVehicleApi = async (id, data) => {
   }
 };
 
-const getValetDataApi = async (
-  id,
-  dispatch,
-  setParkingSpots,
-  setOpeningHour,
-  setClosingHour
-) => {
+const getValetDataApi = async (id, dispatch) => {
   try {
     const response = await axios.get(`${HOST}/valet/${id}`);
     dispatch(setValetData(response.data[0]));
-    setParkingSpots(response.data[0].spots);
-    setOpeningHour(response.data[0].operation_hours.split("-")[0]);
-    setClosingHour(response.data[0].operation_hours.split("-")[1]);
+    return response.data[0];
   } catch (error) {
     console.error("Error fetching valet data:", error);
     throw error;
