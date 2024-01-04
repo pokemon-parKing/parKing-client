@@ -28,8 +28,10 @@ const Scanner = () => {
 
   return (
     <>
-      <div>
-        <h1>QR Code Scanner</h1>
+      <div className="mt-8 text-center p-8 bg-gray-100 shadow-md rounded-md">
+        <div>
+          <h3 className="text-2xl font-semibold mb-4">Scan QR Code:</h3>
+        </div>
         <h2>scan result: {scanResult}</h2>
         {scanResult ? (
           <div>
