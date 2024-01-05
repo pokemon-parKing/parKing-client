@@ -31,8 +31,6 @@ const ValetReservation = () => {
     fetchSpotsAndReservations();
   }, [garage_id, date, fetchSpotsAndReservations, dispatch]);
 
-  console.log('garge_id', garage_id)
-
   return (
     <>
     <CurrentSpots />
