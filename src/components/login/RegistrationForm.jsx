@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { createAccount } from "../../utils/loginUtils.js";
 import toast from 'react-hot-toast';
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
+import PropTypes from 'prop-types';
 import { setVehicleData, setUserData } from "../../utils/slice/accountsSlice.js";
 
 
@@ -29,8 +30,8 @@ const RegistrationForm = ({ role, handleBackClick }) => {
     garageCity: '',
     garageState: '',
     garageZipCode: '',
-    garageOpeningHour: '12',
-    garageClosingHour: '01',
+    garageOpeningHour: '00',
+    garageClosingHour: '24',
     garageParkingSpots: '',
   });
 
@@ -206,5 +207,10 @@ const RegistrationForm = ({ role, handleBackClick }) => {
     </div>
   );
 };
+
+RegistrationForm.propTypes = {
+  role: PropTypes.string.isRequired,
+  handleBackClick: PropTypes.func.isRequired,
+}
 
 export default RegistrationForm;
