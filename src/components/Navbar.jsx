@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import logo from "../assets/parKing.png";
+import companyLogo from "../assets/parKing.png";
 
 function Navbar() {
   const role = useSelector((state) => state.accounts.userData.role);
@@ -21,10 +21,10 @@ function Navbar() {
   ];
   return (
     <nav className="bg-white-s">
-      <div className="flex justify-between items-center mx-24 h-24 text-black ">
-        <Link to="/">
-          <img className="w-48 h-auto" src={logo} alt="ParKING Logo" />
-        </Link>
+        <div className="flex justify-between items-center mx-4 lg:mx-16 h-24 text-black ">
+            <Link to="/">
+                <img className="w-48 h-auto" src={companyLogo} alt='ParKING Logo' />
+            </Link>
 
         <div className="flex gap-4">
           {navbarLinks.map((item) => {

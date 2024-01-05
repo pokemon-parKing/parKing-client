@@ -17,9 +17,13 @@ export default {
         'slider-max-height': '53rem', 
       },
       spacing: {
+        '1/18': '18%',
         '1/37': '37%'
-      }
-    },
+      },
+      screens: {
+        'footer-icon-meet': '1274px'
+      },
+    }
   },
   plugins: [require("daisyui")],
   daisyui: {

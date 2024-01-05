@@ -1,42 +1,42 @@
 export const footerData = [
     [   'Bruce Wong', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'https://www.github.com/bzw24', 
+        'https://www.linkedin.com/in/bruce-wong-24000/'
     ], 
     [
         'Christian Lee', 
-        'Github.com/clee4037', 
-        'Linkedin.com/in/christian-lee37/'
+        'https://www.github.com/clee4037', 
+        'https://www.linkedin.com/in/christian-lee37/'
     ], 
     [
         'Jose Felix', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'https://www.github.com/jose-m-f', 
+        'https://www.linkedin.com/in/jose-m-felix/'
     ], 
     [
        'Kenneth Arguelles', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/' , 
+        'https://www.github.com/KenMain5', 
+        'https://www.linkedin.com/in/kennetharguelles/' , 
     ], 
     [
-       'Kyle Mark', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+       'Kyle Mak', 
+        'https://www.github.com/kjmak14', 
+        'https://www.linkedin.com/in/kylejmak/'
     ], 
     [
        'Kyle Sampson', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'https://www.github.com/kssampson', 
+        'https://www.linkedin.com/in/sampsonkyle/'
     ], 
     [
        'Justin Cordova', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'https://www.github.com/justcord10', 
+        'https://www.linkedin.com/in/justinlcordova/'
     ], 
     [
        'Steven Kim', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'https://www.linkedin.com/in/stevkim/', 
+        'https://www.github.com/stevkim'
     ], 
 ]
 

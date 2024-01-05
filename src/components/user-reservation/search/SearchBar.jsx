@@ -29,10 +29,8 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full z-40 ">
-      <h1 className="text-3xl text-center text-black-p">
-        Reserve Parking Now!
-      </h1>
+    <div className='flex flex-col absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full z-40 '>
+      <h1 className="text-3xl text-center text-white">Reserve Parking Now!</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-row justify-center items-center w-[700px] mx-auto my-2"
