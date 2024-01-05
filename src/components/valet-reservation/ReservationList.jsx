@@ -17,7 +17,7 @@ const ReservationList = () => {
 
   return (
     <div className='min-w-[600px] max-h-[60vh] min-h-[50vh] flex flex-col shadow-lg overflow-y-scroll'>
-      <button className='flex justify-center items-center text-center mx-auto btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px]' onClick={() => setShowNextHour(!showNextHour)}>
+      <button className='flex justify-center items-center my-2.5 text-center mx-auto btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px]' onClick={() => setShowNextHour(!showNextHour)}>
         Show {showNextHour ? "Current Hour" : "Next Hour"}
       </button>
       <div className='flex flex-col gap-2'>
