@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import AccountForm from "./AccountForm";
 import VehicleForm from "./VehicleForm";
 import GarageForm from "./GarageForm";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createAccount } from "../../utils/loginUtils.js";
 import toast from 'react-hot-toast';
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import PropTypes from 'prop-types';
+import { setVehicleData, setUserData } from "../../utils/slice/accountsSlice.js";
+
 
 const RegistrationForm = ({ role, handleBackClick }) => {
+  const dispatch = useDispatch();
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
   const navigate = useNavigate();
 
@@ -95,6 +98,25 @@ const RegistrationForm = ({ role, handleBackClick }) => {
         license_plate_number: formData.vehicleLicensePlate,
       }, role)
         .then(() => {
+          //set the vehicle data in the store, not sure if vehicleId is required.
+          const user = {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            phone_number: formData.phoneNumber,
+            role: 'user',
+          };
+          const vehicle = [{
+            make: formData.vehicleMake,
+            model: formData.vehicleModel,
+            color: formData.vehicleColor,
+            license_plate_number: formData.vehicleLicensePlate,
+          }];
+          dispatch(setVehicleData(vehicle));
+          dispatch(setUserData(user));
+          //save the vehicle data to the local storage
+          window.localStorage.setItem('vehicles', JSON.stringify(vehicle));
+          window.localStorage.setItem('userInfo', JSON.stringify(user));
           navigate('/');
         })
         .catch((err) => {
@@ -123,6 +145,29 @@ const RegistrationForm = ({ role, handleBackClick }) => {
           spots: +formData.garageParkingSpots,
         }, role)
           .then(() => {
+            //set the garage data in the store, no way to get the Lat and Lng here without querying the database, so this might not even be useful for y'all
+            const user = {
+              first_name: formData.firstName,
+              last_name: formData.lastName,
+              email: formData.email,
+              phone_number: formData.phoneNumber,
+              role: 'user',
+            };
+            const garage = [{
+              name: formData.garageName,
+              address: formData.garageAddress,
+              city: formData.garageCity,
+              state: formData.garageState,
+              zip: formData.garageZipCode,
+              operation_hours: `${formData.garageOpeningHour}-${formData.garageClosingHour}`,
+              spots: +formData.garageParkingSpots,
+            }];
+            //this is where the first dispatch will live when i figure out who uses this
+
+            dispatch(setUserData(user));
+            //store in the window
+            window.localStorage.setItem('garages', JSON.stringify(garage));
+            window.localStorage.setItem('userInfo', JSON.stringify(user));
             navigate('/');
           }
           )
