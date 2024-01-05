@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { createAccount } from "../../utils/loginUtils.js";
 import toast from 'react-hot-toast';
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
+import PropTypes from 'prop-types';
 
 const RegistrationForm = ({ role, handleBackClick }) => {
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
@@ -26,8 +27,8 @@ const RegistrationForm = ({ role, handleBackClick }) => {
     garageCity: '',
     garageState: '',
     garageZipCode: '',
-    garageOpeningHour: '12',
-    garageClosingHour: '01',
+    garageOpeningHour: '00',
+    garageClosingHour: '24',
     garageParkingSpots: '',
   });
 
@@ -161,5 +162,10 @@ const RegistrationForm = ({ role, handleBackClick }) => {
     </div>
   );
 };
+
+RegistrationForm.propTypes = {
+  role: PropTypes.string.isRequired,
+  handleBackClick: PropTypes.func.isRequired,
+}
 
 export default RegistrationForm;

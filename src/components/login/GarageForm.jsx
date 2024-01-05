@@ -112,6 +112,7 @@ const GarageForm = ({ formData, handleChange }) => {
           {Array.from({ length: 24 }, (_, i) => i + 1).map((hour) => {
             const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
             const displayPeriod = hour >= 12 ? 'p.m.' : 'a.m.';
+            const isMidnight = hour === 24;
 
             return (
               <option
@@ -119,7 +120,7 @@ const GarageForm = ({ formData, handleChange }) => {
                 value={hour.toString().padStart(2, '0')}
                 disabled={hour <= Number(formData.garageOpeningHour)}
               >
-                {`${displayHour} ${displayPeriod}`}
+                {`${displayHour} ${isMidnight ? 'a.m.' : displayPeriod}`}
               </option>
             );
           })}
