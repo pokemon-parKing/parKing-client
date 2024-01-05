@@ -26,7 +26,7 @@ const ReservationDetails = ({ reservation, selectedGarage }) => {
               </svg>
               Reservation Summary
             </h2>
-            <button onClick={() => navigate("/reservation/map")}>
+            <button onClick={() => navigate("/reservation")}>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
