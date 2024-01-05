@@ -10,9 +10,6 @@ import { IoMdQrScanner } from "react-icons/io";
 import { LuCalendarSearch } from "react-icons/lu";
 
 const ValetReservation = () => {
-  //use garage id (1 for testing purposes) and current date (format:DD-MM-YY) to get the current reservations and spots
-  // const [showQrCode, setShowQrCode] = useState(false);
-  // const [qrCodeLink, setQrCodeLink] = useState('');
   const { id: garage_id } = useSelector((state) => state.accounts.valetData);
   const { date, time } = useSelector((state) => state.valet);
   const dispatch = useDispatch();
@@ -30,8 +27,6 @@ const ValetReservation = () => {
   useEffect(() => {
     fetchSpotsAndReservations();
   }, [garage_id, date, fetchSpotsAndReservations, dispatch]);
-
-  console.log('garge_id', garage_id)
 
   return (
     <>

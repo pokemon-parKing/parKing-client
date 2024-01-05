@@ -24,7 +24,8 @@ const SearchReservation = () => {
   }, [list, search])
 
   return (
-    <div className='min-w-[600px] max-h-[60vh] min-h-[80vh]'>
+    <div className='min-w-[600px] min-h-[60vh]'>
+      <h1 className='text-3xl font-semibold my-4 mb-4 text-center'>Search for Reservations by Date</h1>
       <div className='flex flex-row mt-5'>
         <h4>Select a date: </h4>
         <select onChange={(e) => getNewList(e.target.value)}>

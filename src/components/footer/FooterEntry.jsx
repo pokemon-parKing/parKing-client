@@ -19,7 +19,7 @@ function FooterEntry({ entry }) {
 }
 
 FooterEntry.propTypes = {
-  entry: PropTypes.object.isRequired,
+  entry: PropTypes.array.isRequired,
 }
 
 export default FooterEntry;
