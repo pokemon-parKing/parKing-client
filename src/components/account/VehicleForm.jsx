@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const VehicleForm = ({ onExit, onSubmit, initialData }) => {
   const userData = useSelector((state) => state.accounts.userData);
@@ -37,13 +37,13 @@ const VehicleForm = ({ onExit, onSubmit, initialData }) => {
   };
 
   return (
-    <div className="xl:max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
+    <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10 h-[750px]">
       <div className="mx-auto w-full lg:w-1/2 md:p-10 py-5 md:py-0">
         <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
           {initialData ? "Edit Vehicle" : "Add New Vehicle"}
         </h1>
         <div className="w-full mt-5 sm:mt-8">
-          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px]">
+          <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-6 h-[600px]">
             <label htmlFor="make" className="font-semibold text-[#000]">
               Make:
             </label>
@@ -112,7 +112,7 @@ const VehicleForm = ({ onExit, onSubmit, initialData }) => {
 VehicleForm.propTypes = {
   onExit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  initialData: PropTypes.object.isRequired
-}
+  initialData: PropTypes.object.isRequired,
+};
 
 export default VehicleForm;

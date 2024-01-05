@@ -74,7 +74,7 @@ const AdminSettings = () => {
   };
 
   return (
-    <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10">
+    <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10 h-[750px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
           Admin Settings
