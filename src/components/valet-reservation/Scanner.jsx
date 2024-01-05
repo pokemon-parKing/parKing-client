@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
+  const [stopScanningButton, setStopScanningButton] = useState(null);
+  const [startScanningButton2, setStartScanningButton2] = useState(null);
+
   useEffect(() => {
     const scanner = new Html5QrcodeScanner("reader", {
       qrbox: {
@@ -17,10 +20,15 @@ const Scanner = () => {
     function onScanSuccess(result) {
       scanner.clear();
       setScanResult(result);
-      console.log("Decoded QR code data: ", result);
       window.location.href = `http://localhost:5173/valet/reservation/${result}`;
     }
     function onScanError(error) {
+      if (stopScanningButton === null) {
+        setStopScanningButton(document.getElementById("html5-qrcode-button-camera-stop"));
+        if (startScanningButton2 === null) {
+          setStartScanningButton2(document.getElementById("html5-qrcode-button-camera-start"));
+        }
+      }
       console.warn(error);
     }
 
@@ -49,7 +57,6 @@ const Scanner = () => {
 
     const uploadQrCodeButton = document.getElementById("html5-qrcode-anchor-scan-type-change");
     if (uploadQrCodeButton) {
-      uploadQrCodeButton.textContent = "Upload";
       uploadQrCodeButton.style.textDecoration = "none";
       uploadQrCodeButton.classList.add(
         "btn",
@@ -64,10 +71,63 @@ const Scanner = () => {
         );
     }
 
+    const startScanningButton = document.getElementById("html5-qrcode-button-camera-start")
+    if (startScanningButton) {
+      startScanningButton.textContent = "Scan";
+      startScanningButton.classList.add(
+        "btn",
+        "btn-active",
+        "mx-auto",
+        "bg-black", "border-black",
+        "text-white",
+        "btn-primary",
+        "btn-block",
+        "max-w-[200px]",
+        "mt-12",
+        "mb-2.5"
+        );
+    }
+
     return () => {
       scanner.clear();
     }
   }, []);
+
+  useEffect(() => {
+    if (stopScanningButton) {
+      stopScanningButton.textContent = "Scan Using Upload";
+      stopScanningButton.classList.add(
+        "btn",
+        "btn-active",
+        "mx-auto",
+        "bg-black", "border-black",
+        "text-white",
+        "btn-primary",
+        "btn-block",
+        "max-w-[200px]",
+        "mt-12",
+        "mb-2.5"
+        );
+    }
+  }, [stopScanningButton])
+
+  useEffect(() => {
+    if (startScanningButton2) {
+      startScanningButton2.textContent = "Start Scanning";
+      startScanningButton2.classList.add(
+        "btn",
+        "btn-active",
+        "mx-auto",
+        "bg-black", "border-black",
+        "text-white",
+        "btn-primary",
+        "btn-block",
+        "max-w-[200px]",
+        "mt-12",
+        "mb-2.5"
+        );
+    }
+  }, [startScanningButton2])
 
   return (
     <>
@@ -83,7 +143,7 @@ const Scanner = () => {
           <div id="reader" className=""></div>
         )}
         <div className="my-10">
-        <Link to='/valet' className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">Back</Link>
+        <Link to='/valet' className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]">Valet Home</Link>
         </div>
       </div>
     </>

@@ -115,7 +115,7 @@ const RegistrationForm = ({ role, handleBackClick }) => {
           dispatch(setVehicleData(vehicle));
           dispatch(setUserData(user));
           //save the vehicle data to the local storage
-          window.localStorage.setItem('vehicles', JSON.stringify(vehicle));
+          window.localStorage.setItem('cars', JSON.stringify(vehicle));
           window.localStorage.setItem('userInfo', JSON.stringify(user));
           navigate('/');
         })

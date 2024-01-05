@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import companyLogo from "../assets/parKing.png";
+import Supabase from "../hooks/useSupabase";
 
 function Navbar() {
+  const supabase = Supabase();
   const role = useSelector((state) => state.accounts.userData.role);
 
   let navbarLinks = [
@@ -30,6 +32,19 @@ function Navbar() {
           {navbarLinks.map((item) => {
             if (role !== "admin" && item.name === "Reservations") {
               return;
+            } else if (role && item.name === "Sign In/Sign Up") {
+                return (
+                    <Link
+                    key={"Sign Out"}
+                    className="transition ease-in-out delay-150 text-lg hover:text-burgundy-s"
+                    onClick={async () => {
+                        await supabase.auth.signOut();
+                        window.location.reload();
+                    }}
+                    >
+                        {"Sign Out"}
+                    </Link>
+                )
             }
             return (
               <Link

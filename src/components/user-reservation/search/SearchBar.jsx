@@ -33,7 +33,7 @@ const SearchBar = () => {
       <h1 className="text-3xl text-center text-white">Reserve Parking Now!</h1>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-row justify-center items-center w-[700px] mx-auto my-2"
+        className="flex flex-row justify-center items-center w-[350px] searchbar-midpoint:w-[500px] searchbar-lastpoint:w-[700px] mx-auto my-2"
       >
         <div className="mr-[-32px] z-10">
           <svg
@@ -86,3 +86,4 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
