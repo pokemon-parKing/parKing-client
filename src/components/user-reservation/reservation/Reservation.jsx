@@ -1,35 +1,12 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setUserId, setCarId } from "../../../utils/slice/reservationSlice";
+import { useSelector } from "react-redux";
 import MapSideBar from "./GoogleMaps/MapSideBar";
 import GoogleMap from "./GoogleMaps/GoogleMap";
 import TimeSlotList from "./TimeSlotList";
-import { fetchVehicleData } from "../../../utils/accountUtils.js";
 
 const Reservation = () => {
-  const { reservation, reservationsList, selectedGarage } = useSelector(
+  const { reservationsList, selectedGarage } = useSelector(
     (state) => state.reservation
   );
-  const { vehicleData } = useSelector((state) => state.accounts);
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.accounts.userData);
-
-  useEffect(() => {
-    dispatch(setUserId(userData.id));
-  }, [dispatch, userData]);
-
-  useEffect(() => {
-    const setVehicleData = async () => {
-      await fetchVehicleData(userData.id, dispatch);
-    };
-    setVehicleData();
-  }, [dispatch, userData.id]);
-
-  useEffect(() => {
-    dispatch(setCarId(vehicleData[0].id));
-  }, [dispatch, vehicleData]);
-
-  console.log(reservation);
 
   return (
     <div className="flex flex-row w-full">

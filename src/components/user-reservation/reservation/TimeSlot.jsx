@@ -9,7 +9,6 @@ const TimeSlot = ({ info }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log("role", role);
   return (
     <div
       className={`${
