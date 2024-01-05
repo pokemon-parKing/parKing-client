@@ -25,13 +25,11 @@ const Scanner = () => {
     function onScanError(error) {
       if (stopScanningButton === null) {
         setStopScanningButton(document.getElementById("html5-qrcode-button-camera-stop"));
-        // console.log(stopScanningButton);
         if (startScanningButton2 === null) {
           setStartScanningButton2(document.getElementById("html5-qrcode-button-camera-start"));
         }
-
       }
-      // console.warn(error);
+      console.warn(error);
     }
 
     const scanRegion = document.getElementById("reader");
