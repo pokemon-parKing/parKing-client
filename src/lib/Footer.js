@@ -1,7 +1,7 @@
 export const footerData = [
     [   'Bruce Wong', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'Github.com/bzw24', 
+        'Linkedin.com/in/bruce-wong-24000/'
     ], 
     [
         'Christian Lee', 
@@ -10,18 +10,18 @@ export const footerData = [
     ], 
     [
         'Jose Felix', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'Github.com/jose-m-f', 
+        'Linkedin.com/in/jose-m-felix/'
     ], 
     [
        'Kenneth Arguelles', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/' , 
+        'Github.com/KenMain5', 
+        'Linkedin.com/in/kennetharguelles/' , 
     ], 
     [
-       'Kyle Mark', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+       'Kyle Mak', 
+        'Github.com/kjmak14', 
+        'Linkedin.com/in/kylejmak/'
     ], 
     [
        'Kyle Sampson', 
@@ -30,13 +30,13 @@ export const footerData = [
     ], 
     [
        'Justin Cordova', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'Github.com/justcord10', 
+        'Linkedin.com/in/justinlcordova/'
     ], 
     [
        'Steven Kim', 
-        'Github.com/kssampson', 
-        'Linkedin.com/in/sampsonkyle/'
+        'https://www.linkedin.com/in/stevkim/', 
+        'Github.com/stevkim'
     ], 
 ]
 
