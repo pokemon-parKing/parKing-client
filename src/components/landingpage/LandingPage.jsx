@@ -2,7 +2,6 @@ import Carousel from './Carousel/Carousel';
 import Cards from './cards/Cards';
 import {slides} from '../../lib/landingpage/landingPageSliders';
 import { cardData } from '../../lib/landingpage/landingPageCards';
-import UserValetButtons from './roleButtons/UserValetButtons';
 
 function LandingPage() {
     return (
@@ -16,8 +15,6 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-
-            <UserValetButtons />
         </>
     );
 }

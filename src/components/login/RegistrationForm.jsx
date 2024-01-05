@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createAccount } from "../../utils/loginUtils.js";
 import toast from 'react-hot-toast';
+import PropTypes from 'prop-types';
 
 const RegistrationForm = ({ role }) => {
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
@@ -140,5 +141,9 @@ const RegistrationForm = ({ role }) => {
     </div>
   );
 };
+
+RegistrationForm.propTypes = {
+  role: PropTypes.string.isRequired,
+}
 
 export default RegistrationForm;

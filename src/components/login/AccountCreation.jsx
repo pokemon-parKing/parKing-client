@@ -1,7 +1,6 @@
 import { useState } from "react";
 import RegistrationForm from "./RegistrationForm";
 
-
 function AccountCreation() {
   const [role, setRole] = useState(null);
   //this is where the user will get routed after their account is created with supabase google Oauth.

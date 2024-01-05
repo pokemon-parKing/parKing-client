@@ -1,4 +1,6 @@
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
+import PropTypes from 'prop-types';
+
 const AccountForm = ({ formData, handleChange }) => {
   return (
     <div>
@@ -58,5 +60,10 @@ const AccountForm = ({ formData, handleChange }) => {
     </div>
   );
 };
+
+AccountForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+}
 
 export default AccountForm;

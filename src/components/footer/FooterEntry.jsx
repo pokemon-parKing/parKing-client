@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function FooterEntry({ entry }) {
   return (
     <div className='flex flex-col gap-2'>
@@ -8,6 +10,10 @@ function FooterEntry({ entry }) {
         ))}
     </div>
   );
+}
+
+FooterEntry.propTypes = {
+  entry: PropTypes.object.isRequired,
 }
 
 export default FooterEntry;

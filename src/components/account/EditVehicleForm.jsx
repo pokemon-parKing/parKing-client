@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import VehicleForm from "./VehicleForm";
 import { useDispatch } from "react-redux";
 import { fetchVehicleData, editVehicleApi } from "../../utils/accountUtils.js";
+import PropTypes from 'prop-types';
 
 const EditVehicleForm = ({ onExit, initialData }) => {
   const dispatch = useDispatch();
@@ -23,5 +23,10 @@ const EditVehicleForm = ({ onExit, initialData }) => {
     />
   );
 };
+
+EditVehicleForm.propTypes = {
+  onExit: PropTypes.func.isRequired,
+  initialData: PropTypes.object.isRequired
+}
 
 export default EditVehicleForm;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Cards({ icon, title, text }) {
     return (
         <div className='flex flex-col items-center text-center mb-40'>
@@ -8,6 +10,12 @@ function Cards({ icon, title, text }) {
             <p className='mx-8'>{text}</p>
         </div>
     );
+}
+
+Cards.propTypes = {
+    icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }
 
 export default Cards;
