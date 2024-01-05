@@ -32,7 +32,7 @@ const MyParking = () => {
   };
 
   const handleAddNew = () => {
-    navigate("/reservation");
+    navigate("/");
   };
 
   return (

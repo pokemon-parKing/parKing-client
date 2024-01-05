@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { createAccount } from "../../utils/loginUtils.js";
 import toast from 'react-hot-toast';
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
+import PropTypes from 'prop-types';
 
-const RegistrationForm = ({ role }) => {
+const RegistrationForm = ({ role, handleBackClick }) => {
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
   const navigate = useNavigate();
 
@@ -26,8 +27,8 @@ const RegistrationForm = ({ role }) => {
     garageCity: '',
     garageState: '',
     garageZipCode: '',
-    garageOpeningHour: '12',
-    garageClosingHour: '01',
+    garageOpeningHour: '00',
+    garageClosingHour: '24',
     garageParkingSpots: '',
   });
 
@@ -144,11 +145,15 @@ const RegistrationForm = ({ role }) => {
               <AccountForm formData={formData} handleChange={handleChange} handlePhoneChange={handlePhoneNumberChange} />
               {role === 'driver' ? <VehicleForm formData={formData} handleChange={handleChange} /> : null}
               {role === 'valet' ? <GarageForm formData={formData} handleChange={handleChange} /> : null}
+              <br />
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
                 <button
                   type="submit"
                   className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
                 >Register</button>
+                <button className="btn btn-ghost text-red-500" onClick={handleBackClick}>
+                Back
+              </button>
               </div>
             </form>
           </div>
@@ -157,5 +162,10 @@ const RegistrationForm = ({ role }) => {
     </div>
   );
 };
+
+RegistrationForm.propTypes = {
+  role: PropTypes.string.isRequired,
+  handleBackClick: PropTypes.func.isRequired,
+}
 
 export default RegistrationForm;
