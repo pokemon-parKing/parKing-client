@@ -31,17 +31,36 @@ const SearchReservation = () => {
           {getNext8Days()}
         </select>
       </div>
-      <div className='flex flex-row'>
-        <label htmlFor='search'>Search: </label>
-        <input name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
+      <div className='flex flex-row py-2.5'>
+        <label className='pr-1.5' htmlFor='search'>Search: </label>
+        <input className= 'border border-black rounded-md' name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
       </div>
-      <div className='flex flex-col gap-2 max-h-[60vh] overflow-y-scroll min-w-[600px]'>
+      <div className="pb-2.5">
+      <Link to="/valet" className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px]">
+        Back
+      </Link>
+      </div>
+      <div className='grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-scroll min-w-[600px] shadow-lg'>
         {
           filteredList.map(reservation => {
             const { time, status, cars, parking_spot_id, id } = reservation;
             return (
-              <Link to={`/valet/reservation/${id}`} key={id} className="p-4  bg-beige-s rounded-xl">
-                {time}, {parking_spot_id}, {status}, {cars.color} {cars.make} {cars.model}
+              <Link to={`/valet/reservation/${id}`} key={id} className="p-4 bg-gray-100 shadow-md rounded-md hover:bg-gray-300">
+                <p>
+                  <span className='font-semibold'>Time: </span>
+                  {time}
+                </p>
+                <p>
+                   <span className='font-semibold'>Spot #: </span>
+                  {parking_spot_id}</p>
+                <p>
+                  <span className='font-semibold'>Status: </span>
+                  {status}
+                </p>
+                <p>
+                  <span className='font-semibold'>Car: </span>
+                  {cars.color} {cars.make} {cars.model}
+                </p>
               </Link>
             );
           })
