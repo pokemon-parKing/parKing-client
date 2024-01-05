@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const AccountForm = ({ formData, handleChange, handlePhoneChange }) => {
   return (
-    <div>
+    <>
       <label htmlFor="firstName" className="font-semibold text-[#000]">
         FIRST NAME:
       </label>
@@ -56,7 +56,7 @@ const AccountForm = ({ formData, handleChange, handlePhoneChange }) => {
         className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
         required
       />
-    </div>
+    </>
   );
 };
 

@@ -15,17 +15,17 @@ function Navbar() {
       link: "/user",
     },
     {
-      name: "Sign In/Sign Up",
+      name: "Sign In",
       link: "/login",
     },
   ];
+
   return (
     <nav className="bg-white-s">
         <div className="flex justify-between items-center mx-4 lg:mx-16 h-24 text-black ">
             <Link to="/">
                 <img className="w-48 h-auto" src={companyLogo} alt='ParKING Logo' />
             </Link>
-
         <div className="flex gap-4">
           {navbarLinks.map((item) => {
             if (role !== "admin" && item.name === "Reservations") {

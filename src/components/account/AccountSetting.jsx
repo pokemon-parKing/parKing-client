@@ -4,9 +4,9 @@ import {
   setUserData,
   setUserDataPhoneNumber,
 } from "../../utils/slice/accountsSlice.js";
+import axios from "axios";
 import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import toast from "react-hot-toast";
-import { updateUserData } from "../../utils/accountUtils.js";
 
 const AccountSetting = () => {
   const dispatch = useDispatch();
@@ -34,10 +34,17 @@ const AccountSetting = () => {
   };
 
   const handleUpdate = async () => {
-    const success = await updateUserData(id, userData);
-    if (success) {
+    try {
+      await axios.put(`http://localhost:3003/user/${id}`, {
+
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        email: userData.email,
+        phone_number: userData.phone_number,
+      });
       toast.success("Account data updated successfully");
-    } else {
+    } catch (error) {
+      console.error("Error updating user data:", error);
       toast.error("Error updating account data");
     }
   };
@@ -45,14 +52,14 @@ const AccountSetting = () => {
   return (
     <div className="xl:max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-between items-stretch px-5 xl:px-5 py-5">
       <div className="mx-auto w-full lg:w-1/2 md:p-10 py-5 md:py-0">
-        <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
+        <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000] mt-5">
           Account Information
         </h1>
         <div className="w-full mt-5 sm:mt-8">
           <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[600px]">
             <label htmlFor="name" className="font-semibold text-[#000]">
               NAME:
-            </label>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="text"
@@ -71,9 +78,10 @@ const AccountSetting = () => {
                 name="last_name"
               />
             </div>
+            </label>
             <label htmlFor="email" className="font-semibold text-[#000]">
               EMAIL:
-            </label>
+
             <input
               type="text"
               placeholder="Your Email Address"
@@ -82,9 +90,10 @@ const AccountSetting = () => {
               onChange={handleInputChange}
               name="email"
             />
+            </label>
             <label htmlFor="phonenumber" className="font-semibold text-[#000]">
               PHONE NUMBER:
-            </label>
+
             <input
               type="text"
               id="phonenumber"
@@ -94,14 +103,16 @@ const AccountSetting = () => {
               onChange={handlePhoneNumberChange}
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />
+            </label>
             <label htmlFor="password" className="font-semibold text-[#000]">
               PASSWORD:
-            </label>
+
             <input
               type="Password"
               placeholder="Your Password"
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />
+            </label>
             <div className="flex items-center gap-1.5  justify-start pl-2">
               <div className="form-control">
                 <label className="label cursor-pointer">

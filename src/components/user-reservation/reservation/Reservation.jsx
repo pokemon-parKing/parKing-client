@@ -9,14 +9,14 @@ const Reservation = () => {
   );
 
   return (
-    <div className="flex flex-row w-full">
-      <div className="flex flex-col w-full items-center">
-        <h3 className="text-2xl pb-5 pt-5">Reserve your spot!</h3>
+    <div className="flex flex-row w-full mt-4">
+      <div className="flex flex-col gap-2 w-full items-center max-h-[81vh]">
+        <h3 className="text-2xl">Reserve your spot!</h3>
         <MapSideBar />
-        <div className="divider pt-3"></div>
+        <div className="divider"></div>
         {reservationsList && (
-          <div className="flex flex-col items-center pt-1 w-full">
-            <h3 className="pb-3 text-2xl">{selectedGarage.name}</h3>
+          <div className="flex flex-col gap-2 items-center w-full h-full">
+            <h3 className="text-2xl">{selectedGarage.name}</h3>
             <TimeSlotList />
           </div>
         )}
