@@ -11,8 +11,6 @@ import { setVehicleData, setUserData } from "../../utils/slice/accountsSlice.js"
 
 
 const RegistrationForm = ({ role, handleBackClick }) => {
-
-const RegistrationForm = ({ role, handleBackClick }) => {
   const dispatch = useDispatch();
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
   const navigate = useNavigate();
