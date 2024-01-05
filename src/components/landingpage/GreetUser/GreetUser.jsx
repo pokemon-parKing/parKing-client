@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 
 function GreetUser() {
-    // const { first_name, last_name} = useSelector((state) => state.accounts.userData);
-    let first_name = 'john'; 
-    let last_name = 'doe';
+    const { first_name, last_name} = useSelector((state) => state.accounts.userData);
+    
     const isLoggedIn = first_name && last_name;
 
 
