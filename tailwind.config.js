@@ -21,7 +21,9 @@ export default {
         '1/37': '37%'
       },
       screens: {
-        'footer-icon-meet': '1274px'
+        'footer-icon-meet': '1274px', 
+        'searchbar-lastpoint': '700px', 
+        'searchbar-midpoint': '500px'
       },
     }
   },
