@@ -88,13 +88,11 @@ const editVehicleApi = async (id, data) => {
   }
 };
 
-const getValetDataApi = async (
-  id,
-  dispatch
-) => {
+const getValetDataApi = async (id, dispatch) => {
   try {
     const response = await axios.get(`${HOST}/valet/${id}`);
     dispatch(setValetData(response.data[0]));
+    return response.data[0];
   } catch (error) {
     console.error("Error fetching valet data:", error);
     throw error;

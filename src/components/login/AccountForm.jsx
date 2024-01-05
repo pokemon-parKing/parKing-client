@@ -1,7 +1,6 @@
-import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import PropTypes from 'prop-types';
 
-const AccountForm = ({ formData, handleChange }) => {
+const AccountForm = ({ formData, handleChange, handlePhoneChange }) => {
   return (
     <div>
       <label htmlFor="firstName" className="font-semibold text-[#000]">
@@ -50,10 +49,10 @@ const AccountForm = ({ formData, handleChange }) => {
         type="tel"
         id="phoneNumber"
         name="phoneNumber"
-        value={formatPhoneNumber(formData.phoneNumber)}
-        onChange={handleChange}
+        value={formData.phoneNumber}
+        onChange={handlePhoneChange}
         placeholder="(123) 456-7890"
-        pattern="[0-9]*"
+        pattern="\(\d{3}\) \d{3}-\d{4}"
         className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
         required
       />
@@ -64,6 +63,7 @@ const AccountForm = ({ formData, handleChange }) => {
 AccountForm.propTypes = {
   formData: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handlePhoneChange: PropTypes.func.isRequired,
 }
 
 export default AccountForm;

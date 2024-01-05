@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createAccount } from "../../utils/loginUtils.js";
 import toast from 'react-hot-toast';
+import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import PropTypes from 'prop-types';
 
-const RegistrationForm = ({ role }) => {
+const RegistrationForm = ({ role, handleBackClick }) => {
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
   const navigate = useNavigate();
 
@@ -26,8 +27,8 @@ const RegistrationForm = ({ role }) => {
     garageCity: '',
     garageState: '',
     garageZipCode: '',
-    garageOpeningHour: '12',
-    garageClosingHour: '01',
+    garageOpeningHour: '00',
+    garageClosingHour: '24',
     garageParkingSpots: '',
   });
 
@@ -39,8 +40,22 @@ const RegistrationForm = ({ role }) => {
       lastName: last_name,
       email: email,
     })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [first_name, last_name, email]);
+
+  // useEffect(() => {
+  //   console.log('formData: ', formData);
+  // }, [formData]);
+
+  const handlePhoneNumberChange = (e) => {
+    const input = e.target.value;
+    const formattedInput = formatPhoneNumber(input);
+    e.target.value = formattedInput;
+    setFormData({
+      ...formData,
+      phoneNumber: formattedInput,
+    });
+  };
 
   const handleChange = (e) => {
 
@@ -53,10 +68,12 @@ const RegistrationForm = ({ role }) => {
     if (e.target.name === 'garageClosingHour' && formData.garageOpeningHour === '') {
       return toast.error('Please select a opening hour first!')
     }
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
+
   };
 
   const handleSubmit = (e) => {
@@ -125,14 +142,18 @@ const RegistrationForm = ({ role }) => {
         <div className="w-full mt-5 sm:mt-8">
           <div className={`mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-5 h-[${role === 'driver' ? 700 : 1000}px]`}>
             <form onSubmit={handleSubmit}>
-              <AccountForm formData={formData} handleChange={handleChange} />
+              <AccountForm formData={formData} handleChange={handleChange} handlePhoneChange={handlePhoneNumberChange} />
               {role === 'driver' ? <VehicleForm formData={formData} handleChange={handleChange} /> : null}
               {role === 'valet' ? <GarageForm formData={formData} handleChange={handleChange} /> : null}
+              <br />
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
                 <button
                   type="submit"
                   className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
                 >Register</button>
+                <button className="btn btn-ghost text-red-500" onClick={handleBackClick}>
+                Back
+              </button>
               </div>
             </form>
           </div>
@@ -144,6 +165,7 @@ const RegistrationForm = ({ role }) => {
 
 RegistrationForm.propTypes = {
   role: PropTypes.string.isRequired,
+  handleBackClick: PropTypes.func.isRequired,
 }
 
 export default RegistrationForm;

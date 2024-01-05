@@ -15,6 +15,9 @@ export default {
       },
       height: {
         'slider-max-height': '53rem', 
+      },
+      spacing: {
+        '1/37': '37%'
       }
     },
   },

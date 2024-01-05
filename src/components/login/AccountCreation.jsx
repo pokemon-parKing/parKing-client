@@ -16,6 +16,10 @@ function AccountCreation() {
     }
   }
 
+  const handleBackClick = () => {
+    setRole(null);
+  }
+
   return (
     <div>
       {/* {conditionally render if role is null} */}
@@ -65,14 +69,7 @@ function AccountCreation() {
       {/* {Conditionally render if the role is not null} */}
       {role &&
         <div>
-          <RegistrationForm role={role} />
-          <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
-            <button
-              type="back"
-              onClick={() => { setRole(null) }}
-              className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
-            >Go Back</button>
-          </div>
+          <RegistrationForm role={role} handleBackClick={handleBackClick} />
         </div>
       }
     </div>
