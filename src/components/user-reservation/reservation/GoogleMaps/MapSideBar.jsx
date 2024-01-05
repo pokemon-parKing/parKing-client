@@ -2,28 +2,26 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchCoordinates,
   fetchClosestGarages,
-  setSearch
+  setSearch,
 } from "../../../../utils/slice/reservationSlice";
-import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
-import ClearSearchBtn from './components/ClearSearchBtn';
-import DateDropdown from './components/DateDropdown';
+import ClearSearchBtn from "./components/ClearSearchBtn";
+import DateDropdown from "./components/DateDropdown";
 
 const MapSideBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!search)
-      return toast.error("Please fill address");
+    if (!search) return toast.error("Please fill address");
     if (!reservation.date || reservation.date === "Select a date")
       return toast.error("Please select a date");
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    navigate('/reservation/confirmation');
+    // navigate("/reservation/confirmation");
   };
 
   return (

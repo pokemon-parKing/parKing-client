@@ -7,6 +7,7 @@ const Reservation = () => {
   const { reservationsList, selectedGarage } = useSelector(
     (state) => state.reservation
   );
+
   return (
     <div className="flex flex-row w-full">
       <div className="flex flex-col w-full items-center">

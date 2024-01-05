@@ -48,13 +48,13 @@ export const addReservation = createAsyncThunk(
 const initialState = {
   /* Hardcoding user_id and car_id */
   reservation: {
-    user_id: "0db22c80-80d3-46ff-a684-abddd377bd05",
+    user_id: null,
     car_id: null,
     time: null,
     date: null,
     garage_id: null,
   },
-  search: '',
+  search: "",
   mapCenter: null,
   closestGarages: null,
   reservationsList: null,
@@ -82,6 +82,9 @@ export const reservationSlice = createSlice({
     },
     setCarId: (state, action) => {
       state.reservation.car_id = action.payload;
+    },
+    setUserId: (state, action) => {
+      state.reservation.user_id = action.payload;
     },
     resetState: () => initialState,
   },
@@ -111,6 +114,7 @@ export const {
   setPage,
   setSelectedGarage,
   setCarId,
+  setUserId,
   resetState,
 } = reservationSlice.actions;
 export default reservationSlice.reducer;
