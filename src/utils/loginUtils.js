@@ -31,9 +31,15 @@ const createAccount = async (userId, accountInfo, role) => {
 //if session and userInfo exist, return them
 //else return null and the user will have to sign in again
 const getSession = async () => {
-  const session = JSON.parse(window.localStorage.getItem('session'))
-  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-  if (session && userInfo) {
+  const session = JSON.parse(window.localStorage.getItem('session'));
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+  const vehicles = JSON.parse(window.localStorage.getItem('vehicles'));
+  const garages = JSON.parse(window.localStorage.getItem('garages'));
+  if (vehicles) {
+    return { data: { session, userInfo, vehicles } };
+  } else if (garages) {
+    return { data: { session, userInfo, garages}};
+  } else if (session && userInfo) {
     return { data: { session, userInfo } };
   } else {
     return { data: null };
