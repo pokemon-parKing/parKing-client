@@ -11,7 +11,6 @@ import DateDropdown from "./components/DateDropdown";
 const MapSideBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +20,6 @@ const MapSideBar = () => {
 
     await dispatch(fetchCoordinates(search));
     dispatch(fetchClosestGarages());
-    // navigate("/reservation/confirmation");
   };
 
   return (
