@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import PropTypes from 'prop-types';
 
 const VehicleForm = ({ onExit, onSubmit, initialData }) => {
   const userData = useSelector((state) => state.accounts.userData);
@@ -108,5 +108,11 @@ const VehicleForm = ({ onExit, onSubmit, initialData }) => {
     </div>
   );
 };
+
+VehicleForm.propTypes = {
+  onExit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  initialData: PropTypes.object.isRequired
+}
 
 export default VehicleForm;

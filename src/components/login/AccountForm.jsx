@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 const AccountForm = ({ formData, handleChange, handlePhoneChange }) => {
   return (
@@ -58,5 +59,11 @@ const AccountForm = ({ formData, handleChange, handlePhoneChange }) => {
     </div>
   );
 };
+
+AccountForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handlePhoneChange: PropTypes.func.isRequired,
+}
 
 export default AccountForm;
