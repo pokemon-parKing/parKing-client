@@ -5,10 +5,10 @@ import { getReservationList } from '../../utils/valetReservationUtils.js'
 import { Link } from 'react-router-dom';
 
 const SearchReservation = () => {
+  const { id: garage_id } = useSelector((state) => state.accounts.valetData);
   const { reservations } = useSelector((state) => state.valet);
   const [list, setList] = useState(reservations);
   const [search, setSearch] = useState('');
-  const garage_id= 1;
 
   const getNewList = async (date) => {
     const data = await getReservationList(garage_id, date.replace(/\//g, "-"));

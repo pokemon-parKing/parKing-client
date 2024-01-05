@@ -14,8 +14,8 @@ const ValetReservation = () => {
   //use garage id (1 for testing purposes) and current date (format:DD-MM-YY) to get the current reservations and spots
   // const [showQrCode, setShowQrCode] = useState(false);
   // const [qrCodeLink, setQrCodeLink] = useState('');
-
-  const { date, garage_id, time } = useSelector((state) => state.valet);
+  const { id: garage_id } = useSelector((state) => state.accounts.valetData);
+  const { date, time } = useSelector((state) => state.valet);
   const dispatch = useDispatch();
 
   const fetchSpotsAndReservations = useCallback(async () => {

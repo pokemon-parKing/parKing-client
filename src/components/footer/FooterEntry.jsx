@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function FooterEntry({ entry }) {
   const [name, github, linkedin] = entry;
     
@@ -8,6 +10,10 @@ function FooterEntry({ entry }) {
         <span className="text-xs flex">{linkedin}</span>
     </div>
   );
+}
+
+FooterEntry.propTypes = {
+  entry: PropTypes.object.isRequired,
 }
 
 export default FooterEntry;
