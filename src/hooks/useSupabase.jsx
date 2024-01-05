@@ -43,6 +43,8 @@ const Supabase = () => {
         window.localStorage.removeItem('oauth_user')
         window.localStorage.removeItem('session')
         window.localStorage.removeItem('userInfo')
+        window.localStorage.removeItem('cars')
+        window.localStorage.removeItem('garages')
         window.localStorage.removeItem('sb-iibwbjdisltiujjuglkp-auth-token')
         dispatch(setAuthToken(null));
         dispatch(setUserData(null));
