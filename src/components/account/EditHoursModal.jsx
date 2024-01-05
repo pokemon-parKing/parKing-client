@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
+
 const HoursModal = ({
   valetData,
   setOpeningHour,
@@ -58,5 +59,12 @@ const HoursModal = ({
     </dialog>
   );
 };
+
+HoursModal.propTypes = {
+  valetData: PropTypes.object.isRequired,
+  setOpeningHour: PropTypes.func.isRequired,
+  setClosingHour: PropTypes.func.isRequired,
+  handleHoursUpdate: PropTypes.func.isRequired,
+}
 
 export default HoursModal;

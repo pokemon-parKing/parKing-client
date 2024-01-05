@@ -1,7 +1,7 @@
 import Cards from './cards/Cards';
 import { cardData } from '../../lib/landingpage/landingPageCards';
-import UserValetButtons from './roleButtons/UserValetButtons';
 import SearchBar from '../user-reservation/search/SearchBar';
+
 function LandingPage() {
     return (
         <>
@@ -10,7 +10,7 @@ function LandingPage() {
                 <SearchBar />
                 <img className="h-full w-full object-cover" src="src/assets/landingpage/carouselPhoto1.jpg"></img>
             </div>
-            
+
             <div className='my-2 md:my-8'>
                 <h1 className='text-center text-5xl mb-8 text-black '>How the App works</h1>
                 <div className='flex flex-col  mx-0 xl:mx-56 md:flex-row  '>
@@ -19,8 +19,6 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-
-            <UserValetButtons />
         </>
     );
 }
