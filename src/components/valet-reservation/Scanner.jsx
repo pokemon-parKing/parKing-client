@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
   const [stopScanningButton, setStopScanningButton] = useState(null);
+  const [startScanningButton2, setStartScanningButton2] = useState(null);
 
   useEffect(() => {
     const scanner = new Html5QrcodeScanner("reader", {
@@ -25,6 +26,10 @@ const Scanner = () => {
       if (stopScanningButton === null) {
         setStopScanningButton(document.getElementById("html5-qrcode-button-camera-stop"));
         // console.log(stopScanningButton);
+        if (startScanningButton2 === null) {
+          setStartScanningButton2(document.getElementById("html5-qrcode-button-camera-start"));
+        }
+
       }
       // console.warn(error);
     }
@@ -92,7 +97,7 @@ const Scanner = () => {
 
   useEffect(() => {
     if (stopScanningButton) {
-      stopScanningButton.textContent = "Back";
+      stopScanningButton.textContent = "Scan Using Upload";
       stopScanningButton.classList.add(
         "btn",
         "btn-active",
@@ -107,6 +112,24 @@ const Scanner = () => {
         );
     }
   }, [stopScanningButton])
+
+  useEffect(() => {
+    if (startScanningButton2) {
+      startScanningButton2.textContent = "Start Scanning";
+      startScanningButton2.classList.add(
+        "btn",
+        "btn-active",
+        "mx-auto",
+        "bg-black", "border-black",
+        "text-white",
+        "btn-primary",
+        "btn-block",
+        "max-w-[200px]",
+        "mt-12",
+        "mb-2.5"
+        );
+    }
+  }, [startScanningButton2])
 
   return (
     <>
