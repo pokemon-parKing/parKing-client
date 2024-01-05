@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import { Link } from "react-router-dom";
-import { FaCamera } from "react-icons/fa";
 
 const Scanner = () => {
   const [scanResult, setScanResult] = useState(null);
@@ -25,7 +24,6 @@ const Scanner = () => {
       console.warn(error);
     }
 
-    //grabbing elements in the dom and changing their styles
     const scanRegion = document.getElementById("reader");
     if (scanRegion) {
       scanRegion.style.textDecoration = "none";
