@@ -151,7 +151,7 @@ const RegistrationForm = ({ role, handleBackClick }) => {
               last_name: formData.lastName,
               email: formData.email,
               phone_number: formData.phoneNumber,
-              role: 'user',
+              role: 'admin',
             };
             const garage = [{
               name: formData.garageName,
