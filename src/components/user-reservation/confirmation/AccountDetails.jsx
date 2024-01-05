@@ -51,18 +51,21 @@ const AccountDetails = () => {
                 <tr>
                   <td className="flex px-4 py-2 align-start font-bold">Car</td>
                   <td className="px-4 py-2">
-                    <select
-                      // value={reservation.car_id || vehicleData[0].id}
-                      onChange={(e) => {
-                        dispatch(setCarId(e.target.value));
-                      }}
-                    >
-                      {vehicleData.map((vehicle) => (
-                        <option key={vehicle.id} value={vehicle.id}>
-                          {`${vehicle.make} ${vehicle.model}`}
-                        </option>
-                      ))}
-                    </select>
+                    {vehicleData.length === 1 ? (
+                      <p>{`${vehicleData[0].make} ${vehicleData[0].model}`}</p>
+                    ) : (
+                      <select
+                        onChange={(e) => {
+                          dispatch(setCarId(e.target.value));
+                        }}
+                      >
+                        {vehicleData.map((vehicle) => (
+                          <option key={vehicle.id} value={vehicle.id}>
+                            {`${vehicle.make} ${vehicle.model}`}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </td>
                 </tr>
                 <tr>
