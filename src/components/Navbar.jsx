@@ -32,7 +32,7 @@ function Navbar() {
           {navbarLinks.map((item) => {
             if (role !== "admin" && item.name === "Reservations") {
               return;
-            } else if (role && item.name === "Sign In/Sign Up") {
+            } else if (role && item.name === "Sign In") {
                 return (
                     <Link
                     key={"Sign Out"}
