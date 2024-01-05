@@ -77,7 +77,8 @@ const AccountDetails = () => {
                       {" "}
                       {reservation.car_id
                         ? vehicleData.find(
-                            (vehicle) => vehicle.id === reservation.car_id
+                            (vehicle) =>
+                              vehicle.id === Number(reservation.car_id)
                           ).license_plate_number
                         : vehicleData[0].license_plate_number}
                     </p>
