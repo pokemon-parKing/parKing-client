@@ -12,10 +12,10 @@ function LandingPage() {
                 <SearchBar />
                 <img className="h-full w-full object-cover" src="src/assets/landingpage/carouselPhoto1.jpg"></img>
             </div>
-            
-            <div className='my-2 my-8'>
-                <h1 className='text-center text-5xl mb-8 text-black '>How the App Works</h1>
-                <div className='flex flex-col  mx-0 xl:mx-56 md:flex-row  '>
+
+            <div className='my-10'>
+                <h1 className='text-center text-5xl mb-10 text-black font-semibold'>How the App Works</h1>
+                <div className='flex flex-col  mx-0 xl:mx-56 md:flex-row'>
                     {cardData.map((item, index) => (
                         <Cards key={index} icon={item.icon} title={item.title} text={item.text} />
                     ))}

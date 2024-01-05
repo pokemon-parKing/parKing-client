@@ -79,7 +79,7 @@ const AdminSettings = () => {
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
           Admin Settings
         </h1>
-        <div className="gap-6 h-[600px] overflow-y-auto">
+        <div className="h-[600px] overflow-y-auto">
           <div
             key={valetData?.id}
             className="card bg-base-100 shadow-xl mb-3 mr-3"
@@ -92,9 +92,10 @@ const AdminSettings = () => {
               <p className="text-[#000]">{`Longitude: ${valetData?.lng}`}</p>
             </div>
           </div>
-          <div className="stats shadow">
+          <div className='flex flex-row justify-evenly'>
+          <div className="stats shadow w-[50%]">
             <div className="stat">
-              <div className="stat-title">Number of Parking Spots</div>
+              <div className="stat-title">Parking Spots</div>
               <div className="stat-value">{valetData?.spots}</div>
               <button
                 className="btn btn-ghost text-blue-500"
@@ -124,7 +125,7 @@ const AdminSettings = () => {
               />
             </div>
           </div>
-          <div className="stats shadow">
+          <div className="stats shadow w-[50%]">
             <div className="stat">
               <div className="stat-title">Hours of Operation</div>
               <div className="stat-value">{valetData?.operation_hours}</div>
@@ -156,6 +157,7 @@ const AdminSettings = () => {
                 handleHoursUpdate={handleHoursUpdate}
               />
             </div>
+          </div>
           </div>
         </div>
       </div>

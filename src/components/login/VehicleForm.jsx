@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 const VehicleForm = ({ formData, handleChange }) => {
   return (
     <div>
-      <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
+      <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000] mt-4">
           What do you drive?
         </h1>
       <label htmlFor="vehicleMake" className="font-semibold text-[#000]">
-        Make:
+        MAKE:
       </label>
       <input
         type="text"
@@ -20,7 +20,7 @@ const VehicleForm = ({ formData, handleChange }) => {
         required
       />
       <label htmlFor="vehicleModel" className="font-semibold text-[#000]">
-        Model:
+        MODEL:
       </label>
       <input
         type="text"
@@ -33,7 +33,7 @@ const VehicleForm = ({ formData, handleChange }) => {
         required
       />
       <label htmlFor="vehicleColor" className="font-semibold text-[#000]">
-        Color:
+        COLOR:
       </label>
       <input
         type="text"
@@ -45,7 +45,7 @@ const VehicleForm = ({ formData, handleChange }) => {
         required
       />
       <label htmlFor="vehicleLicensePlate" className="font-semibold text-[#000]">
-        License Plate Number:
+        LICENSE PLATE NUMBER:
       </label>
       <input
         type="text"

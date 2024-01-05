@@ -21,7 +21,7 @@ const GoogleMap = () => {
       <div>
         <div className="flex justify-center">
           <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
-            <div style={{ height: "100vh", width: "60vw" }}>
+            <div style={{ height: "81vh", width: "60vw" }}>
               <Map
                 center={mapCenter}
                 zoom={13}

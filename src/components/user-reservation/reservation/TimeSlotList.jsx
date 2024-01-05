@@ -19,7 +19,7 @@ const TimeSlotList = () => {
   }, [reservationsList, hourRange, selectedGarage.spots]);
 
   return (
-    <details className="dropdown max-w-[800px] w-[90%] mx-auto">
+    <details className="dropdown max-w-[800px] w-[90%] mx-auto h-[81%]">
       <summary className="btn w-full">
         <svg
           fill="none"
@@ -36,7 +36,7 @@ const TimeSlotList = () => {
         </svg>
         Select Time
       </summary>
-      <ul className="w-full dropdown-content menu shadow p-2 max-h-[500px] overflow-auto flex flex-row">
+      <ul className="w-full dropdown-content menu shadow p-2 h-full overflow-auto flex flex-row">
         {availableTimes.map((slot) => (
           <TimeSlot key={slot.time} info={slot} />
         ))}
