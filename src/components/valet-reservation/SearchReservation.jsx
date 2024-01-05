@@ -25,7 +25,7 @@ const SearchReservation = () => {
 
   return (
     <div>
-      <div className='flex flex-row'>
+      <div className='flex flex-row mt-5'>
         <h4>Select a date: </h4>
         <select onChange={(e) => getNewList(e.target.value)}>
           {getNext8Days()}
@@ -35,11 +35,7 @@ const SearchReservation = () => {
         <label className='pr-1.5' htmlFor='search'>Search: </label>
         <input className= 'border border-black rounded-md' name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
       </div>
-      <div className="pb-2.5">
-      <Link to="/valet" className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[150px]">
-        Back
-      </Link>
-      </div>
+
       <div className='grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-scroll min-w-[600px] shadow-lg'>
         {
           filteredList.map(reservation => {
@@ -66,6 +62,9 @@ const SearchReservation = () => {
           })
         }
       </div>
+      <Link to="/valet" className="btn btn-active mx-auto my-8 bg-black border-black text-white btn-primary btn-block max-w-[200px]">
+        Back
+      </Link>
     </div>
   );
 }
