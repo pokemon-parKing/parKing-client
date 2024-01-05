@@ -10,7 +10,9 @@ import { formatPhoneNumber } from "../../utils/formatPhoneNumber.js";
 import { setVehicleData, setUserData } from "../../utils/slice/accountsSlice.js";
 
 
-const RegistrationForm = ({ role }) => {
+const RegistrationForm = ({ role, handleBackClick }) => {
+
+const RegistrationForm = ({ role, handleBackClick }) => {
   const dispatch = useDispatch();
   const { id: userId, first_name, last_name, email } = useSelector(state => state.accounts.userData);
   const navigate = useNavigate();
@@ -189,11 +191,15 @@ const RegistrationForm = ({ role }) => {
               <AccountForm formData={formData} handleChange={handleChange} handlePhoneChange={handlePhoneNumberChange} />
               {role === 'driver' ? <VehicleForm formData={formData} handleChange={handleChange} /> : null}
               {role === 'valet' ? <GarageForm formData={formData} handleChange={handleChange} /> : null}
+              <br />
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center">
                 <button
                   type="submit"
                   className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
                 >Register</button>
+                <button className="btn btn-ghost text-red-500" onClick={handleBackClick}>
+                Back
+              </button>
               </div>
             </form>
           </div>
