@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import LinkedInSVG from '../../assets/icons/linkedinIcon.svg';
 import GitHubSVG from '../../assets/icons/github.svg';
 
@@ -15,6 +16,10 @@ function FooterEntry({ entry }) {
 
     </div>
   );
+}
+
+FooterEntry.propTypes = {
+  entry: PropTypes.object.isRequired,
 }
 
 export default FooterEntry;

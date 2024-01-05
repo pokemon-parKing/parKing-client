@@ -1,6 +1,5 @@
 import Cards from './cards/Cards';
 import { cardData } from '../../lib/landingpage/landingPageCards';
-import UserValetButtons from './roleButtons/UserValetButtons';
 import SearchBar from '../user-reservation/search/SearchBar';
 import GreetUser from './GreetUser/GreetUser';
 
@@ -22,8 +21,6 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-
-            <UserValetButtons />
         </>
     );
 }

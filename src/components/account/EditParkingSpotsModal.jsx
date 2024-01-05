@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
+
 const EditParkingSpotsModal = ({
   valetData,
   setParkingSpots,
@@ -46,5 +47,11 @@ const EditParkingSpotsModal = ({
     </dialog>
   );
 };
+
+EditParkingSpotsModal.propTypes = {
+  valetData: PropTypes.object.isRequired,
+  setParkingSpots: PropTypes.func.isRequired,
+  handleParkingSpotsUpdate: PropTypes.func.isRequired
+}
 
 export default EditParkingSpotsModal;

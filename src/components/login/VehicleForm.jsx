@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const VehicleForm = ({ formData, handleChange }) => {
   return (
     <div>
@@ -57,5 +59,10 @@ const VehicleForm = ({ formData, handleChange }) => {
     </div>
   );
 };
+
+VehicleForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+}
 
 export default VehicleForm;

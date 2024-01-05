@@ -1,15 +1,12 @@
-import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { convertTime, convertDate } from "../../../lib/timeSlotUtil";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const ReservationDetails = () => {
-  const { reservation, selectedGarage } = useSelector(
-    (state) => state.reservation
-  );
+const ReservationDetails = ({ reservation, selectedGarage }) => {
   const navigate = useNavigate();
-
   return (
-    reservation && (
+    reservation.user_id &&
+    selectedGarage && (
       <div className="card card-compact w-[60%] bg-base-100 shadow-xl mb-5">
         <div className="card-body">
           <div className="flex flex-row justify-between">
@@ -29,7 +26,7 @@ const ReservationDetails = () => {
               </svg>
               Reservation Summary
             </h2>
-            <button onClick={() => navigate('/reservation/map')}>
+            <button onClick={() => navigate("/reservation")}>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -81,6 +78,11 @@ const ReservationDetails = () => {
       </div>
     )
   );
+};
+
+ReservationDetails.propTypes = {
+  reservation: PropTypes.object,
+  selectedGarage: PropTypes.object,
 };
 
 export default ReservationDetails;
