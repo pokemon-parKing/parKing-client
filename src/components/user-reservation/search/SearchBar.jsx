@@ -29,7 +29,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex flex-col absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full z-40 ">
+    <div className="flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full z-40 ">
       <h1 className="text-3xl text-center text-black-p">
         Reserve Parking Now!
       </h1>
@@ -55,7 +55,7 @@ const SearchBar = () => {
         <div className="join flex justify-center w-full">
           <input
             required
-            className="input input-bordered join-item pl-10 w-full"
+            className="input input-bordered focus:outline-none join-item pl-10 w-full"
             placeholder="Address, Place, City or Venue"
             defaultValue=""
             type="text"
@@ -65,7 +65,7 @@ const SearchBar = () => {
           />
           <select
             required
-            className="select select-bordered join-item"
+            className="select select-bordered focus:outline-none join-item"
             value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
             onChange={(e) => {
               dispatch(setDate(e.target.value.replace(/\//g, "-")));
