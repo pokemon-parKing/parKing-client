@@ -6,8 +6,8 @@ import {
   fetchClosestGarages,
   setSearch,
 } from "../../../utils/slice/reservationSlice";
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast'
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SearchBar = () => {
   const { reservation, search } = useSelector((state) => state.reservation);
@@ -16,19 +16,23 @@ const SearchBar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!search)
-      return toast.error("Please fill address");
+
+    if (!search) return toast.error("Please fill address");
     if (!reservation.date || reservation.date === "Select a date")
       return toast.error("Please select a date");
 
-    await dispatch(fetchCoordinates(search));
+    const response = await dispatch(fetchCoordinates(search));
+    if (response.payload === 500)
+      return toast.error("No matches, please try again");
     dispatch(fetchClosestGarages());
-    navigate('/reservation');
+    navigate("/reservation");
   };
 
   return (
-    <div className='flex flex-col absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full z-40 '>
-      <h1 className="text-3xl text-center text-black-p">Reserve Parking Now!</h1>
+    <div className="flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full z-40 ">
+      <h1 className="text-3xl text-center text-black-p">
+        Reserve Parking Now!
+      </h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-row justify-center items-center w-[700px] mx-auto my-2"
@@ -51,9 +55,9 @@ const SearchBar = () => {
         <div className="join flex justify-center w-full">
           <input
             required
-            className="input input-bordered join-item pl-10 w-full"
+            className="input input-bordered focus:outline-none join-item pl-10 w-full"
             placeholder="Address, Place, City or Venue"
-            defaultValue=''
+            defaultValue=""
             type="text"
             onChange={(e) => {
               dispatch(setSearch(e.target.value));
@@ -61,7 +65,7 @@ const SearchBar = () => {
           />
           <select
             required
-            className="select select-bordered join-item"
+            className="select select-bordered focus:outline-none join-item"
             value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
             onChange={(e) => {
               dispatch(setDate(e.target.value.replace(/\//g, "-")));

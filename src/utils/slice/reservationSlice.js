@@ -90,7 +90,9 @@ export const reservationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCoordinates.fulfilled, (state, action) => {
-      state.mapCenter = action.payload;
+      if (action.payload !== 500) {
+        state.mapCenter = action.payload;
+      }
     });
 
     builder.addCase(fetchClosestGarages.fulfilled, (state, action) => {

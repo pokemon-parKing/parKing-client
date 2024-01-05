@@ -17,8 +17,9 @@ const MapSideBar = () => {
     if (!search) return toast.error("Please fill address");
     if (!reservation.date || reservation.date === "Select a date")
       return toast.error("Please select a date");
-
-    await dispatch(fetchCoordinates(search));
+    const response = await dispatch(fetchCoordinates(search));
+    if (response.payload === 500)
+      return toast.error("No matches, please try again");
     dispatch(fetchClosestGarages());
   };
 

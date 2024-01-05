@@ -18,7 +18,7 @@ const getGeoCoordinates = async (address) => {
     return JSON.parse(data);
   } catch (error) {
     console.log(error);
-    return null;
+    return error.response.status;
   }
 };
 const getReservationsByDate = async (garage_id, date) => {
