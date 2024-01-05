@@ -4,7 +4,6 @@ import {
   fetchClosestGarages,
   setSearch,
 } from "../../../../utils/slice/reservationSlice";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import ClearSearchBtn from "./components/ClearSearchBtn";
 import DateDropdown from "./components/DateDropdown";
