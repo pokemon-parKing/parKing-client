@@ -37,7 +37,7 @@ const SearchReservation = () => {
         <input className= 'border border-black rounded-md' name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
       </div>
 
-      <div className='grid grid-cols-1 gap-2 min-h-[50vh] max-h-[60vh] overflow-y-scroll min-w-[600px] shadow-lg'>
+      <div className='grid grid-cols-1 gap-2 min-h-[40vh] max-h-[60vh] overflow-y-scroll min-w-[600px] shadow-lg'>
         {
           filteredList.map(reservation => {
             const { time, status, cars, parking_spot_id, id } = reservation;
