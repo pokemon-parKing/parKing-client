@@ -26,7 +26,7 @@ const ReservationList = () => {
           return (
             <Link to={`/valet/reservation/${id}`} key={id} className="p-4 bg-gray-100 shadow-md rounded-md hover:bg-gray-300">
                 <p>
-                  <span className='font-semibold'>Time: </span>
+                <span className='font-semibold'>Time: </span>
                   {time}
                 </p>
                 <p>
@@ -34,10 +34,10 @@ const ReservationList = () => {
                   {parking_spot_id}</p>
                 <p>
                   <span className='font-semibold'>Status: </span>
-                  {status}
+                  {status==='reserved' ? 'Reserved' : 'Checked-in'}
                 </p>
                 <p>
-                  <span className='font-semibold'>Car: </span>
+                  <span className='font-semibold'>Vehicle: </span>
                   {cars.color} {cars.make} {cars.model}
                 </p>
             </Link>

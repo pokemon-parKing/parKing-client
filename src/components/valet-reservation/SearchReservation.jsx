@@ -52,7 +52,7 @@ const SearchReservation = () => {
                   {parking_spot_id}</p>
                 <p>
                   <span className='font-semibold'>Status: </span>
-                  {status}
+                  {status==='reserved' ? 'Reserved' : 'Checked-in'}
                 </p>
                 <p>
                   <span className='font-semibold'>Car: </span>
