@@ -27,13 +27,13 @@ const SearchReservation = () => {
     <div className='min-w-[600px] min-h-[60vh]'>
       <h1 className='text-3xl font-semibold my-4 mb-4 text-center'>Search for Reservations by Date</h1>
       <div className='flex flex-row mt-5'>
-        <h4>Select a date: </h4>
-        <select className='border border-black bg-gray-100' onChange={(e) => getNewList(e.target.value)}>
+        <h4 className='pr-1.5 font-semibold'>Select a date: </h4>
+        <select className='border border-black bg-gray-100 hover:bg-gray-300' onChange={(e) => getNewList(e.target.value)}>
           {getNext8Days()}
         </select>
       </div>
       <div className='flex flex-row py-2.5'>
-        <label className='pr-1.5' htmlFor='search'>Search: </label>
+        <label className='pr-1.5 font-semibold' htmlFor='search'>Search: </label>
         <input className= 'border border-black rounded-md' name='search' type='text' onChange={(e) => setSearch(e.target.value)}/>
       </div>
 
