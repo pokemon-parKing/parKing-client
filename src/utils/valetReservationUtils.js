@@ -67,6 +67,10 @@ const updateStatus = async (status, reservationId) => {
   }
 };
 
+const getReservationData = async (garage_id) => {
+  return axios.get(`${HOST}/reservations/getReservationData/${garage_id}`);
+}
+
 export {
   getQrCode,
   getReservationDetails,
@@ -74,4 +78,5 @@ export {
   getSpotMetrics,
   postGenerateQrCode,
   updateStatus,
+  getReservationData
 };
