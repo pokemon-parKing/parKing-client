@@ -14,23 +14,22 @@ export default {
         "beige-s": "var(--pk-beige-secondary)",
       },
       height: {
-        'slider-max-height': '53rem', 
+        'slider-max-height': '53rem',
       },
       spacing: {
         '1/18': '18%',
         '1/37': '37%'
       },
       screens: {
-        'footer-icon-meet': '1274px', 
-        'searchbar-lastpoint': '700px', 
+        'footer-icon-meet': '1274px',
+        'searchbar-lastpoint': '700px',
         'searchbar-midpoint': '500px'
       },
     }
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: true, // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: "light", // name of one of the included themes for dark mode
+    themes: ['light', 'dark'], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
