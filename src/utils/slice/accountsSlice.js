@@ -40,7 +40,9 @@ const accountsSlice = createSlice({
       );
     },
     setReservationData: (state, action) => {
-      state.reservationData = action.payload;
+      if (action.payload) {
+        state.reservationData = action.payload;
+      }
     },
     cancelReservation: (state, action) => {
       const reservationId = action.payload;
