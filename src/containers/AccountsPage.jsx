@@ -40,17 +40,17 @@ const AccountsPage = () => {
     <>
       <div className="flex items-center justify-center">
         <nav className="pt-10">
-          <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+          <ul className="menu flex flex-row flex-wrap justify-center gap-4 bg-base-200 rounded-box">
             <li onClick={() => setActiveMenu("accountSettings")}>
-              <a>ACCOUNT SETTINGS</a>
+              <a className="shadow-md font-semibold">ACCOUNT SETTINGS</a>
             </li>
             {userData.role === "user" && (
               <>
                 <li onClick={() => setActiveMenu("savedVehicles")}>
-                  <a>SAVED VEHICLES</a>
+                  <a className="shadow-md font-semibold">SAVED VEHICLES</a>
                 </li>
                 <li onClick={() => setActiveMenu("myParking")}>
-                  <a>RESERVATIONS</a>
+                  <a className="shadow-md font-semibold">RESERVATIONS</a>
                 </li>
               </>
             )}

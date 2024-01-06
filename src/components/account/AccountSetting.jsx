@@ -45,14 +45,14 @@ const AccountSetting = () => {
   return (
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10 h-[750px]">
       <div className="mx-auto w-full lg:w-1/2 md:p-10 py-5 md:py-0">
-        <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000]">
+        <h1 className="text-center text-2xl sm:text-3xl font-semibold text-[#000] mt-5">
           Account Information
         </h1>
         <div className="w-full mt-5 sm:mt-8">
           <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-6 h-[600px]">
             <label htmlFor="name" className="font-semibold text-[#000]">
               NAME:
-            </label>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="text"
@@ -71,9 +71,10 @@ const AccountSetting = () => {
                 name="last_name"
               />
             </div>
+            </label>
             <label htmlFor="email" className="font-semibold text-[#000]">
               EMAIL:
-            </label>
+
             <input
               type="text"
               placeholder="Your Email Address"
@@ -82,9 +83,10 @@ const AccountSetting = () => {
               onChange={handleInputChange}
               name="email"
             />
+            </label>
             <label htmlFor="phonenumber" className="font-semibold text-[#000]">
               PHONE NUMBER:
-            </label>
+
             <input
               type="text"
               id="phonenumber"
@@ -94,14 +96,16 @@ const AccountSetting = () => {
               onChange={handlePhoneNumberChange}
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />
+            </label>
             <label htmlFor="password" className="font-semibold text-[#000]">
               PASSWORD:
-            </label>
+
             <input
               type="Password"
               placeholder="Your Password"
               className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
             />
+            </label>
             <div className="flex items-center gap-1.5  justify-start pl-2">
               <div className="form-control">
                 <label className="label cursor-pointer">

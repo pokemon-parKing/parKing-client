@@ -26,14 +26,18 @@ const Confirmation = () => {
 
   return (
     reservation && (
+<<<<<<< HEAD
       <div className="flex flex-col items-center w-full mt-10 mb-10">
+=======
+      <div className="flex flex-col items-center gap-10 w-full my-20">
+>>>>>>> main
         <AccountDetails />
         <ReservationDetails
           reservation={reservation}
           selectedGarage={selectedGarage}
         />
         <button
-          className="btn"
+          className="btn btn-active bg-black border-black text-white btn-primary btn-block max-w-[200px]"
           onClick={async () => {
             const response = await dispatch(addReservation());
             if (response.payload === 409) {

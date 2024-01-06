@@ -39,7 +39,7 @@ const MyParking = () => {
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10 h-[750px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
-          Reservations
+          {"Today's Reservations"}
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-y-auto p-5">
           {reservationData.map((reservation) => (
