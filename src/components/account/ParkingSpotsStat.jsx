@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import EditParkingSpotsModal from "./EditParkingSpotsModal";
 
 const ParkingSpotsStat = ({
@@ -40,5 +41,11 @@ const ParkingSpotsStat = ({
     </div>
   );
 };
+
+ParkingSpotsStat.propTypes = {
+  valetData: PropTypes.object.isRequired,
+  setParkingSpots: PropTypes.func.isRequired,
+  handleParkingSpotsUpdate: PropTypes.func.isRequired
+}
 
 export default ParkingSpotsStat;

@@ -14,7 +14,7 @@ const AccountsPage = () => {
       <>
         {userData.role === "admin" && (
           <li onClick={() => setActiveMenu("adminSettings")}>
-            <a>ADMIN SETTINGS</a>
+            <a className="shadow-md font-semibold">ADMIN SETTINGS</a>
           </li>
         )}
       </>

@@ -12,7 +12,7 @@ function App() {
   const { id, role } = useSelector((state) => state.accounts.userData);
 
   useEffect(() => {
-    document.querySelector('html').setAttribute('data-theme', 'dark');
+    document.querySelector('html').setAttribute('data-theme', 'light');
   }, [])
 
   useEffect(() => {
