@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const ToggleButton = ({ toggle, setToggle }) => (
-  <button onClick={() => setToggle(!toggle)} className='absolute right-0 top-0'>
+  <button onClick={() => setToggle(!toggle)} className='absolute right-4 top-4'>
     {
       toggle
       ? <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

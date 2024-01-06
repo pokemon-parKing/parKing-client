@@ -26,9 +26,7 @@ ChartJS.register(
 );
 
 const DataChart = () => {
-  // const { id, name } = useSelector((state) => state.accounts.valetData);
-  const id = 16;
-  const name = 'K park'
+  const { id, name } = useSelector((state) => state.accounts.valetData);
   const [reservationData, setReservationData] = useState([]);
   const [toggle, setToggle] = useState(false);
   const formattedNext7Days = useMemo(() => {
@@ -76,7 +74,7 @@ const DataChart = () => {
   }, [id])
 
   return (
-    <div className='w-[90%] relative'>
+    <div className='w-[70%] relative card shadow-xl p-4 bg-white'>
       <ToggleButton toggle={toggle} setToggle={setToggle} />
       {!!activeData.totals.length && (
         toggle
