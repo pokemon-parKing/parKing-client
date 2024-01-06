@@ -26,7 +26,7 @@ const Confirmation = () => {
 
   return (
     reservation && (
-      <div className="flex flex-col items-center w-full mt-5">
+      <div className="flex flex-col items-center w-full mt-10 mb-10">
         <AccountDetails />
         <ReservationDetails
           reservation={reservation}

@@ -19,7 +19,6 @@ function App() {
           dispatch(setUserData(data.userInfo));
           dispatch(setAuthToken(data.session));
         }
-        // console.log("data: ", data);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

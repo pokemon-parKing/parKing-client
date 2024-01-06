@@ -16,7 +16,6 @@ export const fetchCoordinates = createAsyncThunk(
 
 export const fetchClosestGarages = createAsyncThunk(
   "reservation/fetchClosestGarages",
-  /* getState gives access to current value of state in redux store */
   async (_, { getState }) => {
     const state = getState();
     const coordinates = state.reservation.mapCenter;
@@ -46,7 +45,6 @@ export const addReservation = createAsyncThunk(
 );
 
 const initialState = {
-  /* Hardcoding user_id and car_id */
   reservation: {
     user_id: null,
     car_id: null,

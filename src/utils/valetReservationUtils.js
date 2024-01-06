@@ -13,7 +13,6 @@ const getQrCode = async (reservationId) => {
 };
 
 const getReservationDetails = async (reservation_id) => {
-  /* Given reservation_id, get reservation details */
   try {
     const { data } = await axios.get(
       `${HOST}/reservations/valet/detail/${reservation_id}`
@@ -26,7 +25,6 @@ const getReservationDetails = async (reservation_id) => {
 };
 
 const getReservationList = async (garage_id, date) => {
-  /* Given garage_id and date, get count of reservations per hour */
   try {
     const { data } = await axios.get(
       `${HOST}/reservations/valet/list/${garage_id}?date=${date}`
@@ -39,7 +37,6 @@ const getReservationList = async (garage_id, date) => {
 };
 
 const getSpotMetrics = async (garage_id, date, time) => {
-  /* Given garage_id, date, and time, get information about the number of occupied(checked-in), reserved, and available spots */
   try {
     const { data } = await axios.get(
       `${HOST}/reservations/valet/${garage_id}?date=${date}&time=${time}`
