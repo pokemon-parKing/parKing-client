@@ -11,9 +11,9 @@ function App() {
   const dispatch = useDispatch();
   const { id, role } = useSelector((state) => state.accounts.userData);
 
-  useEffect(() => {
-    document.querySelector('html').setAttribute('data-theme', 'dark');
-  }, [])
+  // useEffect(() => {
+  //   document.querySelector("html").setAttribute("data-theme", "dark");
+  // }, []);
 
   useEffect(() => {
     if (!id) {

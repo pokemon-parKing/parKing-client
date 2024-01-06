@@ -52,59 +52,55 @@ const AccountSetting = () => {
           <div className="mx-auto w-full sm:max-w-md md:max-w-lg flex flex-col gap-6 h-[600px]">
             <label htmlFor="name" className="font-semibold text-[#000]">
               NAME:
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="text"
-                placeholder="Your First Name"
-                className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                defaultValue={userData.first_name}
-                onChange={handleInputChange}
-                name="first_name"
-              />
-              <input
-                type="text"
-                placeholder="Your Last Name"
-                className="input input-bordered input-primary border-black w-full max-w-xs text-black placeholder:text-black/70"
-                defaultValue={userData.last_name}
-                onChange={handleInputChange}
-                name="last_name"
-              />
-            </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="text"
+                  placeholder="Your First Name"
+                  className="input input-bordered input-primary border-black w-full max-w-xs"
+                  defaultValue={userData.first_name}
+                  onChange={handleInputChange}
+                  name="first_name"
+                />
+                <input
+                  type="text"
+                  placeholder="Your Last Name"
+                  className="input input-bordered input-primary border-black w-full max-w-xs"
+                  defaultValue={userData.last_name}
+                  onChange={handleInputChange}
+                  name="last_name"
+                />
+              </div>
             </label>
             <label htmlFor="email" className="font-semibold text-[#000]">
               EMAIL:
-
-            <input
-              type="text"
-              placeholder="Your Email Address"
-              className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
-              defaultValue={userData.email}
-              onChange={handleInputChange}
-              name="email"
-            />
+              <input
+                type="text"
+                placeholder="Your Email Address"
+                className="input input-bordered input-primary border-black w-full"
+                defaultValue={userData.email}
+                onChange={handleInputChange}
+                name="email"
+              />
             </label>
             <label htmlFor="phonenumber" className="font-semibold text-[#000]">
               PHONE NUMBER:
-
-            <input
-              type="text"
-              id="phonenumber"
-              placeholder="(xxx) xxx-xxxx"
-              pattern="[0-9]*"
-              defaultValue={formattedPhoneNumber}
-              onChange={handlePhoneNumberChange}
-              className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
-            />
+              <input
+                type="text"
+                id="phonenumber"
+                placeholder="(xxx) xxx-xxxx"
+                pattern="[0-9]*"
+                defaultValue={formattedPhoneNumber}
+                onChange={handlePhoneNumberChange}
+                className="input input-bordered input-primary border-black w-full"
+              />
             </label>
             <label htmlFor="password" className="font-semibold text-[#000]">
               PASSWORD:
-
-            <input
-              type="Password"
-              placeholder="Your Password"
-              className="input input-bordered input-primary border-black w-full text-black placeholder:text-black/70"
-            />
+              <input
+                type="Password"
+                placeholder="Your Password"
+                className="input input-bordered input-primary border-black w-full"
+              />
             </label>
             <div className="flex items-center gap-1.5  justify-start pl-2">
               <div className="form-control">
