@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer/Footer.jsx";
-
+import DataChart from './components/analytics-chart/DataChart';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSession } from "./utils/loginUtils.js";
@@ -13,7 +13,7 @@ function App() {
   const { id, role } = useSelector((state) => state.accounts.userData);
 
   useEffect(() => {
-    document.querySelector('html').setAttribute('data-theme', 'dark');
+    document.querySelector('html').setAttribute('data-theme', 'light');
   }, [])
 
   useEffect(() => {
@@ -41,6 +41,7 @@ function App() {
   return (
     <div className="">
       <Navbar />
+      <DataChart />
       <div className="min-h-[60vh]">
         <Outlet />
       </div>
