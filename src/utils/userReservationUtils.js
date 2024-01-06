@@ -29,8 +29,7 @@ const getReservationsByDate = async (garage_id, date) => {
     );
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    return error.response.status;
   }
 };
 const postReservation = async (body) => {
@@ -39,7 +38,6 @@ const postReservation = async (body) => {
     await axios.post(`${HOST}/reservations`, body);
     console.log("Reservation complete");
   } catch (error) {
-    console.log(error.response.status);
     return error.response.status;
   }
 };
