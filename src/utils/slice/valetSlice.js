@@ -8,7 +8,6 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 
 const currentTime = new Date().getHours();
 
-
 const initialState = {
   reservations: [],
   time: currentTime,
@@ -50,9 +49,6 @@ export const valetSlice = createSlice({
     },
     setSpots: (state, action) => {
       state.spots = action.payload;
-    },
-    setTime: (state) => {
-      state.time = new Date().getHours();
     },
   },
 });
