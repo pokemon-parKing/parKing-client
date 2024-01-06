@@ -91,7 +91,7 @@ const Scanner = () => {
     return () => {
       scanner.clear();
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (stopScanningButton) {
