@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer/Footer.jsx";
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSession } from "./utils/loginUtils.js";
@@ -13,16 +12,18 @@ function App() {
   const { id, role } = useSelector((state) => state.accounts.userData);
 
   useEffect(() => {
+    document.querySelector('html').setAttribute('data-theme', 'dark');
+  }, [])
+
+  useEffect(() => {
     if (!id) {
       getSession().then(({ data }) => {
         if (data) {
           dispatch(setUserData(data.userInfo));
           dispatch(setAuthToken(data.session));
         }
-        // console.log("data: ", data);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
   }, [role, id, dispatch]);
 
   return (
-    <div className="bg-white">
+    <div className="">
       <Navbar />
       <div className="min-h-[60vh]">
         <Outlet />
