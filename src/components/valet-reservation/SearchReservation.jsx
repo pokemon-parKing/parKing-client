@@ -28,7 +28,7 @@ const SearchReservation = () => {
       <h1 className='text-3xl font-semibold my-4 mb-4 text-center'>Search for Reservations by Date</h1>
       <div className='flex flex-row mt-5'>
         <h4>Select a date: </h4>
-        <select onChange={(e) => getNewList(e.target.value)}>
+        <select className='border border-black bg-gray-100' onChange={(e) => getNewList(e.target.value)}>
           {getNext8Days()}
         </select>
       </div>
@@ -43,6 +43,9 @@ const SearchReservation = () => {
             const { time, status, cars, parking_spot_id, id } = reservation;
             return (
               <Link to={`/valet/reservation/${id}`} key={id} className="p-4 bg-gray-100 shadow-md rounded-md hover:bg-gray-300">
+                <h2 className='font-semibold'>
+                Reservation #: {id}
+                </h2>
                 <p>
                   <span className='font-semibold'>Time: </span>
                   {time}
