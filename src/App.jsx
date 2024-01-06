@@ -13,6 +13,10 @@ function App() {
   const { id, role } = useSelector((state) => state.accounts.userData);
 
   useEffect(() => {
+    document.querySelector('html').setAttribute('data-theme', 'dark');
+  }, [])
+
+  useEffect(() => {
     if (!id) {
       getSession().then(({ data }) => {
         if (data) {
@@ -35,7 +39,7 @@ function App() {
   }, [role, id, dispatch]);
 
   return (
-    <div className="bg-white">
+    <div className="">
       <Navbar />
       <div className="min-h-[60vh]">
         <Outlet />
