@@ -3,7 +3,6 @@ import GoogleIcon from '../../assets/googleicon.png';
 
 const SignIn = () => {
   const supabase = Supabase();
-  //POST MVP refactor to use existing session if it already exists in the browser! save the user a click! and fast track them to their account page! might also make sense to check for session at the start and route the user accordingly!
   const handleLogin = async () => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
@@ -17,8 +16,7 @@ const SignIn = () => {
         },
       });
       if (error) throw error;
-      // Handle successful sign in.
-    } catch (error) {
+        } catch (error) {
       console.error('Error logging in:', error.message);
     }
   };
