@@ -27,6 +27,8 @@ export const convertTime = (number) => {
 };
 
 export const convertDBTime = (time) => {
+  if (time === "12:00 PM") return 12;
+
   let dbTime = Number(time.split(":")[0]);
   if (time.slice(-2) === "PM") {
     dbTime += 12;
@@ -86,4 +88,17 @@ export const convertDate = (dateString) => {
   const formattedDate = `${dayName}, ${monthName} ${dayOfMonth}${daySuffix}`;
 
   return formattedDate;
+};
+
+export const getFormattedDate = () => {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear().toString().slice(-2);
+  const month = ("0" + (currentDate.getMonth() + 1)).slice(-2);
+  const day = ("0" + currentDate.getDate()).slice(-2);
+  return `${month}-${day}-${year}`;
+};
+export const getCurrentHour = () => {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+  return currentHour;
 };
