@@ -1,14 +1,10 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { setSearch } from "../../../../../utils/slice/reservationSlice";
 
 const ClearSearchBtn = () => {
   const dispatch = useDispatch();
-
   return (
-    <button
-      className="ml-[-35px] z-10"
-      onClick={() => dispatch(setSearch(""))}
-    >
+    <button className="ml-[-35px] z-10" onClick={() => dispatch(setSearch(""))}>
       <svg
         fill="none"
         viewBox="0 0 24 24"
@@ -23,7 +19,7 @@ const ClearSearchBtn = () => {
         />
       </svg>
     </button>
-  )
-}
+  );
+};
 
 export default ClearSearchBtn;

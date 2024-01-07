@@ -1,16 +1,17 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { InfoWindow } from "@vis.gl/react-google-maps";
 import { RiWalkFill } from "react-icons/ri";
 import {
   setGarageId,
   fetchReservations,
 } from "../../../../utils/slice/reservationSlice";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const MapInfoWindow = ({ setOpen }) => {
   const dispatch = useDispatch();
-  const selectedGarage = useSelector((state) => state.reservation.selectedGarage);
-
+  const selectedGarage = useSelector(
+    (state) => state.reservation.selectedGarage
+  );
   const getReservations = async (garageId) => {
     try {
       await dispatch(setGarageId(garageId));
@@ -34,9 +35,7 @@ const MapInfoWindow = ({ setOpen }) => {
         <h2 className="text-black font-bold text-xl mb-1">
           {selectedGarage.name}
         </h2>
-        <p className="font-medium mb-1">
-          {selectedGarage.address}
-        </p>
+        <p className="font-medium mb-1">{selectedGarage.address}</p>
         <div className="flex flex-row mb-1">
           <RiWalkFill />
           &nbsp;
@@ -58,11 +57,11 @@ const MapInfoWindow = ({ setOpen }) => {
         </div>
       </div>
     </InfoWindow>
-  )
-}
+  );
+};
 
 MapInfoWindow.propTypes = {
-  setOpen: PropTypes.func.isRequired
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default MapInfoWindow;

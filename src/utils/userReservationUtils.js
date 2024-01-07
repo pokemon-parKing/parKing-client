@@ -12,7 +12,6 @@ const getGarages = async (coordinates) => {
   }
 };
 const getGeoCoordinates = async (address) => {
-  /* Given address (only first line is necessary), get long and lat of address*/
   try {
     const { data } = await axios.get(`${HOST}/geocode/?address=${address}`);
     return JSON.parse(data);
@@ -22,7 +21,6 @@ const getGeoCoordinates = async (address) => {
   }
 };
 const getReservationsByDate = async (garage_id, date) => {
-  /* Given garage_id and date, get count of reservations per hour */
   try {
     const { data } = await axios.get(
       `${HOST}/reservations/garage/${garage_id}?date=${date}`
@@ -33,7 +31,6 @@ const getReservationsByDate = async (garage_id, date) => {
   }
 };
 const postReservation = async (body) => {
-  /* Given garage_id and date, get count of reservations per hour */
   try {
     await axios.post(`${HOST}/reservations`, body);
     console.log("Reservation complete");
