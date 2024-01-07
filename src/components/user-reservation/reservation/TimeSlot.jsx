@@ -8,7 +8,6 @@ const TimeSlot = ({ info }) => {
   const role = useSelector((state) => state.accounts.userData.role);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   return (
     <div
       className={`${

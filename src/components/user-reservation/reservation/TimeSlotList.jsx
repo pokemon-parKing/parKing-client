@@ -1,10 +1,17 @@
 import { useMemo } from "react";
 import TimeSlot from "./TimeSlot";
 import { useSelector } from "react-redux";
-import { getAvailableTimes } from "../../../lib/timeSlotUtil.js";
+import {
+  getAvailableTimes,
+  convertDBTime,
+  getFormattedDate,
+  getCurrentHour,
+} from "../../../lib/timeSlotUtil.js";
 
 const TimeSlotList = () => {
-  const { reservationsList, selectedGarage } = useSelector(
+  const today = getFormattedDate();
+  const currentHour = getCurrentHour();
+  const { reservation, reservationsList, selectedGarage } = useSelector(
     (state) => state.reservation
   );
 
@@ -37,9 +44,15 @@ const TimeSlotList = () => {
         Select Time
       </summary>
       <ul className="w-full dropdown-content menu shadow p-2 h-full overflow-auto flex flex-row">
-        {availableTimes.map((slot) => (
-          <TimeSlot key={slot.time} info={slot} />
-        ))}
+        {availableTimes.map((slot) => {
+          if (
+            currentHour > convertDBTime(slot.time) &&
+            reservation.date === today
+          ) {
+            return null;
+          }
+          return <TimeSlot key={slot.time} info={slot} />;
+        })}
       </ul>
     </details>
   );

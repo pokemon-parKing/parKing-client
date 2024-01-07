@@ -26,11 +26,7 @@ const Confirmation = () => {
 
   return (
     reservation && (
-<<<<<<< HEAD
-      <div className="flex flex-col items-center w-full mt-10 mb-10">
-=======
       <div className="flex flex-col items-center gap-10 w-full my-20">
->>>>>>> main
         <AccountDetails />
         <ReservationDetails
           reservation={reservation}
