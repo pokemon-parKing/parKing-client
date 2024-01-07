@@ -36,19 +36,13 @@ const RegistrationForm = ({ role, handleBackClick }) => {
   });
 
   useEffect(() => {
-    //set the form data to the users full name and email
     setFormData({
       ...formData,
       firstName: first_name,
       lastName: last_name,
       email: email,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [first_name, last_name, email]);
-
-  // useEffect(() => {
-  //   console.log('formData: ', formData);
-  // }, [formData]);
 
   const handlePhoneNumberChange = (e) => {
     const input = e.target.value;
@@ -81,11 +75,7 @@ const RegistrationForm = ({ role, handleBackClick }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(formData);
-    //depending on role kick off 2 different API calls to the acounts server
     if (role === 'driver') {
-      //call the driver API
-      //console.log(`/login/${userId}/driver`, 'send properly formatted form data and driver form data to the accounts server');
       createAccount(userId, {
         first_name: formData.firstName,
         last_name: formData.lastName,
@@ -98,7 +88,6 @@ const RegistrationForm = ({ role, handleBackClick }) => {
         license_plate_number: formData.vehicleLicensePlate,
       }, role)
         .then(() => {
-          //set the vehicle data in the store, not sure if vehicleId is required.
           const user = {
             first_name: formData.firstName,
             last_name: formData.lastName,
@@ -114,7 +103,6 @@ const RegistrationForm = ({ role, handleBackClick }) => {
           }];
           dispatch(setVehicleData(vehicle));
           dispatch(setUserData(user));
-          //save the vehicle data to the local storage
           window.localStorage.setItem('cars', JSON.stringify(vehicle));
           window.localStorage.setItem('userInfo', JSON.stringify(user));
           navigate('/');
@@ -124,8 +112,6 @@ const RegistrationForm = ({ role, handleBackClick }) => {
         }
         );
     } else if (role === 'valet') {
-      //call the valet API
-      //console.log(`/login/${userId}/valet`, 'send properly formatted form data and valet form data to the accounts server');
       if (formData.garageOpeningHour > formData.garageClosingHour) {
         alert('Please select a valid opening and closing time! (opening time must be earlier than closing time!)');
         return;
@@ -145,7 +131,6 @@ const RegistrationForm = ({ role, handleBackClick }) => {
           spots: +formData.garageParkingSpots,
         }, role)
           .then(() => {
-            //set the garage data in the store, no way to get the Lat and Lng here without querying the database, so this might not even be useful for y'all
             const user = {
               first_name: formData.firstName,
               last_name: formData.lastName,
@@ -162,10 +147,8 @@ const RegistrationForm = ({ role, handleBackClick }) => {
               operation_hours: `${formData.garageOpeningHour}-${formData.garageClosingHour}`,
               spots: +formData.garageParkingSpots,
             }];
-            //this is where the first dispatch will live when i figure out who uses this
 
             dispatch(setUserData(user));
-            //store in the window
             window.localStorage.setItem('garages', JSON.stringify(garage));
             window.localStorage.setItem('userInfo', JSON.stringify(user));
             navigate('/');
