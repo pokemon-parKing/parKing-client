@@ -188,6 +188,10 @@ Account server:
 Feel free to join in! Whether its fixing bugs, improving documentation, or
 simply spreading the word!
 
+<p align='center'>
+  <img src='https://github.com/pokemon-parKing/parKing-client/assets/113388860/b8d0eeda-578e-4575-a713-bf7093ec0402' width='25%'></img>
+</p>
+
 ## :link: Links to Developers
 
 <table id='links' align='center'>
