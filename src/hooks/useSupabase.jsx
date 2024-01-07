@@ -4,7 +4,7 @@ import { setAuthToken, setUserData } from '../utils/slice/accountsSlice.js';
 import { useEffect, useMemo } from 'react';
 
 const Supabase = () => {
-  const supabaseUrl = 'https://iibwbjdisltiujjuglkp.supabase.co';
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
   const supabaseAnonKey = import.meta.env.VITE_SUPABASE_KEY;
   const supabase = useMemo(() => createClient(supabaseUrl, supabaseAnonKey), [supabaseUrl, supabaseAnonKey]);
 
