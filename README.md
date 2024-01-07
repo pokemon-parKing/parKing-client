@@ -2,12 +2,12 @@
 
 # ParKing Client
 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/94aa6137-96cc-4ec8-878c-594767ddb62c" width="30%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/f1a031ca-5f25-4f4f-9d35-920d693601c1" width="30%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/7619d760-c0e5-4351-b4f3-abfbf44246c1" width="30%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/2c8b3644-fd25-48b1-abdc-b63b44072654" width="30%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/ccc12f21-9a79-400f-b0ae-6bb4867c49f8" width="30%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/a09e56fc-f70d-4b12-8b1c-923d91546466" width="30%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/94aa6137-96cc-4ec8-878c-594767ddb62c" width="33%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/f1a031ca-5f25-4f4f-9d35-920d693601c1" width="33%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/7619d760-c0e5-4351-b4f3-abfbf44246c1" width="33%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/2c8b3644-fd25-48b1-abdc-b63b44072654" width="33%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/ccc12f21-9a79-400f-b0ae-6bb4867c49f8" width="33%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/a09e56fc-f70d-4b12-8b1c-923d91546466" width="33%"></img> 
 
 <details>
   <summary>Table of Contents</summary>
