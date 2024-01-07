@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import GarageInformationCard from "./GarageInformationCard";
 import ParkingSpotsStat from "./ParkingSpotsStat";
 import HoursOfOperationStat from "./HoursOfOperationStat";
+import DataChart from '../analytics-chart/DataChart';
+import RadialChart from '../analytics-chart/RadialChart';
 import {
   getValetDataApi,
   updateParkingSpotsApi,
@@ -76,24 +78,32 @@ const AdminSettings = () => {
 
   return (
     <div className="max-w-7xl bg-white drop-shadow-xl border border-black/20 w-full rounded-md flex justify-center items-center p-10 h-[750px]">
-      <div className="text-center">
+      <div className="text-center border-2 p-4 rounded-2xl bg-white-p w-[80%]">
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#000] mb-5">
           Admin Settings
         </h1>
-        <div className="h-[600px] overflow-y-auto">
-          <GarageInformationCard valetData={valetData} />
-          <div className="flex flex-row justify-evenly">
-            <ParkingSpotsStat
-              valetData={valetData}
-              setParkingSpots={setParkingSpots}
-              handleParkingSpotsUpdate={handleParkingSpotsUpdate}
-            />
-            <HoursOfOperationStat
-              valetData={valetData}
-              setOpeningHour={setOpeningHour}
-              setClosingHour={setClosingHour}
-              handleHoursUpdate={handleHoursUpdate}
-            />
+        <div className="h-[500px] overflow-y-auto flex flex-col gap-4">
+          <div className='flex flex-row gap-6'>
+            <DataChart />
+            <GarageInformationCard valetData={valetData} />
+          </div>
+          <div className='flex flex-row items-center gap-6'>
+            <div className="flex flex-row justify-between gap-4 w-[70%]">
+              <ParkingSpotsStat
+                valetData={valetData}
+                setParkingSpots={setParkingSpots}
+                handleParkingSpotsUpdate={handleParkingSpotsUpdate}
+              />
+              <HoursOfOperationStat
+                valetData={valetData}
+                setOpeningHour={setOpeningHour}
+                setClosingHour={setClosingHour}
+                handleHoursUpdate={handleHoursUpdate}
+              />
+            </div>
+            <div className='flex flex-col gap-1 justify-center items-center w-[30%] stats shadow p-4'>
+              <RadialChart />
+            </div>
           </div>
         </div>
       </div>
