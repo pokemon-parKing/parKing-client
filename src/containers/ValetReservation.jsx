@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useCallback } from 'react';
 import { getSpotMetrics, getReservationList } from '../utils/valetReservationUtils.js'
 import { useSelector, useDispatch } from "react-redux";
-import { setSpots, setReservations } from "../utils/slice/valetSlice";
+import { setSpots, setReservations, setTime } from "../utils/slice/valetSlice";
 import toast from 'react-hot-toast';
 import { IoMdQrScanner } from "react-icons/io";
 import { LuCalendarSearch } from "react-icons/lu";
@@ -15,8 +15,10 @@ const ValetReservation = () => {
   const dispatch = useDispatch();
 
   const fetchSpotsAndReservations = useCallback(async () => {
+    const current = new Date().getHours();
+    const currentTime = time === current ? time : current;
     try {
-      const [spotData, reservationData] = await Promise.all([getSpotMetrics(garage_id, date, time), getReservationList(garage_id, date)]);
+      const [spotData, reservationData] = await Promise.all([getSpotMetrics(garage_id, date, currentTime), getReservationList(garage_id, date)]);
       dispatch(setSpots(await spotData));
       dispatch(setReservations(await reservationData));
     } catch (error) {
