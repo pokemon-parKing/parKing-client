@@ -2,6 +2,13 @@
 
 # ParKing Client
 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/94aa6137-96cc-4ec8-878c-594767ddb62c" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/f1a031ca-5f25-4f4f-9d35-920d693601c1" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/7619d760-c0e5-4351-b4f3-abfbf44246c1" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/2c8b3644-fd25-48b1-abdc-b63b44072654" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/144174704/25615bfc-5d7f-48cf-a1b3-948067d94d6e" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/144174704/425313b7-4450-49ab-beb6-86fc8682f3b4" width="32%"></img> 
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -149,13 +156,20 @@ Account server:
 <a id='features'></a>
 ## ✅ Features
 
-- [x]  Application flow - using react/tailwind for seamless transitions across application
+
 - [x]  User Auth - using google/supabase oauth
+
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/9b56559d-cf75-4e46-a64e-685847a19ab0" width="25%"></img> 
+
+- [x]  QRcode - utilized for efficient check-in/check-out process
+
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/18e022b1-b11c-4cde-b29e-bfa808c3a8c0" width="25%"></img> 
+
+- [x]  Application flow - using react/tailwind for seamless transitions across application
 - [x]  Reservation service - allowing users to make reservations
 - [x]  Valet service - allowing business owners to manage reservations
 - [x]  Account service - allow users to view/update account information
 - [x]  Supabase - utilized for data persistence
-- [x]  QRcode - utilized for efficient check-in/check-out process
 - [x]  Nodemailer - integrated as tool for communcation with users
 - [x]  Google Maps - visualize reservation process for enhanced user experience
 
@@ -173,6 +187,10 @@ Account server:
 <a id='contributing'></a>
 Feel free to join in! Whether its fixing bugs, improving documentation, or
 simply spreading the word!
+
+<p align='center'>
+  <img src='https://github.com/pokemon-parKing/parKing-client/assets/113388860/b8d0eeda-578e-4575-a713-bf7093ec0402' width='25%'></img>
+</p>
 
 ## :link: Links to Developers
 

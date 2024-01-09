@@ -10,7 +10,7 @@ const DetailsAndKeyBox = () => {
             <h3 className="text-2xl font-semibold mb-4">Reservation Details:</h3>
             <p>
               <span className="font-semibold">Reservation Status:</span>{' '}
-              {reservationDetails.status}
+              {reservationDetails.status==='reserved' ? 'Reserved' : reservationDetails.status==='checked-in' ? 'Checked-in' : reservationDetails.status==='picked-up' ? 'Picked-up' : 'Cancelled'}
             </p>
             <p>
               <span className="font-semibold">Reservation ID:</span>{' '}

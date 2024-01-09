@@ -6,10 +6,11 @@ const currentDate = new Date().toLocaleDateString('en-US', {
   year: '2-digit'
 }).split('/').join('-');
 
+const currentTime = new Date().getHours();
 
 const initialState = {
   reservations: [],
-  time: new Date().getHours(),
+  time: currentTime,
   date: currentDate,
   spots: {
     occupied: 0,
@@ -52,5 +53,5 @@ export const valetSlice = createSlice({
   },
 });
 
-export const { setReservations, setReservationDetails, setDate, setSpots } = valetSlice.actions;
+export const { setReservations, setReservationDetails, setDate, setSpots, setTime } = valetSlice.actions;
 export default valetSlice.reducer;
