@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import EditHoursModal from "./EditHoursModal";
 
 const HoursOfOperationStat = ({
@@ -46,7 +46,7 @@ HoursOfOperationStat.propTypes = {
   valetData: PropTypes.object.isRequired,
   setOpeningHour: PropTypes.func.isRequired,
   setClosingHour: PropTypes.func.isRequired,
-  handleHoursUpdate: PropTypes.func.isRequired
-}
+  handleHoursUpdate: PropTypes.func.isRequired,
+};
 
 export default HoursOfOperationStat;

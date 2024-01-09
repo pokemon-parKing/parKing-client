@@ -4,8 +4,8 @@ import toast from "react-hot-toast";
 import GarageInformationCard from "./GarageInformationCard";
 import ParkingSpotsStat from "./ParkingSpotsStat";
 import HoursOfOperationStat from "./HoursOfOperationStat";
-import DataChart from '../analytics-chart/DataChart';
-import RadialChart from '../analytics-chart/RadialChart';
+import DataChart from "../analytics-chart/DataChart";
+import RadialChart from "../analytics-chart/RadialChart";
 import {
   getValetDataApi,
   updateParkingSpotsApi,
@@ -83,11 +83,11 @@ const AdminSettings = () => {
           Admin Settings
         </h1>
         <div className="h-[500px] overflow-y-auto flex flex-col gap-4">
-          <div className='flex flex-row gap-6'>
+          <div className="flex flex-row gap-6">
             <DataChart />
             <GarageInformationCard valetData={valetData} />
           </div>
-          <div className='flex flex-row items-center gap-6'>
+          <div className="flex flex-row items-center gap-6">
             <div className="flex flex-row justify-between gap-4 w-[70%]">
               <ParkingSpotsStat
                 valetData={valetData}
@@ -101,7 +101,7 @@ const AdminSettings = () => {
                 handleHoursUpdate={handleHoursUpdate}
               />
             </div>
-            <div className='flex flex-col gap-1 justify-center items-center w-[30%] stats shadow p-4'>
+            <div className="flex flex-col gap-1 justify-center items-center w-[30%] stats shadow p-4">
               <RadialChart />
             </div>
           </div>
