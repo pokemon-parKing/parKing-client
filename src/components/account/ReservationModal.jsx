@@ -31,11 +31,8 @@ const ReservationModal = ({ reservationData, onClose }) => {
               <h2 className="text-xl font-semibold text-gray-800 mt-6">
                 Date and Time
               </h2>
-              <p className="text-lg text-gray-800">{`${
-                reservationData.date
-              }${String.fromCharCode(160)}${String.fromCharCode(
-                160
-              )}${String.fromCharCode(160)}${convertTime(
+              <p className="text-lg text-gray-800">{`${reservationData.date}`}</p>
+              <p className="text-lg text-gray-800">{`${convertTime(
                 reservationData.time
               )}`}</p>
 
