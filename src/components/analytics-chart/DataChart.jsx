@@ -44,14 +44,24 @@ const DataChart = () => {
     };
   }, [reservationData, formattedNext7Days]);
 
+  const createGradient = () => {
+    const ctx = document.createElement("canvas").getContext("2d");
+    const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+
+    gradient.addColorStop(0, "rgba(0, 0, 255, 1)"); // Dark blue
+    gradient.addColorStop(1, "rgba(0, 0, 255, 0.3)"); // Lighter blue
+
+    return gradient;
+  };
+
   const data = {
     labels: activeData.dates,
     datasets: [
       {
         label: "Total Reservations",
         data: activeData.totals,
-        borderColor: "rgb(73, 17, 28)",
-        backgroundColor: "rgba(73, 17, 28, 0.7)",
+        borderColor: "rgba(0, 0, 255, 1)", // Border color (if needed)
+        backgroundColor: createGradient(),
         barPercentage: 0.5,
         categoryPercentage: 0.5,
       },
