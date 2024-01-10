@@ -52,6 +52,8 @@ const DataChart = () => {
         data: activeData.totals,
         borderColor: "rgb(73, 17, 28)",
         backgroundColor: "rgba(73, 17, 28, 0.7)",
+        barPercentage: 0.5,
+        categoryPercentage: 0.5,
       },
     ],
   };
@@ -62,6 +64,20 @@ const DataChart = () => {
       title: {
         display: true,
         text: `Upcoming Reservations at ${name}`,
+      },
+    },
+    scales: {
+      x: {
+        display: true,
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        display: true,
+        grid: {
+          display: false,
+        },
       },
     },
   };
