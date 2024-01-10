@@ -14,7 +14,7 @@ const RadialChart = () => {
     <>
       <h2 className="stat-title">Currently Occupied:</h2>
       <div
-        className="radial-progress text-burgundy-p"
+        className="radial-progress bg-primary text-primary-content border-4 border-primary"
         style={{ "--value": percentage }}
         role="progressbar"
       >
