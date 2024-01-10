@@ -48,8 +48,8 @@ const DataChart = () => {
     const ctx = document.createElement("canvas").getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 0, 200);
 
-    gradient.addColorStop(0, "rgba(0, 0, 255, 1)"); // Dark blue
-    gradient.addColorStop(1, "rgba(0, 0, 255, 0.3)"); // Lighter blue
+    gradient.addColorStop(0, "rgba(0, 0, 255, 1)");
+    gradient.addColorStop(1, "rgba(0, 0, 255, 0.3)");
 
     return gradient;
   };
@@ -60,7 +60,7 @@ const DataChart = () => {
       {
         label: "Total Reservations",
         data: activeData.totals,
-        borderColor: "rgba(0, 0, 255, 1)", // Border color (if needed)
+        borderColor: "rgba(0, 0, 255, 1)",
         backgroundColor: createGradient(),
         barPercentage: 0.5,
         categoryPercentage: 0.5,
@@ -88,6 +88,11 @@ const DataChart = () => {
         grid: {
           display: false,
         },
+      },
+    },
+    elements: {
+      line: {
+        tension: 0.3,
       },
     },
   };
