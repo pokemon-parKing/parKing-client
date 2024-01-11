@@ -11,11 +11,13 @@ function LandingPage() {
         <img
           className="absolute top-1/37 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40"
           src="src/assets/parKingCrownLogo.png"
+          alt="ParKING Crown Logo"
         ></img>
         <SearchBar />
         <img
           className="h-full w-full object-cover"
           src="src/assets/landingpage/carouselPhoto1.jpg"
+          alt="parked silver car"
         ></img>
       </div>
 
@@ -30,6 +32,7 @@ function LandingPage() {
               icon={item.icon}
               title={item.title}
               text={item.text}
+              altText={item.altText}
             />
           ))}
         </div>
