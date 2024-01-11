@@ -8,7 +8,7 @@ function Footer() {
     <footer className='mt-10 bg-white-s pb-2 flex flex-col justify-center items-center'>
         <div className='flex flex-row justify-center items-center mt-8'>
           <div className='w-[30%] flex justify-center items-center'  >
-            <img src={Logo} alt="parKing logo" width='200px' />
+            <img src={Logo} alt="parKing logo" className="w-48 h-auto" />
           </div>
           <div className='flex item-center flex-col w-[60%] mt-2'>
             <div className='flex items-center justify-center font-semibold mb-4 text-xl italic'>
