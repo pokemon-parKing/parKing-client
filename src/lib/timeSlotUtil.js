@@ -28,13 +28,13 @@ export const convertTime = (number) => {
 
 export const convertIntegerToAMPM = (hour) => {
   if (hour === 0) {
-    return "12AM";
+    return "12 AM";
   } else if (hour === 12) {
-    return "12PM";
+    return "12 PM";
   } else if (hour < 12) {
-    return `${hour}AM`;
+    return `${hour} AM`;
   } else {
-    return `${hour - 12}PM`;
+    return `${hour - 12} PM`;
   }
 };
 
