@@ -40,9 +40,10 @@ const MapInfoWindow = ({ setOpen }) => {
           <RiWalkFill />
           &nbsp;
           <div className="text-black font-medium">
-            {` ${Math.ceil((0.6 / 3) * 60)} min`}
+            {selectedGarage.duration}
           </div>
-          &nbsp;{`(${selectedGarage.distance || "1.5"} mi)`}
+          &nbsp;
+          {`(${selectedGarage.distance || "1.5 mi"})`}
         </div>
         <div className="flex justify-end w-full">
           <button
