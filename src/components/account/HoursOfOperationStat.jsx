@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import EditHoursModal from "./EditHoursModal";
+import { convertIntegerToAMPM } from "../../lib/timeSlotUtil.js";
 
 const HoursOfOperationStat = ({
   valetData,
@@ -7,11 +8,18 @@ const HoursOfOperationStat = ({
   setClosingHour,
   handleHoursUpdate,
 }) => {
+  const formattedOpeningHour = convertIntegerToAMPM(
+    valetData?.operation_hours.split("-")[0]
+  );
+  const formattedClosingHour = convertIntegerToAMPM(
+    valetData?.operation_hours.split("-")[1]
+  );
+
   return (
     <div className="stats shadow w-[50%]">
       <div className="stat">
         <div className="stat-title">Hours of Operation</div>
-        <div className="stat-value">{valetData?.operation_hours}</div>
+        <div className="stat-value">{`${formattedOpeningHour} - ${formattedClosingHour}`}</div>
         <button
           className="btn btn-ghost text-blue-500"
           onClick={() => document.getElementById("editHoursModal").showModal()}
