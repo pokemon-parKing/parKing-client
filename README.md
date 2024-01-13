@@ -4,8 +4,8 @@
 
 <img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/94aa6137-96cc-4ec8-878c-594767ddb62c" width="32%"></img> 
 <img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/f1a031ca-5f25-4f4f-9d35-920d693601c1" width="32%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/7619d760-c0e5-4351-b4f3-abfbf44246c1" width="32%"></img> 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/2c8b3644-fd25-48b1-abdc-b63b44072654" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/144174704/d3a85c88-6be6-44a3-8d0d-461511edab3d" width="32%"></img> 
+<img src="https://github.com/pokemon-parKing/parKing-client/assets/144174704/ddca6663-8e8c-4606-b479-e68d62ff5dbd" width="32%"></img> 
 <img src="https://github.com/pokemon-parKing/parKing-client/assets/144174704/25615bfc-5d7f-48cf-a1b3-948067d94d6e" width="32%"></img> 
 <img src="https://github.com/pokemon-parKing/parKing-client/assets/144174704/425313b7-4450-49ab-beb6-86fc8682f3b4" width="32%"></img> 
 
@@ -160,19 +160,31 @@ Account server:
 
 - [x]  User Auth - using google/supabase oauth
 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/9b56559d-cf75-4e46-a64e-685847a19ab0" width="25%"></img> 
+![GoogleOauth](https://github.com/pokemon-parKing/parKing-client/assets/144174704/dcac6b9f-0577-47ed-9609-a75759a43adf)
 
 - [x]  QRcode - utilized for efficient check-in/check-out process
 
-<img src="https://github.com/pokemon-parKing/parKing-client/assets/113388860/18e022b1-b11c-4cde-b29e-bfa808c3a8c0" width="25%"></img> 
+![QRcode](https://github.com/pokemon-parKing/parKing-client/assets/144174704/2505c2ce-2b9d-4b10-a0e8-3a8b0a3f9705)
 
-- [x]  Application flow - using react/tailwind for seamless transitions across application
 - [x]  Reservation service - allowing users to make reservations
+
+![ReservationService](https://github.com/pokemon-parKing/parKing-client/assets/144174704/cd2d21b2-87cf-4c8b-bda5-e88df28095a6)
+
 - [x]  Valet service - allowing business owners to manage reservations
+
+![ValetService](https://github.com/pokemon-parKing/parKing-client/assets/144174704/fd67a0b5-4957-4dcf-ad5a-06144bacda65)
+
 - [x]  Account service - allow users to view/update account information
-- [x]  Supabase - utilized for data persistence
+
+![AccountsService](https://github.com/pokemon-parKing/parKing-client/assets/144174704/65500557-5528-4794-8855-ff8a4d23d93c)
+
 - [x]  Nodemailer - integrated as tool for communcation with users
+
+![nodemailer](https://github.com/pokemon-parKing/parKing-client/assets/144174704/778cb92a-746b-4a4f-9547-29f4f14ec9b7)
+
 - [x]  Google Maps - visualize reservation process for enhanced user experience
+- [x]  Application flow - using react/tailwind for seamless transitions across application
+- [x]  Supabase - utilized for data persistence
 
 <a id='future-enhancements'></a>
 ## :wrench: Future Enhancements
