@@ -63,6 +63,7 @@ const SearchBar = () => {
           />
           <select
             required
+            aria-label="Date"
             className="select select-bordered focus:outline-none join-item"
             value={reservation.date ? reservation.date.replace(/-/g, "/") : ""}
             onChange={(e) => {
