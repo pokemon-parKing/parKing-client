@@ -12,20 +12,21 @@ const Supabase = () => {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      if (session && session.provider_token) {
+      if (session?.provider_token) {
         window.localStorage.setItem('oauth_provider_token', session.provider_token)
       }
 
-      if (session && session.provider_refresh_token) {
+      if (session?.provider_refresh_token) {
         window.localStorage.setItem('oauth_provider_refresh_token', session.provider_refresh_token)
       }
 
-      if (session && session.user) {
+      if (session?.user) {
         dispatch(setAuthToken({auth_token: session}));
+        const [first_name, last_name] = session.user.user_metadata.full_name.split(' ');
         dispatch(setUserData({
           id: session.user.id,
-          first_name: session.user.user_metadata.full_name.split(' ')[0],
-          last_name: session.user.user_metadata.full_name.split(' ')[1],
+          first_name: first_name,
+          last_name: last_name,
           email: session.user.email,
           auth_token: session
         }));
@@ -41,7 +42,6 @@ const Supabase = () => {
         window.localStorage.removeItem('userInfo')
         window.localStorage.removeItem('cars')
         window.localStorage.removeItem('garages')
-        window.localStorage.removeItem('sb-iibwbjdisltiujjuglkp-auth-token')
         dispatch(setAuthToken(null));
         dispatch(setUserData(null));
       }
